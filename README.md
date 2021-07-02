@@ -31,7 +31,7 @@ Terminal 4 (correct the wrong params?):
     rosparam set /rtabmap/rgbd_odometry/publish_tf true
 
 
-TEMP COMANDS
+TEMP COMMANDS
 ------------
 
 rosservice call /rtabmap/reset "{}"
@@ -72,7 +72,7 @@ Root mode end:
     exit
 
 
-DOCKER COMANDS
+DOCKER COMMANDS
 --------------
 Start docker:
 
@@ -106,11 +106,11 @@ Send the rviz config file from my pc to the docker:
 
     docker container ls -a
 
-*General comand:*
+*General command:*
 
     docker cp  /host/local/path/file <containerId>:/file/path/in/container/
 
-*My comand:*
+*My command:*
 
     docker cp /home/mzaera/Documents/map_test_1.rviz 304712a249f8:/home/developer/marti
     
@@ -119,17 +119,17 @@ Send the rviz config file from the docker to my pc:
 
 *(on my pc terminal)*
 
-*General comand:*
+*General command:*
 
     docker cp <containerId>:/file/path/in/container/file /host/local/path/
 
-*My comand:*
+*My command:*
 
     docker cp 304712a249f8:/home/developer/marti/map_test_1.rviz /home/mzaera/Documents/
     docker cp 304712a249f8:/home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml /home/mzaera/Documents/
 
 
-GIT COMANDS
+GIT COMMANDS
 -----------
 
 Obtain the repo:
