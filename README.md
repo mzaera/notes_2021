@@ -128,6 +128,22 @@ Send the rviz config file from the docker to my pc:
     docker cp 304712a249f8:/home/developer/marti/map_test_1.rviz /home/mzaera/Documents/
     docker cp 304712a249f8:/home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml /home/mzaera/Documents/
 
+
+GIT COMANDS
+-----------
+
+Obtain the repo:
+
+    git clone https://github.com/mzaera/notes_2021
+
+Update the repo:
+
+    git add --all
+    git commit -m ""
+    git push
+
+
+
 USEFUL LINKS
 ------------
 [Docker instalation guide](https://hub.docker.com/r/ingeniarius/ingeniarius-simulators)
