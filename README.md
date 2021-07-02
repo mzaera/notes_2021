@@ -128,8 +128,8 @@ Send the rviz config file from the docker to my pc:
     docker cp 304712a249f8:/home/developer/marti/map_test_1.rviz /home/mzaera/Documents/
     docker cp 304712a249f8:/home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml /home/mzaera/Documents/
 
-USEFULL LINKS
--------------
+USEFUL LINKS
+------------
 [Docker instalation guide](https://hub.docker.com/r/ingeniarius/ingeniarius-simulators)
 
 [Git MAS-UAV pkg](https://github.com/Rezenders/mas_uav)
@@ -154,7 +154,7 @@ USEFULL LINKS
 
 
 INFO/EXTRA LIST
------------
+---------------
 
 * [ INFO] [1625138739.271218554, 41.039000000]: imu plugin missing <xyzOffset>, defaults to 0s
 [ INFO] [1625138739.272245560, 41.039000000]: imu plugin missing <rpyOffset>, defaults to 0s
@@ -222,7 +222,7 @@ ERROR
 
 All the errors seems to be solved automaticaly after a few seconds
 
-*[ERROR] [1624981808.355031649, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/front_left_wheel
+* [ERROR] [1624981808.355031649, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/front_left_wheel
 [ERROR] [1624981808.356011145, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/front_right_wheel
 [ERROR] [1624981808.356927444, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/rear_left_wheel
 [ERROR] [1624981808.357667160, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/rear_right_wheel
