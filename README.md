@@ -226,6 +226,9 @@ Robot Localization:
 
 [Data robot_localization](http://docs.ros.org/en/indigo/api/robot_localization/html/preparing_sensor_data.html)
 
+Others:
+
+[Covariance matrices](https://manialabs.wordpress.com/2012/08/06/covariance-matrices-with-a-practical-example/)
 
 INFO/EXTRA LIST
 ---------------
