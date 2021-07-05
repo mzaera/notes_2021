@@ -133,6 +133,21 @@ Install sublime
     sudo apt-get install sublime-text
 
 
+TELEOP
+------
+
+Install:
+
+    sudo apt install ros-melodic-teleop-twist-keyboard
+
+Use (normal):
+
+    rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+Use (remapping):
+
+    rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=name_of_the_new_topic
+
 GIT COMMANDS
 ------------
 
