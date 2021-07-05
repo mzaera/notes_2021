@@ -299,7 +299,108 @@ All the errors seems to be solved automaticaly after a few seconds
 [ERROR] [1624981808.356927444, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/rear_left_wheel
 [ERROR] [1624981808.357667160, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/rear_right_wheel
 
+ODOM INPUTS
+-----------
 
+* rostopic echo -n1 /rtabmap/odom_rgbd_icp
+
+```bash
+header: 
+  seq: 43
+  stamp: 
+    secs: 45
+    nsecs: 456000000
+  frame_id: "odom"
+child_frame_id: "base_link"
+pose: 
+  pose: 
+    position: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+  covariance: [9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0]
+twist: 
+  twist: 
+    linear: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    angular: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  covariance: [9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0]
+---
+```
+
+* rostopic echo -n1 /ekf/gps_converted_odom
+
+```bash
+header: 
+  seq: 179
+  stamp: 
+    secs: 50
+    nsecs: 367000000
+  frame_id: "map"
+child_frame_id: ''
+pose: 
+  pose: 
+    position: 
+      x: 0.198646071833
+      y: -7.19143222272
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  covariance: [1.0000000000000002e-08, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0000000000000002e-08, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-08, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+twist: 
+  twist: 
+    linear: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    angular: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+---
+```
+
+* rostopic echo -n1 /imu/data
+
+```bash
+header: 
+  seq: 531
+  stamp: 
+    secs: 51
+    nsecs: 660000000
+  frame_id: "base_link"
+orientation: 
+  x: 0.00418615480244
+  y: 0.00507176713806
+  z: 0.0327327948792
+  w: 0.999442503311
+orientation_covariance: [2.6030820491461885e-07, 0.0, 0.0, 0.0, 2.6030820491461885e-07, 0.0, 0.0, 0.0, 0.0]
+angular_velocity: 
+  x: 0.00648587704519
+  y: -0.0216170857248
+  z: -0.00175590506428
+angular_velocity_covariance: [2.5e-05, 0.0, 0.0, 0.0, 2.5e-05, 0.0, 0.0, 0.0, 2.5e-05]
+linear_acceleration: 
+  x: -0.0942494459401
+  y: 0.0858529754922
+  z: 9.79793773383
+linear_acceleration_covariance: [2.5e-05, 0.0, 0.0, 0.0, 2.5e-05, 0.0, 0.0, 0.0, 2.5e-05]
+---
+```
 
 ROSNODE LIST
 ------------
