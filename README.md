@@ -303,6 +303,7 @@ ODOM INPUTS
 -----------
 
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
+
 *Using ICP config on RTABMAP*
 
 ```bash
@@ -339,6 +340,7 @@ twist:
 ---
 ```
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
+
 *Using RGBD config on RTABMAP (maybe the pointcloud rotation comes from w=1.0)*
 
 ```bash
