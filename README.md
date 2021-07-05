@@ -91,6 +91,10 @@ Delate and rekame the docker:
     sudo chmod +x run.bash
     ./run.bash
 
+Rename docker container:
+
+    docker rename ingeniarius-simulators ingeniarius-mzX
+
 Send the rviz config file from my pc to the docker:
 
 *(on the docker terminal)*
