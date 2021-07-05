@@ -22,7 +22,7 @@ Terminal 2 (move the robot):
     rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 
 
-Terminal 3 (run rviz and open manualy the configuration file):
+Terminal 3 (run rviz and open the configuration file):
 
     rosrun rviz rviz -d ~/marti/map_test_1.rviz
 
@@ -56,15 +56,15 @@ Root mode end:
 
 DOCKER COMMANDS
 --------------
-Start docker:
+* Start docker:
 
     docker start ingeniarius-simulators
 
-Stop the docker container (my pc terminal):
+* Stop the docker container (my pc terminal):
 
     docker container stop ingeniarius-simulators
 
-Delate and rekame the docker:
+* Delate and rekame the docker:
 (run.bash on the folder)
 
     docker container stop ingeniarius-simulators
@@ -73,11 +73,11 @@ Delate and rekame the docker:
     sudo chmod +x run.bash
     ./run.bash
 
-Rename docker container:
+* Rename docker container:
 
     docker rename ingeniarius-simulators ingeniarius-mzX
 
-Send the rviz config file from my pc to the docker:
+* Send the rviz config file from my pc to the docker:
 
 *(on the docker terminal)*
 
@@ -101,7 +101,7 @@ Send the rviz config file from my pc to the docker:
     docker cp /home/mzaera/Documents/map_test_1.rviz ea379b3ce13d:/home/developer/marti
     
 
-Send the rviz config file from the docker to my pc:
+* Send the rviz config file from the docker to my pc:
 
 *(on my pc terminal)*
 
@@ -153,21 +153,21 @@ Line 97 aprox.
     <arg name="icp_odometry"             default="true"/>         <!-- Launch rtabmap icp odometry node -->
 
 Line 98 aprox.
-    *Just a change of name easyer to identify as we are using icp now*
+    *Just a change of name easier to identify as we are using icp now*
 
     <arg name="odom_topic"               default="odom_rgbd_icp"/>          <!-- Odometry topic name -->
 
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
 
 Line 30 aprox.
-    *Just a change of name easyer to identify as we are using icp now*
+    *Just a change of name easier to identify as we are using icp now*
 
     odom0: rtabmap/odom_rgbd_icp
 
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
 
 Line 30 aprox.
-    *Just a change of name easyer to identify as we are using icp now*
+    *Just a change of name easier to identify as we are using icp now*
 
     odom0: rtabmap/odom_rgbd_icp
 
