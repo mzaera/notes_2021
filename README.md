@@ -26,38 +26,21 @@ Terminal 3 (run rviz and open manualy the configuration file):
 
     rosrun rviz rviz -d ~/marti/map_test_1.rviz
 
-Terminal 4 (correct the wrong params?):
-
-    rosparam set /rtabmap/rgbd_odometry/publish_tf true
-
 
 TEMP COMMANDS
 ------------
 
-rosservice call /rtabmap/reset "{}"
+    rosservice call /rtabmap/reset "{}"
 
-rosservice call /rtabmap/trigger_new_map "{}"
+    rosservice call /rtabmap/trigger_new_map "{}"
 
 
-NOTES
------
+EXTRA NOTES
+-----------
 
 Find where is a pkg:
 
     rospack find <name_of_the_pkg> 
-
-Install nano:
-
-    sudo apt-get install nano
-
-Install sublime
-
-    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-    sudo apt-get install apt-transport-https
-    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-    sudo apt-get update
-    sudo apt-get install sublime-text
-
 
 See the icp params:
 
@@ -70,7 +53,6 @@ Root mode start:
 Root mode end:
 
     exit
-
 
 DOCKER COMMANDS
 --------------
@@ -116,7 +98,7 @@ Send the rviz config file from my pc to the docker:
 
 *My command:*
 
-    docker cp /home/mzaera/Documents/map_test_1.rviz 304712a249f8:/home/developer/marti
+    docker cp /home/mzaera/Documents/map_test_1.rviz ea379b3ce13d:/home/developer/marti
     
 
 Send the rviz config file from the docker to my pc:
@@ -133,8 +115,20 @@ Send the rviz config file from the docker to my pc:
     docker cp 304712a249f8:/home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml /home/mzaera/Documents/
 
 
+INSTALL SUBLIME
+---------------
+
+Install sublime
+
+    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+    sudo apt-get install apt-transport-https
+    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+    sudo apt-get update
+    sudo apt-get install sublime-text
+
+
 GIT COMMANDS
------------
+------------
 
 Obtain the repo:
 
@@ -143,9 +137,39 @@ Obtain the repo:
 Update the repo:
 
     git add --all
-    git commit -m ""
+    git commit -m "readme"
     git push
 
+
+CHANGES DONE
+------------
+
+* /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap/rtabmap_simulator.launch
+
+Line 97 aprox.
+    *Using rgbd odom seems to add an error (scans rotating while husky moves) so we use icp insted*
+    *Also error about number of of points in the two input datasets differs (seems not to afect)*    
+
+    <arg name="icp_odometry"             default="true"/>         <!-- Launch rtabmap icp odometry node -->
+
+Line 98 aprox.
+    *Just a change of name easyer to identify as we are using icp now*
+
+    <arg name="odom_topic"               default="odom_rgbd_icp"/>          <!-- Odometry topic name -->
+
+* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
+
+Line 30 aprox.
+    *Just a change of name easyer to identify as we are using icp now*
+
+    odom0: rtabmap/odom_rgbd_icp
+
+* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
+
+Line 30 aprox.
+    *Just a change of name easyer to identify as we are using icp now*
+
+    odom0: rtabmap/odom_rgbd_icp
 
 
 USEFUL LINKS
