@@ -180,7 +180,12 @@ Line 30 aprox.
 
 USEFUL LINKS
 ------------
+
+Docker:
+
 [Docker instalation guide](https://hub.docker.com/r/ingeniarius/ingeniarius-simulators)
+
+Gazebo:
 
 [Git MAS-UAV pkg](https://github.com/Rezenders/mas_uav)
 
@@ -188,19 +193,21 @@ USEFUL LINKS
 
 [Agriculture envairoment](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/additional_sim_worlds.html)
 
-[Official RTAB-Map Webpage](http://introlab.github.io/rtabmap/)
+RTABMAP:
 
-[Official RTAB-Map Forum](http://official-rtab-map-forum.67519.x6.nabble.com/)
+[ RTAB-Map Webpage](http://introlab.github.io/rtabmap/)
+
+[ RTAB-Map Forum](http://official-rtab-map-forum.67519.x6.nabble.com/)
 
 [ROS Wiki RTAB-Map](http://wiki.ros.org/rtabmap_ros)
 
-[ROS Wiki Tf](http://wiki.ros.org/tf)
+Robot Localization:
 
 [Robot_localization GIT](https://github.com/cra-ros-pkg/robot_localization)
 
 [Robot_localization Wiki](http://docs.ros.org/en/melodic/api/robot_localization/html/index.html)
 
-[Robot_localization State Estimation Nodes](http://docs.ros.org/en/melodic/api/robot_localization/html/state_estimation_nodes.html)
+[Robot_localization Params](http://docs.ros.org/en/melodic/api/robot_localization/html/state_estimation_nodes.html)
 
 
 INFO/EXTRA LIST
