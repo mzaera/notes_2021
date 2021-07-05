@@ -303,6 +303,7 @@ ODOM INPUTS
 -----------
 
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
+*Using ICP config on RTABMAP*
 
 ```bash
 header: 
@@ -337,6 +338,43 @@ twist:
   covariance: [9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0]
 ---
 ```
+* rostopic echo -n1 /rtabmap/odom_rgbd_icp
+*Using RGBD config on RTABMAP (maybe the pointcloud rotation comes from w=1.0)*
+
+```bash
+header: 
+  seq: 1
+  stamp: 
+    secs: 43
+    nsecs: 287000000
+  frame_id: "odom"
+child_frame_id: "base_link"
+pose: 
+  pose: 
+    position: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0 
+  covariance: [19998.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 19998.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 19998.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 19998.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 19998.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 19998.0]
+twist: 
+  twist: 
+    linear: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    angular: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  covariance: [9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0]
+---
+```
+
 
 * rostopic echo -n1 /ekf/gps_converted_odom
 
