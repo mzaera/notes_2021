@@ -58,24 +58,30 @@ DOCKER COMMANDS
 --------------
 * Start docker:
 
+```bash
     docker start ingeniarius-simulators
-
+```
 * Stop the docker container (my pc terminal):
 
-    docker container stop ingeniarius-simulators
+  ```bash
+  docker container stop ingeniarius-simulators
+```
 
 * Delate and rekame the docker:
 (run.bash on the folder)
+```bash
 
     docker container stop ingeniarius-simulators
     docker container rm ingeniarius-simulators
     docker pull ingeniarius/ingeniarius-simulators
     sudo chmod +x run.bash
     ./run.bash
+```
 
 * Rename docker container:
-
-    docker rename ingeniarius-simulators ingeniarius-mzX
+```bash
+   docker rename ingeniarius-simulators ingeniarius-mzX
+```
 
 * Send the rviz config file from my pc to the docker:
 
