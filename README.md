@@ -1,5 +1,29 @@
-HUSKY SIMULATION
-----------------
+HUSKY SIMULATION ON MY PC
+--------------------------
+
+In each terminal:
+
+    cd catkin_ws
+    source devel/setup.bash
+
+
+Terminal 1 (launch simulation):
+
+    roslaunch agriculture_launcher bringup.launch
+
+
+Terminal 2 (move the robot):
+
+    rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+
+
+Terminal 3 (run rviz and open the configuration file):
+
+    rosrun rviz rviz -d ~/marti_rviz_config/map_test_1.rviz
+
+
+HUSKY SIMULATION ON DOCKER
+--------------------------
 
 Start docker:
 
@@ -25,7 +49,6 @@ Terminal 2 (move the robot):
 Terminal 3 (run rviz and open the configuration file):
 
     rosrun rviz rviz -d ~/marti/map_test_1.rviz
-
 
 TEMP COMMANDS
 ------------
