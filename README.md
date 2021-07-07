@@ -272,9 +272,15 @@ Robot Localization:
 
 [Data robot_localization](http://docs.ros.org/en/indigo/api/robot_localization/html/preparing_sensor_data.html)
 
+Octomap:
+
+[Octomap_server Wiki](http://wiki.ros.org/octomap_server)
+
 Others:
 
 [Covariance matrices](https://manialabs.wordpress.com/2012/08/06/covariance-matrices-with-a-practical-example/)
+
+[Quaternions and Euler angles](https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles)
 
 INFO/EXTRA LIST
 ---------------
