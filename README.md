@@ -192,6 +192,52 @@ Line 30 aprox.
 
     odom0: rtabmap/odom_rgbd_icp
 
+* /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
+
+Line 4 aprox.
+    *Adding an yaw ofset correcting that way the wrong orientation on rviz and robot_localization pkg*
+
+    yaw_offset: 1.570796
+
+* /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
+
+Line 15 aprox
+    *Add octomap_server launch file*
+       
+        <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>
+
+* /home/developer/agriculture_sim/src/agriculture_launcher/
+
+*Generate octomap launch file*
+    
+    mkdir octomap
+    cd octomap
+
+*Generate a file called "octomap_server_start.launch"*
+
+    <!-- 
+      Example launch file for octomap_server mapping: 
+      Listens to incoming PointCloud2 data and incrementally builds an octomap. 
+      The data is sent out in different representations. 
+    
+      Copy this file into your workspace and adjust as needed, see
+      www.ros.org/wiki/octomap_server for details  
+    -->
+    <launch>
+        <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+            <param name="resolution" value="0.05" />
+            
+            <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+            <param name="frame_id" type="string" value="map" />
+            
+            <!-- maximum range to integrate (speedup!) -->
+            <param name="sensor_model/max_range" value="5.0" />
+            
+            <!-- data source to integrate (PointCloud2) -->
+            <remap from="cloud_in" to="/rtabmap/octomap_occupied_space" />
+        
+        </node>
+    </launch>
 
 USEFUL LINKS
 ------------
