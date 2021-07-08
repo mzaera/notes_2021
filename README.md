@@ -570,8 +570,6 @@ ROSNODE LIST
 
 INICIAL PARAMETERS
 ------------------
-
-* /agriculture_geom: <?xml version="1....
  * /ekf_global/base_link_frame: base_link
  * /ekf_global/debug: False
  * /ekf_global/frequency: 30
@@ -587,7 +585,7 @@ INICIAL PARAMETERS
  * /ekf_global/imu0_twist_rejection_threshold: 0.8
  * /ekf_global/initial_estimate_covariance: [1.0, 0, 0, 0, 0,...
  * /ekf_global/map_frame: map
- * /ekf_global/odom0: rtabmap/rgbd_odom
+ * /ekf_global/odom0: rtabmap/odom_rgbd...
  * /ekf_global/odom0_config: [True, True, True...
  * /ekf_global/odom0_differential: True
  * /ekf_global/odom0_nodelay: True
@@ -626,7 +624,7 @@ INICIAL PARAMETERS
  * /ekf_local/imu0_twist_rejection_threshold: 0.8
  * /ekf_local/initial_estimate_covariance: ['1e-9', 0, 0, 0,...
  * /ekf_local/map_frame: map
- * /ekf_local/odom0: rtabmap/rgbd_odom
+ * /ekf_local/odom0: rtabmap/odom_rgbd...
  * /ekf_local/odom0_config: [False, False, Fa...
  * /ekf_local/odom0_differential: False
  * /ekf_local/odom0_nodelay: False
@@ -678,8 +676,11 @@ INICIAL PARAMETERS
  * /navsat_transform_node/transform_timeout: 0.1
  * /navsat_transform_node/use_odometry_yaw: True
  * /navsat_transform_node/wait_for_datum: True
- * /navsat_transform_node/yaw_offset: 0.0
+ * /navsat_transform_node/yaw_offset: 1.570796
  * /navsat_transform_node/zero_altitude: True
+ * /octomap_server/frame_id: map
+ * /octomap_server/resolution: 0.05
+ * /octomap_server/sensor_model/max_range: 500.0
  * /realsense_to_laserscan/angle_increment: 0.005
  * /realsense_to_laserscan/angle_max: 0.759218224618
  * /realsense_to_laserscan/angle_min: -0.759218224618
@@ -692,28 +693,27 @@ INICIAL PARAMETERS
  * /realsense_to_laserscan/target_frame: base_link
  * /realsense_to_laserscan/tolerance: 1.0
  * /realsense_to_laserscan/use_inf: True
- * /robot_description: <?xml version="1....
  * /rosdistro: melodic
- * /rosversion: 1.14.6
- * /rtabmap/rgbd_odometry/approx_sync: True
- * /rtabmap/rgbd_odometry/config_path: 
- * /rtabmap/rgbd_odometry/expected_update_rate: 0.0
- * /rtabmap/rgbd_odometry/frame_id: base_link
- * /rtabmap/rgbd_odometry/ground_truth_base_frame_id: 
- * /rtabmap/rgbd_odometry/ground_truth_frame_id: 
- * /rtabmap/rgbd_odometry/guess_frame_id: 
- * /rtabmap/rgbd_odometry/guess_min_rotation: 0.0
- * /rtabmap/rgbd_odometry/guess_min_translation: 0.0
- * /rtabmap/rgbd_odometry/keep_color: False
- * /rtabmap/rgbd_odometry/max_update_rate: 0.0
- * /rtabmap/rgbd_odometry/odom_frame_id: odom
- * /rtabmap/rgbd_odometry/publish_tf: False
- * /rtabmap/rgbd_odometry/queue_size: 10
- * /rtabmap/rgbd_odometry/subscribe_rgbd: False
- * /rtabmap/rgbd_odometry/wait_for_transform_duration: 0.2
- * /rtabmap/rgbd_odometry/wait_imu_to_init: False
+ * /rosversion: 1.14.11
+ * /rtabmap/icp_odometry/config_path: 
+ * /rtabmap/icp_odometry/expected_update_rate: 0.0
+ * /rtabmap/icp_odometry/frame_id: base_link
+ * /rtabmap/icp_odometry/ground_truth_base_frame_id: 
+ * /rtabmap/icp_odometry/ground_truth_frame_id: 
+ * /rtabmap/icp_odometry/guess_frame_id: 
+ * /rtabmap/icp_odometry/guess_min_rotation: 0.0
+ * /rtabmap/icp_odometry/guess_min_translation: 0.0
+ * /rtabmap/icp_odometry/max_update_rate: 0.0
+ * /rtabmap/icp_odometry/odom_frame_id: odom
+ * /rtabmap/icp_odometry/publish_tf: False
+ * /rtabmap/icp_odometry/queue_size: 10
+ * /rtabmap/icp_odometry/scan_cloud_max_points: 0
+ * /rtabmap/icp_odometry/wait_for_transform_duration: 0.2
+ * /rtabmap/icp_odometry/wait_imu_to_init: False
+ * /rtabmap/rtabmap/Grid/FromDepth: True
  * /rtabmap/rtabmap/Mem/IncrementalMemory: true
  * /rtabmap/rtabmap/Mem/InitWMWithAllNodes: false
+ * /rtabmap/rtabmap/Optimizer/Iterations: 100
  * /rtabmap/rtabmap/approx_sync: True
  * /rtabmap/rtabmap/config_path: 
  * /rtabmap/rtabmap/database_path: ~/.ros/rtabmap.db
@@ -723,6 +723,9 @@ INICIAL PARAMETERS
  * /rtabmap/rtabmap/ground_truth_frame_id: 
  * /rtabmap/rtabmap/landmark_angular_variance: 9999.0
  * /rtabmap/rtabmap/landmark_linear_variance: 0.0001
+ * /rtabmap/rtabmap/latch: True
+ * /rtabmap/rtabmap/map_always_update: True
+ * /rtabmap/rtabmap/map_cleanup: False
  * /rtabmap/rtabmap/map_frame_id: map
  * /rtabmap/rtabmap/odom_frame_id: odom
  * /rtabmap/rtabmap/odom_sensor_sync: False
@@ -744,6 +747,7 @@ INICIAL PARAMETERS
  * /twist_mux/locks: [{'topic': 'e_sto...
  * /twist_mux/topics: [{'topic': 'joy_t...
  * /use_sim_time: True
+
 
 
 COMPLETE PARAMETERS LIST RTABMAP
