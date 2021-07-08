@@ -143,6 +143,31 @@ docker rename ingeniarius-simulators ingeniarius-mzX
     docker cp 304712a249f8:/home/developer/marti/map_test_1.rviz /home/mzaera/Documents/
     docker cp 304712a249f8:/home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml /home/mzaera/Documents/
 
+PKG FROM DOCKER TO PC
+---------------------
+Create a Catkin Workspace:
+    
+    cd
+    source /opt/ros/melodic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws/
+    catkin_make
+
+Copy the folder from docker to catkin_ws/src:
+
+    docker cp <containerId>:/file/path/in/container/ /host/local/path/
+
+    docker cp 304712a249f8:/home/developer/agriculture_sim /home/mzaera/catkin_ws/src
+
+Install the dependencies:
+
+    rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+    catkin_make
+
+Install the missing pkgs:
+
+    sudo apt install ros-melodic-octomap-server
+    sudo apt install ros-melodic-rtabmap-ros
 
 INSTALL SUBLIME
 ---------------
