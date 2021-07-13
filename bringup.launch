@@ -1,0 +1,13 @@
+<launch>
+  
+    <include file="$(find cpr_agriculture_gazebo)/launch/agriculture_world.launch">
+      <arg name="platform" value="husky" />
+    </include> 
+
+    <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
+    <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
+
+    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch"/>
+    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>  
+
+</launch>

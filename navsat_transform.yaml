@@ -1,0 +1,13 @@
+frequency: 30
+delay: 3
+magnetic_declination_radians: 0.0349066 #check!!
+yaw_offset: 1.570796
+zero_altitude: true
+broadcast_utm_transform: true
+broadcast_utm_transform_as_parent_frame: true
+publish_filtered_gps: false
+use_odometry_yaw: true
+wait_for_datum: true
+#datum: [41.2206659318, -8.52751781305, 0.0]
+datum: [49.8999999596, 8.90000090445, -0.00463541982361] #simulation
+transform_timeout: 0.1
