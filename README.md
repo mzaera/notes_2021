@@ -16,10 +16,14 @@ Terminal 2 (move the robot):
 
     rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 
+or
+
+    rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.5}}'
+
 
 Terminal 3 (run rviz and open the configuration file):
 
-    rosrun rviz rviz -d ~/marti_rviz_config/map_test_1.rviz
+    rosrun rviz rviz -d ~/catkin_ws/src/agriculture_sim/src/rviz/rviz_husky_config.rviz
 
 
 HUSKY SIMULATION ON DOCKER
@@ -45,37 +49,134 @@ Terminal 2 (move the robot):
 
     rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 
+or
+
+    rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.5}}'
 
 Terminal 3 (run rviz and open the configuration file):
 
-    rosrun rviz rviz -d ~/marti/map_test_1.rviz
+    rosrun rviz rviz -d ~/agriculture_sim/src/rviz/rviz_husky_config.rviz
 
-TEMP COMMANDS
+
+USEFUL LINKS
 ------------
 
-    rosservice call /rtabmap/reset "{}"
+Docker:
 
-    rosservice call /rtabmap/trigger_new_map "{}"
+[Docker instalation guide](https://hub.docker.com/r/ingeniarius/ingeniarius-simulators)
+
+Gazebo:
+
+[Git MAS-UAV pkg](https://github.com/Rezenders/mas_uav)
+
+[Git Husky pkg](https://github.com/husky/husky)
+
+[Agriculture envairoment](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/additional_sim_worlds.html)
+
+RTABMAP:
+
+[ RTAB-Map Webpage](http://introlab.github.io/rtabmap/)
+
+[ RTAB-Map Forum](http://official-rtab-map-forum.67519.x6.nabble.com/)
+
+[ROS Wiki RTAB-Map](http://wiki.ros.org/rtabmap_ros)
+
+Robot Localization:
+
+[Robot_localization GIT](https://github.com/cra-ros-pkg/robot_localization)
+
+[Robot_localization Wiki](http://docs.ros.org/en/melodic/api/robot_localization/html/index.html)
+
+[Robot_localization Params](http://docs.ros.org/en/melodic/api/robot_localization/html/state_estimation_nodes.html)
+
+[Data robot_localization](http://docs.ros.org/en/indigo/api/robot_localization/html/preparing_sensor_data.html)
+
+Octomap:
+
+[Octomap_server Wiki](http://wiki.ros.org/octomap_server)
+
+Others:
+
+[Covariance matrices](https://manialabs.wordpress.com/2012/08/06/covariance-matrices-with-a-practical-example/)
+
+[Quaternions and Euler angles](https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles)
+
+CHANGES DONE
+------------
+
+* /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
+
+Line 4 aprox.
+    *Adding an yaw ofset correcting that way the wrong orientation on rviz and robot_localization pkg*
+
+    yaw_offset: 1.570796
+
+* /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
+
+    *Add octomap_server launch file and the new rtabmap launch file*
+
+```bash
+    <launch>
+      
+        <include file="$(find cpr_agriculture_gazebo)/launch/agriculture_world.launch">
+          <arg name="platform" value="husky" />
+        </include> 
+    
+        <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
+        <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
+    
+        <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch"/>
+        <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>  
+    
+    </launch>
+```
+
+* /home/developer/agriculture_sim/src/agriculture_launcher
+
+*Generate octomap launch file*
+    
+    mkdir octomap
+    cd octomap
+
+*Generate a file called "octomap_server_start.launch"*
+
+    <launch>
+        <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+            <param name="resolution" value="0.05" />
+            
+            <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+            <param name="frame_id" type="string" value="map" />
+            
+            <!-- maximum range to integrate (speedup!) -->
+            <param name="sensor_model/max_range" value="5.0" />
+            
+            <!-- data source to integrate (PointCloud2) -->
+            <remap from="cloud_in" to="/rtabmap/octomap_occupied_space" />
+        
+        </node>
+    </launch>
+
+* /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap
+
+*Generate a file called "rtabmap_simulation_husky.launch". You can obtain it from this repo*
 
 
-EXTRA NOTES
------------
+* /home/developer/agriculture_sim/src/rviz
 
-Find where is a pkg:
+*Copy from this repo the file called "rviz_husky_config.rviz"*
 
-    rospack find <name_of_the_pkg> 
+GIT COMMANDS
+------------
 
-See the icp params:
+Obtain the repo:
 
-    rtabmap --params | grep Icp/
+    git clone https://github.com/mzaera/notes_2021
 
-Root mode start:
+Update the repo:
 
-    sudo su
-
-Root mode end:
-
-    exit
+    git add --all
+    git commit -m "readme"
+    git push
 
 DOCKER COMMANDS
 --------------
@@ -106,7 +207,8 @@ sudo chmod +x run.bash
 docker rename ingeniarius-simulators ingeniarius-mzX
 ```
 
-* Send the rviz config file from my pc to the docker:
+FILE FROM PC TO DOCKER
+----------------------
 
 *(on the docker terminal)*
 
@@ -128,9 +230,9 @@ docker rename ingeniarius-simulators ingeniarius-mzX
 *My command:*
 
     docker cp /home/mzaera/Documents/map_test_1.rviz ea379b3ce13d:/home/developer/marti
-    
 
-* Send the rviz config file from the docker to my pc:
+FILE FROM DOCKER TO PC
+----------------------
 
 *(on my pc terminal)*
 
@@ -180,7 +282,6 @@ Install sublime
     sudo apt-get update
     sudo apt-get install sublime-text
 
-
 TELEOP
 ------
 
@@ -196,139 +297,24 @@ Use (remapping):
 
     rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=name_of_the_new_topic
 
-GIT COMMANDS
-------------
+EXTRA NOTES
+-----------
 
-Obtain the repo:
+Find where is a pkg:
 
-    git clone https://github.com/mzaera/notes_2021
+    rospack find <name_of_the_pkg> 
 
-Update the repo:
+See the especific params:
 
-    git add --all
-    git commit -m "readme"
-    git push
+    rtabmap --params | grep Name/
 
+Root mode start:
 
-CHANGES DONE
-------------
+    sudo su
 
-* /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap/rtabmap_simulator.launch
+Root mode end:
 
-Line 97 aprox.
-    *Using rgbd odom seems to add an error (scans rotating while husky moves) so we use icp insted*
-    *Also error about number of of points in the two input datasets differs (seems not to afect)*    
-
-    <arg name="icp_odometry"             default="true"/>         <!-- Launch rtabmap icp odometry node -->
-
-Line 98 aprox.
-    *Just a change of name easier to identify as we are using icp now*
-
-    <arg name="odom_topic"               default="odom_rgbd_icp"/>          <!-- Odometry topic name -->
-
-* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
-
-Line 30 aprox.
-    *Just a change of name easier to identify as we are using icp now*
-
-    odom0: rtabmap/odom_rgbd_icp
-
-* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
-
-Line 30 aprox.
-    *Just a change of name easier to identify as we are using icp now*
-
-    odom0: rtabmap/odom_rgbd_icp
-
-* /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
-
-Line 4 aprox.
-    *Adding an yaw ofset correcting that way the wrong orientation on rviz and robot_localization pkg*
-
-    yaw_offset: 1.570796
-
-* /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
-
-Line 15 aprox
-    *Add octomap_server launch file*
-       
-        <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>
-
-* /home/developer/agriculture_sim/src/agriculture_launcher/
-
-*Generate octomap launch file*
-    
-    mkdir octomap
-    cd octomap
-
-*Generate a file called "octomap_server_start.launch"*
-
-    <!-- 
-      Example launch file for octomap_server mapping: 
-      Listens to incoming PointCloud2 data and incrementally builds an octomap. 
-      The data is sent out in different representations. 
-    
-      Copy this file into your workspace and adjust as needed, see
-      www.ros.org/wiki/octomap_server for details  
-    -->
-    <launch>
-        <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
-            <param name="resolution" value="0.05" />
-            
-            <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
-            <param name="frame_id" type="string" value="map" />
-            
-            <!-- maximum range to integrate (speedup!) -->
-            <param name="sensor_model/max_range" value="5.0" />
-            
-            <!-- data source to integrate (PointCloud2) -->
-            <remap from="cloud_in" to="/rtabmap/octomap_occupied_space" />
-        
-        </node>
-    </launch>
-
-USEFUL LINKS
-------------
-
-Docker:
-
-[Docker instalation guide](https://hub.docker.com/r/ingeniarius/ingeniarius-simulators)
-
-Gazebo:
-
-[Git MAS-UAV pkg](https://github.com/Rezenders/mas_uav)
-
-[Git Husky pkg](https://github.com/husky/husky)
-
-[Agriculture envairoment](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/additional_sim_worlds.html)
-
-RTABMAP:
-
-[ RTAB-Map Webpage](http://introlab.github.io/rtabmap/)
-
-[ RTAB-Map Forum](http://official-rtab-map-forum.67519.x6.nabble.com/)
-
-[ROS Wiki RTAB-Map](http://wiki.ros.org/rtabmap_ros)
-
-Robot Localization:
-
-[Robot_localization GIT](https://github.com/cra-ros-pkg/robot_localization)
-
-[Robot_localization Wiki](http://docs.ros.org/en/melodic/api/robot_localization/html/index.html)
-
-[Robot_localization Params](http://docs.ros.org/en/melodic/api/robot_localization/html/state_estimation_nodes.html)
-
-[Data robot_localization](http://docs.ros.org/en/indigo/api/robot_localization/html/preparing_sensor_data.html)
-
-Octomap:
-
-[Octomap_server Wiki](http://wiki.ros.org/octomap_server)
-
-Others:
-
-[Covariance matrices](https://manialabs.wordpress.com/2012/08/06/covariance-matrices-with-a-practical-example/)
-
-[Quaternions and Euler angles](https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles)
+    exit
 
 INFO/EXTRA LIST
 ---------------
@@ -352,7 +338,6 @@ INFO/EXTRA LIST
         Publish executed velocity command: disabled
         Publication rate: 50
         Publish frame odom on tf: disabled
-
 
 WARNINGS LIST
 -------------
@@ -392,7 +377,6 @@ WARNINGS LIST
 
 
 * [WARN] [1625228090.214656, 41.891000]: Controller Spawner couldn't find the expected controller_manager ROS interface.
-
 
 ERROR
 -----
