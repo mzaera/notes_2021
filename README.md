@@ -246,7 +246,7 @@ docker container stop ingeniarius-simulators
 ```
 
 * Delate and rekame the docker:
-(run.bash on the folder)
+    *(run.bash on the folder)*
 
 ```bash
 docker container stop ingeniarius-simulators
@@ -257,6 +257,7 @@ sudo chmod +x run.bash
 ```
 
 * Rename docker container:
+
 ```bash
 docker rename ingeniarius-simulators ingeniarius-mzX
 ```
@@ -264,111 +265,122 @@ docker rename ingeniarius-simulators ingeniarius-mzX
 FILE FROM PC TO DOCKER
 ----------------------
 
-*(on the docker terminal)*
-
-    mkdir marti
-
-*Get the path of a folder:*
+* Get the path of a folder:
     
+```bash
     pwd
+```
 
-*To obtain the container ID:*
-*(on my pc terminal)*
+* To obtain the container ID:
+    *(on my pc terminal)*
 
+```bash
     docker container ls -a
+```
 
-*General command:*
+* General command:
 
+```bash
     docker cp  /host/local/path/file <containerId>:/file/path/in/container/
-
-*My command:*
-
-    docker cp /home/mzaera/Documents/map_test_1.rviz ea379b3ce13d:/home/developer/marti
+```
 
 FILE FROM DOCKER TO PC
 ----------------------
 
-*(on my pc terminal)*
+* General command:
 
-*General command:*
-
+```bash
     docker cp <containerId>:/file/path/in/container/file /host/local/path/
-
-*My command:*
-
-    docker cp 304712a249f8:/home/developer/marti/map_test_1.rviz /home/mzaera/Documents/
-    docker cp 304712a249f8:/home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml /home/mzaera/Documents/
+```
 
 PKG FROM DOCKER TO PC
 ---------------------
-Create a Catkin Workspace:
-    
+
+* Create a Catkin Workspace:
+
+```bash  
     cd
     source /opt/ros/melodic/setup.bash
     mkdir -p ~/catkin_ws/src
     cd ~/catkin_ws/
     catkin_make
+```
+* Copy the folder from docker to catkin_ws/src:
 
-Copy the folder from docker to catkin_ws/src:
-
+```bash
     docker cp <containerId>:/file/path/in/container/ /host/local/path/
+```
+* Install the dependencies:
 
-    docker cp 304712a249f8:/home/developer/agriculture_sim /home/mzaera/catkin_ws/src
-
-Install the dependencies:
-
+```bash
     rosdep install --from-paths src --ignore-src --rosdistro melodic -y
     catkin_make
+```
+* Install the missing pkgs:
 
-Install the missing pkgs:
-
+```bash
     sudo apt install ros-melodic-octomap-server
     sudo apt install ros-melodic-rtabmap-ros
+```
 
 INSTALL SUBLIME
 ---------------
 
-Install sublime
+* Install sublime
 
+```bash
     wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
     sudo apt-get install apt-transport-https
     echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
     sudo apt-get update
     sudo apt-get install sublime-text
+```
 
 TELEOP
 ------
 
-Install:
+* Install:
 
+```bash
     sudo apt install ros-melodic-teleop-twist-keyboard
+```
+* Use (normal):
 
-Use (normal):
-
+```bash
     rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+* Use (remapping):
 
-Use (remapping):
-
+```bash
     rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=name_of_the_new_topic
+```
 
 EXTRA NOTES
 -----------
 
-Find where is a pkg:
+* Find where is a pkg:
 
+```bash
     rospack find <name_of_the_pkg> 
+```
 
-See the especific params:
+* See the especific params:
 
+```bash
     rtabmap --params | grep Name/
+```
 
-Root mode start:
+* Root mode start:
 
+```bash
     sudo su
+```
 
-Root mode end:
+* Root mode end:
 
+```bash
     exit
+```
 
 INFO/EXTRA LIST
 ---------------
@@ -393,7 +405,7 @@ ODOM INPUTS
 
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
 
-*Using ICP config on RTABMAP*
+    *Using ICP config on RTABMAP*
 
 ```bash
 header: 
@@ -430,7 +442,7 @@ twist:
 ```
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
 
-*Using RGBD config on RTABMAP (maybe the pointcloud rotation comes from w=1.0)*
+    *Using RGBD config on RTABMAP (maybe the pointcloud rotation comes from w=1.0)*
 
 ```bash
 header: 
