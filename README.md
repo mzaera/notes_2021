@@ -182,15 +182,13 @@ imu0_linear_acceleration_rejection_threshold: 50
 
 * /home/developer/agriculture_sim/src/agriculture_launcher
 
-*Generate octomap launch file*
+    *Generate a file called "octomap_server_start.launch" on the octomap folder:*
 
-Create the folder:
 ```bash
 mkdir octomap
 cd octomap
 ```
 
-Generate a file called "octomap_server_start.launch":
 ```bash
     <launch>
         <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
