@@ -16,19 +16,13 @@ roslaunch agriculture_launcher bringup.launch
 
 * Terminal 2 (move the robot):
 
-*By rostopic pub:*
-
 ```bash
 rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 ```
 
-*By teleop:*
-
 ```bash
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
-
-*By husky_nav pkg:*
 
 ```bash
 rostopic pub -1 /move_base_simple/goal geometry_msgs/PoseStamped "header:
@@ -52,7 +46,7 @@ pose:
 * Terminal 3 (run rviz and open the configuration file):
 
 ```bash
-    rosrun rviz rviz -d ~/catkin_ws/src/agriculture_sim/src/rviz/rviz_husky_config.rviz
+rosrun rviz rviz -d ~/catkin_ws/src/agriculture_sim/src/rviz/rviz_husky_config.rviz
 ```
 
 HUSKY SIMULATION ON DOCKER
@@ -61,15 +55,15 @@ HUSKY SIMULATION ON DOCKER
 * Start docker:
 
 ```bash
-    docker start ingeniarius-simulators
+docker start ingeniarius-simulators
 ```
 
 * In each terminal:
 
 ```bash
-    docker exec -it ingeniarius-simulators bash
-    cd agriculture_sim/
-    source devel/setup.bash
+docker exec -it ingeniarius-simulators bash
+cd agriculture_sim/
+source devel/setup.bash
 ```
 
 * Terminal 1 (launch simulation).
@@ -190,21 +184,24 @@ cd octomap
 ```
 
 ```bash
-    <launch>
-        <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
-            <param name="resolution" value="0.05" />
-            
-            <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
-            <param name="frame_id" type="string" value="map" />
-            
-            <!-- maximum range to integrate (speedup!) -->
-            <param name="sensor_model/max_range" value="5.0" />
-            
-            <!-- data source to integrate (PointCloud2) -->
-            <remap from="cloud_in" to="/rtabmap/octomap_occupied_space" />
-        
-        </node>
-    </launch>
+<launch>
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+
+        <param name="resolution"                                        type="double"   value="0.125" /> <!--0.05 -->
+        <param name="frame_id"                                          type="string"   value="map" />
+        <param name="base_frame_id"                                     type="string"   value="base_link" />
+        <param name="height_map"                                        type="bool"     value="true" />
+        <param name="sensor_model/max_range"                            type="double"   value="500.0" /> <!--5.0 -->
+        <param name="latch"                                             type="bool"     value="true" />
+        <param name="filter_ground"                                     type="bool"     value="true" />
+        <param name="ground_filter/distance"                            type="double"   value="0.4" /> <!--0.04 -->
+        <param name="ground_filter/angle "                              type="double"   value="0.4" /> <!--0.15 -->
+        <param name="ground_filter/plane_distance"                      type="double"   value="0.4" /> <!--0.07 -->
+
+        <remap from="cloud_in" to="/rtabmap/octomap_occupied_space" /> <!-- /rtabmap/scan_map or /rtabmap/octomap_occupied_space-->
+    
+    </node>
+</launch>
 ```
 
 * /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap
@@ -222,14 +219,14 @@ GIT COMMANDS
 * Obtain the repo:
 
 ```bash
-    git clone https://github.com/mzaera/notes_2021
+git clone https://github.com/mzaera/notes_2021
 ```
 * Update the repo:
 
 ```bash
-    git add --all
-    git commit -m "readme"
-    git push
+git add --all
+git commit -m "readme"
+git push
 ```
 
 DOCKER COMMANDS
@@ -268,20 +265,20 @@ FILE FROM PC TO DOCKER
 * Get the path of a folder:
     
 ```bash
-    pwd
+pwd
 ```
 
 * To obtain the container ID:
     *(on my pc terminal)*
 
 ```bash
-    docker container ls -a
+docker container ls -a
 ```
 
 * General command:
 
 ```bash
-    docker cp  /host/local/path/file <containerId>:/file/path/in/container/
+docker cp  /host/local/path/file <containerId>:/file/path/in/container/
 ```
 
 FILE FROM DOCKER TO PC
@@ -290,7 +287,7 @@ FILE FROM DOCKER TO PC
 * General command:
 
 ```bash
-    docker cp <containerId>:/file/path/in/container/file /host/local/path/
+docker cp <containerId>:/file/path/in/container/file /host/local/path/
 ```
 
 PKG FROM DOCKER TO PC
@@ -299,28 +296,28 @@ PKG FROM DOCKER TO PC
 * Create a Catkin Workspace:
 
 ```bash  
-    cd
-    source /opt/ros/melodic/setup.bash
-    mkdir -p ~/catkin_ws/src
-    cd ~/catkin_ws/
-    catkin_make
+cd
+source /opt/ros/melodic/setup.bash
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin_make
 ```
 * Copy the folder from docker to catkin_ws/src:
 
 ```bash
-    docker cp <containerId>:/file/path/in/container/ /host/local/path/
+docker cp <containerId>:/file/path/in/container/ /host/local/path/
 ```
 * Install the dependencies:
 
 ```bash
-    rosdep install --from-paths src --ignore-src --rosdistro melodic -y
-    catkin_make
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+catkin_make
 ```
 * Install the missing pkgs:
 
 ```bash
-    sudo apt install ros-melodic-octomap-server
-    sudo apt install ros-melodic-rtabmap-ros
+sudo apt install ros-melodic-octomap-server
+sudo apt install ros-melodic-rtabmap-ros
 ```
 
 INSTALL SUBLIME
@@ -329,11 +326,11 @@ INSTALL SUBLIME
 * Install sublime
 
 ```bash
-    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-    sudo apt-get install apt-transport-https
-    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-    sudo apt-get update
-    sudo apt-get install sublime-text
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+sudo apt-get install apt-transport-https
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install sublime-text
 ```
 
 TELEOP
@@ -342,17 +339,17 @@ TELEOP
 * Install:
 
 ```bash
-    sudo apt install ros-melodic-teleop-twist-keyboard
+sudo apt install ros-melodic-teleop-twist-keyboard
 ```
 * Use (normal):
 
 ```bash
-    rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 * Use (remapping):
 
 ```bash
-    rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=name_of_the_new_topic
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=name_of_the_new_topic
 ```
 
 EXTRA NOTES
@@ -361,25 +358,25 @@ EXTRA NOTES
 * Find where is a pkg:
 
 ```bash
-    rospack find <name_of_the_pkg> 
+rospack find <name_of_the_pkg> 
 ```
 
 * See the especific params:
 
 ```bash
-    rtabmap --params | grep Name/
+rtabmap --params | grep Name/
 ```
 
 * Root mode start:
 
 ```bash
-    sudo su
+sudo su
 ```
 
 * Root mode end:
 
 ```bash
-    exit
+exit
 ```
 
 INFO/EXTRA LIST
@@ -387,21 +384,24 @@ INFO/EXTRA LIST
 
 * DynamicParams:
 
-    Odometry parameters:
+```bash
+Odometry parameters:
 
-        left wheel radius multiplier: 1
-        right wheel radius multiplier: 1
-        wheel separation multiplier: 1.875
+    left wheel radius multiplier: 1
+    right wheel radius multiplier: 1
+    wheel separation multiplier: 1.875
 
-    Publication parameters:
+Publication parameters:
 
-        Publish executed velocity command: disabled
-        Publication rate: 50
-        Publish frame odom on tf: disabled
-
+    Publish executed velocity command: disabled
+    Publication rate: 50
+    Publish frame odom on tf: disabled
+```
 
 ODOM INPUTS
 -----------
+
+NOT updated!
 
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
 
@@ -442,7 +442,7 @@ twist:
 ```
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
 
-    *Using RGBD config on RTABMAP (maybe the pointcloud rotation comes from w=1.0)*
+    *Using RGBD config on RTABMAP*
 
 ```bash
 header: 
@@ -546,6 +546,8 @@ linear_acceleration_covariance: [2.5e-05, 0.0, 0.0, 0.0, 2.5e-05, 0.0, 0.0, 0.0,
 ROSNODE LIST
 ------------
 
+NOT updated!
+
 * /base_controller_spawner
 * /ekf_global
 * /ekf_local
@@ -564,6 +566,9 @@ ROSNODE LIST
 
 INICIAL PARAMETERS
 ------------------
+
+NOT updated!
+
  * /ekf_global/base_link_frame: base_link
  * /ekf_global/debug: False
  * /ekf_global/frequency: 30
