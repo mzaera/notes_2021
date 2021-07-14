@@ -16,19 +16,19 @@ roslaunch agriculture_launcher bringup.launch
 
 * Terminal 2 (move the robot):
 
-By rostopic pub:
+*By rostopic pub:*
 
 ```bash
 rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 ```
 
-By teleop:
+*By teleop:*
 
 ```bash
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
-By husky_nav pkg:
+*By husky_nav pkg:*
 
 ```bash
 rostopic pub -1 /move_base_simple/goal geometry_msgs/PoseStamped "header:
