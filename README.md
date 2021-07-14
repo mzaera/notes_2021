@@ -13,13 +13,32 @@ Terminal 1 (launch simulation):
 
 
 Terminal 2 (move the robot):
+By rostopic pub:
 
     rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 
-or
+By teleop:
 
-    rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.5}}'
+    rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
+By husky_nav pkg:
+
+    rostopic pub -1 /move_base_simple/goal geometry_msgs/PoseStamped "header:
+      seq: 0
+      stamp:
+        secs: 0
+        nsecs: 0
+      frame_id: 'map'
+    pose:
+      position:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.707
+        w: 0.707"
 
 Terminal 3 (run rviz and open the configuration file):
 
@@ -39,23 +58,11 @@ In each terminal:
     cd agriculture_sim/
     source devel/setup.bash
 
+Terminal 1 (launch simulation).
 
-Terminal 1 (launch simulation):
+Terminal 2 (move the robot).
 
-    roslaunch agriculture_launcher bringup.launch
-
-
-Terminal 2 (move the robot):
-
-    rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
-
-or
-
-    rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.5}}'
-
-Terminal 3 (run rviz and open the configuration file):
-
-    rosrun rviz rviz -d ~/agriculture_sim/src/rviz/rviz_husky_config.rviz
+Terminal 3 (run rviz and open the configuration file).
 
 
 USEFUL LINKS
@@ -101,34 +108,58 @@ Others:
 
 [Quaternions and Euler angles](https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles)
 
+[Quaternions and Euler angles Online Transform](https://quaternions.online/)
+
 CHANGES DONE
 ------------
 
 * /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
 Line 4 aprox.
-    *Adding an yaw ofset correcting that way the wrong orientation on rviz and robot_localization pkg*
+    *Adding an yaw offset correcting that way the wrong orientation on rviz and robot_localization pkg*
 
     yaw_offset: 1.570796
 
+* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
+    *Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
+
+        odom0_pose_rejection_threshold: 50
+        odom0_twist_rejection_threshold: 50
+        imu0_pose_rejection_threshold: 50                 
+        imu0_twist_rejection_threshold: 50               
+        imu0_linear_acceleration_rejection_threshold: 50  
+
+* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
+    *Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
+
+        odom0_pose_rejection_threshold: 50
+        odom0_twist_rejection_threshold: 50
+        imu0_pose_rejection_threshold: 50                 
+        imu0_twist_rejection_threshold: 50               
+        imu0_linear_acceleration_rejection_threshold: 50 
+
 * /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
 
-    *Add octomap_server launch file and the new rtabmap launch file*
+    *Add: octomap_server launch file, husky_navigation launch file and the new rtabmap launch file*
 
 ```bash
-    <launch>
-      
-        <include file="$(find cpr_agriculture_gazebo)/launch/agriculture_world.launch">
-          <arg name="platform" value="husky" />
-        </include> 
-    
-        <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
-        <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
-    
-        <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch"/>
-        <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>  
-    
-    </launch>
+<launch>
+    <include file="$(find cpr_agriculture_gazebo)/launch/agriculture_world.launch">
+      <arg name="platform" value="husky" />
+    </include> 
+
+    <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
+    <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
+
+    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch"/>
+
+    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>  
+    <include file="$(find husky_navigation)/launch/move_base.launch">
+        <arg name="no_static_map" value="true"/>
+    </include>
+
+</launch>
+
 ```
 
 * /home/developer/agriculture_sim/src/agriculture_launcher
@@ -319,12 +350,6 @@ Root mode end:
 INFO/EXTRA LIST
 ---------------
 
-* [ INFO] [1625138739.271218554, 41.039000000]: imu plugin missing <xyzOffset>, defaults to 0s
-[ INFO] [1625138739.272245560, 41.039000000]: imu plugin missing <rpyOffset>, defaults to 0s
-
-* [pcl::NormalEstimationOMP::compute] Both radius (1.000000) and K (5) defined! Set one of them to zero first and then re-run compute ().
-[pcl::concatenateFields] The number of points in the two input datasets differs
-
 * DynamicParams:
 
     Odometry parameters:
@@ -339,54 +364,6 @@ INFO/EXTRA LIST
         Publication rate: 50
         Publish frame odom on tf: disabled
 
-WARNINGS LIST
--------------
-
-* Warning [parser_urdf.cc:1119] multiple inconsistent <gravity> exists due to fixed joint reduction overwriting previous value [true] with [false].
-
-
-* Warning [parser.cc:950] XML Element[vertical_fov], child of element[camera] not defined in SDF. Ignoring[vertical_fov]. You may have an incorrect SDF file, or an sdformat version that doesn't support this element.
-
-
-* [ WARN] [1624981315.525914322, 41.562000000]: Setting "Grid/FromDepth" parameter to false (default true) as "subscribe_scan", "subscribe_scan_cloud" or "gen_scan" is true. The occupancy grid map will be constructed from laser scans. To get occupancy grid map from cloud projection, set "Grid/FromDepth" to true. To suppress this warning, add <param name="Grid/FromDepth" type="string" value="false"/>
-
-* [ WARN] [1624981315.670153842, 41.562000000]: There is no image subscription, bag-of-words loop closure detection will be disabled...
-
-
-* [WARN] [1624981338.851268, 41.562000]: Controller Spawner couldn't find the expected controller_manager ROS interface.
-
-
-* [ WARN] [1624981340.567380170, 41.563000000]: Failed to meet update rate! Took 41.563000000000002387
-[ WARN] [1624981340.570003059, 41.563000000]: Failed to meet update rate! Took 41.563000000000002387
-[ WARN] [1624981340.574535775, 41.565000000]: Failed to meet update rate! Took 41.531666667000003201
-[ WARN] [1624981340.575426327, 41.567000000]: Failed to meet update rate! Took 41.53366666699999854
-
-
-
-* [ WARN] [1624981385.775020023, 49.004000000]: Odometry: Detected not valid consecutive stamps (previous=48.904000s new=48.904000s). New stamp should be always greater than previous stamp. This new data is ignored.
-
-* [ WARN] [1625042581.356276872, 281.039000000]: odometry: Could not get transform from base_link to front_realsense_gazebo (stamp=280.761000) after 0.200000 seconds ("wait_for_transform_duration"=0.200000)! Error="canTransform: source_frame front_realsense_gazebo does not exist.. canTransform returned after 0.2 timeout was 0.2."
-
-
-* [ WARN] [1625148019.783057694, 40.730000000]: IcpOdometry: Transferring value 0.05 of "Icp/VoxelSize" to ros parameter "scan_voxel_size" for convenience. "Icp/VoxelSize" is set to 0.
-[ WARN] [1625148019.783580811, 40.730000000]: IcpOdometry: Transferring value 5 of "Icp/PointToPlaneK" to ros parameter "scan_normal_k" for convenience.
-[ WARN] [1625148019.784069661, 40.730000000]: IcpOdometry: Transferring value 1.0 of "Icp/PointToPlaneRadius" to ros parameter "scan_normal_radius" for convenience.
-
-
-* [ WARN] [1625215117.373219580, 55.754000000]: We are receiving imu data (buffer=1), but cannot interpolate imu transform at time 55.640000. IMU won't be added to graph.
-
-
-* [WARN] [1625228090.214656, 41.891000]: Controller Spawner couldn't find the expected controller_manager ROS interface.
-
-ERROR
------
-
-All the errors seems to be solved automaticaly after a few seconds
-
-* [ERROR] [1624981808.355031649, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/front_left_wheel
-[ERROR] [1624981808.356011145, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/front_right_wheel
-[ERROR] [1624981808.356927444, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/rear_left_wheel
-[ERROR] [1624981808.357667160, 40.651000000]: No p gain specified for pid.  Namespace: /gazebo_ros_control/pid_gains/rear_right_wheel
 
 ODOM INPUTS
 -----------
@@ -468,8 +445,6 @@ twist:
 
 
 * rostopic echo -n1 /ekf/gps_converted_odom
-
-*!! x and y changed here !!*
 
 ```bash
 header: 
