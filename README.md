@@ -1,68 +1,82 @@
 HUSKY SIMULATION ON MY PC
 --------------------------
 
-In each terminal:
+* In each terminal:
 
-    cd catkin_ws
-    source devel/setup.bash
+```bash
+cd catkin_ws
+source devel/setup.bash
+```
 
+* Terminal 1 (launch simulation):
 
-Terminal 1 (launch simulation):
+```bash
+roslaunch agriculture_launcher bringup.launch
+```
 
-    roslaunch agriculture_launcher bringup.launch
+* Terminal 2 (move the robot):
 
-
-Terminal 2 (move the robot):
 By rostopic pub:
 
-    rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+```bash
+rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+```
 
 By teleop:
 
-    rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```bash
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
 
 By husky_nav pkg:
 
-    rostopic pub -1 /move_base_simple/goal geometry_msgs/PoseStamped "header:
-      seq: 0
-      stamp:
-        secs: 0
-        nsecs: 0
-      frame_id: 'map'
-    pose:
-      position:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-      orientation:
-        x: 0.0
-        y: 0.0
-        z: 0.707
-        w: 0.707"
+```bash
+rostopic pub -1 /move_base_simple/goal geometry_msgs/PoseStamped "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: 'map'
+pose:
+  position:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  orientation:
+    x: 0.0
+    y: 0.0
+    z: 0.707
+    w: 0.707"
+```
 
-Terminal 3 (run rviz and open the configuration file):
+* Terminal 3 (run rviz and open the configuration file):
 
+```bash
     rosrun rviz rviz -d ~/catkin_ws/src/agriculture_sim/src/rviz/rviz_husky_config.rviz
-
+```
 
 HUSKY SIMULATION ON DOCKER
 --------------------------
 
-Start docker:
+* Start docker:
 
+```bash
     docker start ingeniarius-simulators
+```
 
-In each terminal:
+* In each terminal:
 
+```bash
     docker exec -it ingeniarius-simulators bash
     cd agriculture_sim/
     source devel/setup.bash
+```
 
-Terminal 1 (launch simulation).
+* Terminal 1 (launch simulation).
 
-Terminal 2 (move the robot).
+* Terminal 2 (move the robot).
 
-Terminal 3 (run rviz and open the configuration file).
+* Terminal 3 (run rviz and open the configuration file).
 
 
 USEFUL LINKS
@@ -115,29 +129,34 @@ CHANGES DONE
 
 * /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
-Line 4 aprox.
+    Line 4 aprox.
     *Adding an yaw offset correcting that way the wrong orientation on rviz and robot_localization pkg*
 
-    yaw_offset: 1.570796
-
+```bash
+yaw_offset: 1.570796
+```
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
+
     *Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
 
-        odom0_pose_rejection_threshold: 50
-        odom0_twist_rejection_threshold: 50
-        imu0_pose_rejection_threshold: 50                 
-        imu0_twist_rejection_threshold: 50               
-        imu0_linear_acceleration_rejection_threshold: 50  
-
+```bash
+odom0_pose_rejection_threshold: 50
+odom0_twist_rejection_threshold: 50
+imu0_pose_rejection_threshold: 50                 
+imu0_twist_rejection_threshold: 50               
+imu0_linear_acceleration_rejection_threshold: 50  
+```
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
+
     *Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
 
-        odom0_pose_rejection_threshold: 50
-        odom0_twist_rejection_threshold: 50
-        imu0_pose_rejection_threshold: 50                 
-        imu0_twist_rejection_threshold: 50               
-        imu0_linear_acceleration_rejection_threshold: 50 
-
+```bash
+odom0_pose_rejection_threshold: 50
+odom0_twist_rejection_threshold: 50
+imu0_pose_rejection_threshold: 50                 
+imu0_twist_rejection_threshold: 50               
+imu0_linear_acceleration_rejection_threshold: 50  
+```
 * /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
 
     *Add: octomap_server launch file, husky_navigation launch file and the new rtabmap launch file*
@@ -159,18 +178,20 @@ Line 4 aprox.
     </include>
 
 </launch>
-
 ```
 
 * /home/developer/agriculture_sim/src/agriculture_launcher
 
 *Generate octomap launch file*
-    
-    mkdir octomap
-    cd octomap
 
-*Generate a file called "octomap_server_start.launch"*
+Create the folder:
+```bash
+mkdir octomap
+cd octomap
+```
 
+Generate a file called "octomap_server_start.launch":
+```bash
     <launch>
         <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
             <param name="resolution" value="0.05" />
@@ -186,28 +207,32 @@ Line 4 aprox.
         
         </node>
     </launch>
+```
 
 * /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap
 
-*Generate a file called "rtabmap_simulation_husky.launch". You can obtain it from this repo*
+    *Generate a file called "rtabmap_simulation_husky.launch". You can obtain it from this repo*
 
 
 * /home/developer/agriculture_sim/src/rviz
 
-*Copy from this repo the file called "rviz_husky_config.rviz"*
+    *Copy from this repo the file called "rviz_husky_config.rviz"*
 
 GIT COMMANDS
 ------------
 
-Obtain the repo:
+* Obtain the repo:
 
+```bash
     git clone https://github.com/mzaera/notes_2021
+```
+* Update the repo:
 
-Update the repo:
-
+```bash
     git add --all
     git commit -m "readme"
     git push
+```
 
 DOCKER COMMANDS
 --------------
