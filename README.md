@@ -131,7 +131,7 @@ yaw_offset: 1.570796
 ```
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
 
-    *Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
+    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
 
 ```bash
 odom0_pose_rejection_threshold: 50
@@ -142,7 +142,7 @@ imu0_linear_acceleration_rejection_threshold: 50
 ```
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
 
-    *Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
+    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
 
 ```bash
 odom0_pose_rejection_threshold: 50
