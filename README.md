@@ -14,6 +14,10 @@ source devel/setup.bash
 roslaunch agriculture_launcher bringup.launch
 ```
 
+```bash
+roslaunch agriculture_launcher inspect_bringup.launch
+```
+
 * Terminal 2 (move the robot):
 
 ```bash
@@ -123,8 +127,7 @@ CHANGES DONE
 
 * /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
-    Line 4 aprox.
-    *Adding an yaw offset correcting that way the wrong orientation on rviz and robot_localization pkg*
+    *Add yaw offset correcting that way the wrong orientation on rviz and robot_localization pkg*
 
 ```bash
 yaw_offset: 1.570796
@@ -212,6 +215,52 @@ cd octomap
 * /home/developer/agriculture_sim/src/rviz
 
     *Copy from this repo the file called "rviz_husky_config.rviz"*
+
+
+* /home/developer/agriculture_sim/src/agriculture_launcher
+
+    *Generate a file called inspect_bringup.launch". You can obtain it from this repo*
+
+```bash
+<launch>
+    
+    <include file="$(find cpr_inspection_gazebo)/launch/inspection_world.launch">
+      <arg name="platform" value="husky" />
+    </include> 
+
+    <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
+    <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
+
+    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch"/>
+    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>  
+
+    <include file="$(find husky_navigation)/launch/move_base.launch">
+      <arg name="no_static_map" value="true"/>
+    </include>
+
+</launch>
+
+```
+
+* /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/launch/inspection_world.launch
+
+    *Modify the spawn point of the husky*
+
+```bash
+<arg name="x"   default="-17.9205"/>
+<arg name="y"   default="7.1845"/>
+<arg name="z"   default="1.12"/>
+<arg name="yaw" default="0.0738" />
+```
+
+* /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/worlds/inspection_world.world
+
+    *Disable the shadows to be able to use visual odometry*
+
+```bash
+      <shadows>0</shadows>
+```
+
 
 GIT COMMANDS
 ------------
