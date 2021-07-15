@@ -70,8 +70,6 @@ source devel/setup.bash
 
 * Terminal 2 (move the robot).
 
-* Terminal 3 (run rviz and open the configuration file).
-
 
 USEFUL LINKS
 ------------
