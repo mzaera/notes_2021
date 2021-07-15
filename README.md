@@ -20,6 +20,8 @@ roslaunch agriculture_launcher inspect_bringup.launch
 
 * Terminal 2 (move the robot):
 
+  *Also can be done by adding 2D navigation markers on Rviz*
+
 ```bash
 rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 ```
@@ -45,12 +47,6 @@ pose:
     y: 0.0
     z: 0.707
     w: 0.707"
-```
-
-* Terminal 3 (run rviz and open the configuration file):
-
-```bash
-rosrun rviz rviz -d ~/catkin_ws/src/agriculture_sim/src/rviz/rviz_husky_config.rviz
 ```
 
 HUSKY SIMULATION ON DOCKER
@@ -127,14 +123,14 @@ CHANGES DONE
 
 * /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
-    *Add yaw offset correcting that way the wrong orientation on rviz and robot_localization pkg*
+    *Add yaw offset correcting that way the wrong orientation on rviz and robot_localization pkg.*
 
 ```bash
 yaw_offset: 1.570796
 ```
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
 
-    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
+    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting.*
 
 ```bash
 odom0_pose_rejection_threshold: 50
@@ -145,7 +141,7 @@ imu0_linear_acceleration_rejection_threshold: 50
 ```
 * /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
 
-    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting*
+    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting.*
 
 ```bash
 odom0_pose_rejection_threshold: 50
@@ -156,30 +152,40 @@ imu0_linear_acceleration_rejection_threshold: 50
 ```
 * /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
 
-    *Add: octomap_server launch file, husky_navigation launch file and the new rtabmap launch file*
+    *Add: octomap_server launch file, husky_navigation launch file and the new rtabmap launch file.*
 
 ```bash
 <launch>
+    
     <include file="$(find cpr_agriculture_gazebo)/launch/agriculture_world.launch">
-      <arg name="platform" value="husky" />
+      <arg name="platform"          value="husky" />
     </include> 
 
     <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
     <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
 
-    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch"/>
+    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch">
+      <arg name="node_start_delay"  value="5.0"/>
+    </include> 
 
-    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>  
+    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch">  
+      <arg name="node_start_delay"  value="5.0"/>
+      <arg name="ground"            value="false"/>
+    </include>   
+
     <include file="$(find husky_navigation)/launch/move_base.launch">
-        <arg name="no_static_map" value="true"/>
+      <arg name="no_static_map"     value="true"/>
     </include>
+
+    <include file="$(find agriculture_launcher)/rviz/rviz_husky.launch">  
+      <arg name="node_start_delay" value="10.0"/>
+    </include> 
 
 </launch>
 ```
-
 * /home/developer/agriculture_sim/src/agriculture_launcher
 
-    *Generate a file called "octomap_server_start.launch" on the octomap folder:*
+    *Generate a file called "octomap_server_start.launch" on the octomap folder.*
 
 ```bash
 mkdir octomap
@@ -188,38 +194,54 @@ cd octomap
 
 ```bash
 <launch>
-    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+  <arg  name="node_start_delay"                   default="0.0"/>                 
+  <arg  name="ground"                             default="false"/>                 
 
-        <param name="resolution"                                        type="double"   value="0.125" /> <!--0.05 -->
-        <param name="frame_id"                                          type="string"   value="map" />
-        <param name="base_frame_id"                                     type="string"   value="base_link" />
-        <param name="height_map"                                        type="bool"     value="true" />
-        <param name="sensor_model/max_range"                            type="double"   value="500.0" /> <!--5.0 -->
-        <param name="latch"                                             type="bool"     value="true" />
-        <param name="filter_ground"                                     type="bool"     value="true" />
-        <param name="ground_filter/distance"                            type="double"   value="0.4" /> <!--0.04 -->
-        <param name="ground_filter/angle "                              type="double"   value="0.4" /> <!--0.15 -->
-        <param name="ground_filter/plane_distance"                      type="double"   value="0.4" /> <!--0.07 -->
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'">
 
-        <remap from="cloud_in" to="/rtabmap/octomap_occupied_space" /> <!-- /rtabmap/scan_map or /rtabmap/octomap_occupied_space-->
-    
-    </node>
+    <param name="resolution"                    type="double"   value="0.1" /> <!--0.05 -->
+    <param name="frame_id"                      type="string"   value="map" />
+    <param name="base_frame_id"                 type="string"   value="base_link" />
+    <param name="height_map"                    type="bool"     value="true" />
+    <param name="sensor_model/max_range"        type="double"   value="500.0" /> <!--5.0 -->
+    <param name="latch"                         type="bool"     value="true" />
+    <param name="filter_ground"                 type="bool"     value="false" />
+    <param name="ground_filter/distance"        type="double"   value="0.1" /> <!--0.04 -->
+    <param name="ground_filter/angle "          type="double"   value="0.3" /> <!--0.15 -->
+    <param name="ground_filter/plane_distance"  type="double"   value="0.1" /> <!--0.07 -->
+
+    <remap unless="$(arg ground)" from="cloud_in" to="/rtabmap/cloud_obstacles" /> 
+    <remap if="$(arg ground)"     from="cloud_in" to="/rtabmap/octomap_occupied_space" /> 
+  
+  </node>
 </launch>
 ```
 
 * /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap
 
-    *Generate a file called "rtabmap_simulation_husky.launch". You can obtain it from this repo*
+    *Generate a file called "rtabmap_simulation_husky.launch". You can obtain it from this repo.*
 
 
-* /home/developer/agriculture_sim/src/rviz
+* /home/developer/agriculture_sim/src/agriculture_launcher/rviz
 
-    *Copy from this repo the file called "rviz_husky_config.rviz"*
+    *Copy from this repo the file called "rviz_husky_config.rviz" on the generated rviz folder and add the launch file rviz_husky.launch*
 
+```bash
+mkdir rviz
+cd rviz
+```
+
+```bash
+<launch>
+  <arg  name="node_start_delay"  default="0.0"/>                 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agriculture_launcher)/rviz/rviz_husky_config.rviz" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
+</launch>
+
+```
 
 * /home/developer/agriculture_sim/src/agriculture_launcher
 
-    *Generate a file called inspect_bringup.launch". You can obtain it from this repo*
+    *Generate a file called inspect_bringup.launch". You can obtain it from this repo.*
 
 ```bash
 <launch>
@@ -231,15 +253,24 @@ cd octomap
     <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
     <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
 
-    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch"/>
-    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch"/>  
+    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch">
+      <arg name="node_start_delay" value="20.0"/>
+    </include> 
+
+    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch">  
+      <arg name="node_start_delay" value="20.0"/>
+      <arg name="ground"           value="true"/>
+    </include> 
 
     <include file="$(find husky_navigation)/launch/move_base.launch">
       <arg name="no_static_map" value="true"/>
     </include>
 
-</launch>
+    <include file="$(find agriculture_launcher)/rviz/rviz_husky.launch">  
+      <arg name="node_start_delay" value="10.0"/>
+    </include> 
 
+</launch>
 ```
 
 * /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/launch/inspection_world.launch
@@ -247,10 +278,10 @@ cd octomap
     *Modify the spawn point of the husky*
 
 ```bash
-<arg name="x"   default="-17.9205"/>
-<arg name="y"   default="7.1845"/>
-<arg name="z"   default="1.12"/>
-<arg name="yaw" default="0.0738" />
+<arg name="x" default="-17.177975"/>
+<arg name="y" default="7.264329"/>
+<arg name="z" default="1.01229"/>
+<arg name="yaw" default="0.2" />
 ```
 
 * /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/worlds/inspection_world.world

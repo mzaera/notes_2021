@@ -2,11 +2,13 @@
      
   <param  name="use_sim_time"                       type="bool"   value="true"/>
   <arg    name="args"                               default="-- delete_db_on_start -d"/>                 
-                               
+  
+  <arg    name="node_start_delay"                   default="0.0"/>                 
+                            
   <group ns="rtabmap">
 
     <!--RGB-D Odometry-->
-    <node name="rgbd_odometry" pkg="rtabmap_ros" type="rgbd_odometry" output="screen" args="$(arg args)">
+    <node name="rgbd_odometry" pkg="rtabmap_ros" type="rgbd_odometry" output="screen" args="$(arg args)" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'" >
 
       <!--Normal Params-->
       <param name="frame_id"                    type="string" value="base_link"/>
@@ -35,12 +37,12 @@
       <remap from="rgb/image"       to="/realsense/color/image_raw"/>
       <remap from="depth/image"     to="/realsense/depth/image_rect_raw"/>
       <remap from="rgb/camera_info" to="/realsense/color/camera_info"/>
-      <remap from="odom"            to="/rgbd_odom"/>
+      <remap from="odom"            to="/rtabmap/rgbd_odom"/>
       <remap from="imu"             to="/imu/data"/>
     </node>
 
     <!--RTABMAP-->
-    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="$(arg args)" >
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="$(arg args)" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'" >
 
       <!-- Normal Params-->
       <param name="subscribe_depth"                 type="bool"   value="true"/>
@@ -64,7 +66,7 @@
       <param name="gen_scan_max_depth"              type="double" value="4.0"/>
       <param name="approx_sync"                     type="bool"   value="true"/>
       <param name="rgbd_cameras"                    type="int"    value="1"/>
-      <param name="use_action_for_goal"             type="bool"   value="false"/>
+      <param name="use_action_for_goal"             type="bool"   value="true"/>
       <param name="odom_sensor_sync"                type="bool"   value="false"/>
       <param name="gen_depth"                       type="bool"   value="false"/> 
       <param name="gen_depth_decimation"            type="int"    value="1"/>
@@ -77,7 +79,7 @@
       <param name="latch"                           type="bool"   value="true"/>
       <param name="map_always_update"               type="bool"   value="false"/>
       <param name="map_empty_ray_tracing"           type="bool"   value="true"/>
-      <param name="cloud_output_voxelized"          type="bool"   value="false"/> 
+      <param name="cloud_output_voxelized"          type="bool"   value="true"/> 
       <param name="cloud_subtract_filtering"                  type="bool" value="true"/> 
       <param name="cloud_subtract_filtering_min_neighbors"    type="int"  value="5"/> 
 
@@ -88,12 +90,12 @@
       <param name="Grid/NoiseFilteringMinNeighbors" type="int"    value="5"/>
       <param name="Grid/NoiseFilteringRadius"       type="double" value="0.0"/>
       <param name="Grid/ClusterRadius"              type="int"    value="1"/> 
-      <param name="Grid/RangeMax"                   type="double" value="750.0"/> 
+      <param name="Grid/RangeMax"                   type="double" value="25.0"/> 
       <param name="Grid/RayTracing"                 type="bool"   value="true"/> 
       <param name="Grid/MapFrameProjection"         type="bool"   value="true"/>
       <param name="Grid/PreVoxelFiltering"          type="bool"   value="false"/> 
       <param name="Grid/NormalsSegmentation"        type="bool"   value="true"/> 
-      <param name="Grid/MaxGroundHeight"            type="double" value="0.2"/> 
+      <param name="Grid/MaxGroundHeight"            type="double" value="0.125"/> 
       <param name="Grid/MaxObstacleHeight"          type="double" value="75.0"/> 
       <param name="Grid/MinGroundHeight"            type="double" value="0.0"/> 
       <param name="Grid/MaxGroundAngle"             type="int"    value="45"/>
@@ -105,6 +107,7 @@
 
       <param name="use_action_for_goal"             type="bool"   value="true"/> 
 
+
       <!--Remaps-->
       <remap from="rgb/image"              to="/realsense/color/image_raw"/>
       <remap from="depth/image"            to="/realsense/depth/image_rect_raw"/>
@@ -114,7 +117,7 @@
       <remap from="user_data"              to="/user_data"/>
       <remap from="user_data_async"        to="/user_data_async"/>
       <remap from="tag_detections"         to="/tag_detections"/>
-      <remap from="odom"                   to="/rgbd_odom"/>
+      <remap from="odom"                   to="rtabmap/rgbd_odom"/>
       <remap from="imu"                    to="/imu/data"/>
     </node>
   

@@ -1,0 +1,6 @@
+<launch>
+
+	<arg  name="node_start_delay"  default="0.0"/>                 
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find agriculture_launcher)/rviz/rviz_husky_config.rviz" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
+
+</launch>
