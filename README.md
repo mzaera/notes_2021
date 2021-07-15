@@ -20,7 +20,7 @@ roslaunch agriculture_launcher inspect_bringup.launch
 
 * Terminal 2 (move the robot):
 
-  *Also can be done by adding 2D navigation markers on Rviz*
+  *Also can be done by adding 2D navigation markers on Rviz.*
 
 ```bash
 rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
@@ -222,7 +222,7 @@ cd octomap
 
 * /home/developer/agriculture_sim/src/agriculture_launcher/rviz
 
-    *Copy from this repo the file called "rviz_husky_config.rviz" on the generated rviz folder and add the launch file rviz_husky.launch*
+    *Copy from this repo the file called "rviz_husky_config.rviz" on the generated rviz folder and add the launch file rviz_husky.launch.*
 
 ```bash
 mkdir rviz
@@ -273,7 +273,7 @@ cd rviz
 
 * /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/launch/inspection_world.launch
 
-    *Modify the spawn point of the husky*
+    *Modify the spawn point of the husky.*
 
 ```bash
 <arg name="x" default="-17.177975"/>
@@ -284,7 +284,7 @@ cd rviz
 
 * /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/worlds/inspection_world.world
 
-    *Disable the shadows to be able to use visual odometry*
+    *Disable the shadows to be able to use visual odometry.*
 
 ```bash
       <shadows>0</shadows>
@@ -520,7 +520,7 @@ twist:
 ```
 * rostopic echo -n1 /rtabmap/odom_rgbd_icp
 
-    *Using RGBD config on RTABMAP*
+    *Using RGBD config on RTABMAP.*
 
 ```bash
 header: 
