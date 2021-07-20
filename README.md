@@ -388,7 +388,25 @@ Turn off the shadows. Line 23.
 
 Path: /agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
-### 2D mode
+### Original
+
+```bash
+frequency: 30
+delay: 3
+magnetic_declination_radians: 0.0349066 #check!!
+yaw_offset: 0.0
+zero_altitude: true
+broadcast_utm_transform: true
+broadcast_utm_transform_as_parent_frame: true
+publish_filtered_gps: false
+use_odometry_yaw: true
+wait_for_datum: true
+#datum: [41.2206659318, -8.52751781305, 0.0]
+datum: [49.8999999596, 8.90000090445, -0.00463541982361] #simulation
+transform_timeout: 0.1
+```
+
+### 3D mode
 
 ```bash
 frequency: 30
@@ -428,7 +446,7 @@ transform_timeout: 0.1
 
 Path: /agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
 
-### 2D mode
+### Original
 
 ```bash
 frequency: 30
@@ -491,6 +509,110 @@ imu0_queue_size: 5
 imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
 imu0_twist_rejection_threshold: 0.8                #
 imu0_linear_acceleration_rejection_threshold: 0.8  #
+
+# [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
+# this to true, and *make sure* your data conforms to REP-103, specifically, that the data is in ENU frame.
+imu0_remove_gravitational_acceleration: true
+
+use_control: false
+
+process_noise_covariance:  [1.0,  0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    1.0,  0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    1e-3, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0.3,  0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0.3,  0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0.01, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0.5,   0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0.5,   0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0.1,  0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0.3,  0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.3,  0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.3,  0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.3,  0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.3,  0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.3]
+
+initial_estimate_covariance:   [1.0,  0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    1.0,  0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    1.0,  0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    1.0,  0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    1.0,  0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    1.0,  0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    1.0,  0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    1.0,   0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1.0,   0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1.0,   0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1.0,  0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1.0,  0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1.0]
+```
+
+
+### 2D mode
+
+```bash
+frequency: 30
+sensor_timeout: 0.1
+two_d_mode: true
+transform_time_offset: 0.05
+transform_timeout: 0.0
+#predict_to_current_time: true 
+print_diagnostics: true
+debug: false
+publish_tf: true
+
+map_frame: map
+odom_frame: odom
+base_link_frame: base_link
+world_frame: map
+
+# odom0: example
+# odom0_config:  [x,        y,        z,
+#                 roll,     pitch,    yaw,
+#                 vel_x,    vel_y,    vel_z,
+#                 vel_roll, vel_pitc, vel_yaw,
+#                 acc_x,    acc_y,    acc_z]
+
+odom0: rtabmap/rgbd_odom
+odom0_config: [true, true, true,
+               true, false, false,
+               false, false, false,
+               false, false, true,
+               false, false, false]
+
+odom0_queue_size: 5
+odom0_nodelay: true
+odom0_differential: true
+odom0_relative: false
+odom0_pose_rejection_threshold: 50.0
+odom0_twist_rejection_threshold: 50.0
+
+odom1: ekf/gps_converted_odom
+odom1_config: [ true,  true,  true,
+                false, false, false,
+                false, false, false,
+                false, false, false,
+                false, false, false]
+odom1_queue_size: 2
+odom1_nodelay: true
+odom1_differential: false
+odom1_relative: false
+        
+imu0: imu/data
+imu0_config: [false, false, false,
+              false, false, false,
+              false, false, false,
+              false, false, true,
+              false, false, false]
+imu0_nodelay: false
+imu0_differential: false
+imu0_relative: false
+imu0_queue_size: 5
+imu0_pose_rejection_threshold: 50.0                 # Note the difference in parameter names
+imu0_twist_rejection_threshold: 50.0                #
+imu0_linear_acceleration_rejection_threshold: 50.0  #
 
 # [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
 # this to true, and *make sure* your data conforms to REP-103, specifically, that the data is in ENU frame.
@@ -635,7 +757,7 @@ initial_estimate_covariance:   [1.0,  0,    0,    0,    0,    0,    0,    0,    
 
 Path: /agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
 
-### 2D mode
+### Original
 
 ```bash
 frequency: 30
@@ -686,6 +808,99 @@ imu0_queue_size: 5
 imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
 imu0_twist_rejection_threshold: 0.8                #
 imu0_linear_acceleration_rejection_threshold: 0.8  #
+
+
+# [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
+# this to true, and *make sure* your data conforms to REP-103, specifically, that the data is in ENU frame.
+imu0_remove_gravitational_acceleration: true
+
+use_control: false
+
+process_noise_covariance:  [1e-3, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    1e-3, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    1e-3, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    1e-3, 0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    1e-3, 0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    1e-3, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0.5,   0,     0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0.5,   0,    0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0.1,  0,    0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0.3,  0,    0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.3,  0,    0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.3,  0,    0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.3,  0,    0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.3,  0,
+                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.3]
+
+initial_estimate_covariance: [1e-9, 0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                              0,    1e-9, 0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                              0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                              0,    0,    0,    1.0,  0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                              0,    0,    0,    0,    1.0,  0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                              0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
+                              0,    0,    0,    0,    0,    0,    1.0,  0,    0,    0,     0,     0,     0,    0,    0,
+                              0,    0,    0,    0,    0,    0,    0,    1.0,  0,    0,     0,     0,     0,    0,    0,
+                              0,    0,    0,    0,    0,    0,    0,    0,    1.0,  0,     0,     0,     0,    0,    0,
+                              0,    0,    0,    0,    0,    0,    0,    0,    0,    1.0,   0,     0,     0,    0,    0,
+                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1.0,   0,     0,    0,    0,
+                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1.0,   0,    0,    0,
+                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1.0,  0,    0,
+                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1.0,  0,
+                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1.0]
+
+```
+
+### 2D mode
+
+```bash
+frequency: 30
+sensor_timeout: 0.1
+two_d_mode: true
+transform_time_offset: 0.05
+transform_timeout: 0.0
+#predict_to_current_time: true 
+print_diagnostics: true
+debug: false
+publish_tf: true
+
+map_frame: map
+odom_frame: odom
+base_link_frame: base_link
+world_frame: odom
+
+# odom0: example
+# odom0_config:  [x,        y,        z,
+#                 roll,     pitch,    yaw,
+#                 vel_x,    vel_y,    vel_z,
+#                 vel_roll, vel_pitc, vel_yaw,
+#                 acc_x,    acc_y,    acc_z]
+
+odom0: rtabmap/rgbd_odom
+odom0_config: [false, false, false,
+               true,  false, false,
+               false, false, false,
+               false, false, true,
+               false, false, false]
+odom0_queue_size: 5
+odom0_nodelay: false
+odom0_differential: false
+odom0_relative: false
+odom0_pose_rejection_threshold: 50.0
+odom0_twist_rejection_threshold: 50.0
+
+imu0: imu/data
+imu0_config: [false, false, false,
+              false, false, false,
+              false, false, false,
+              false, false, true,
+              false, false, false]
+imu0_nodelay: false
+imu0_differential: false
+imu0_relative: false
+imu0_queue_size: 5
+imu0_pose_rejection_threshold: 50.0                 # Note the difference in parameter names
+imu0_twist_rejection_threshold: 50.0                #
+imu0_linear_acceleration_rejection_threshold: 50.0  #
 
 
 # [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
