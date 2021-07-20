@@ -1,5 +1,5 @@
-# HUSKY SIMULATION ON MY PC
---------------------------
+# HUSKY SIMULATION
+## ON MY PC
 
 * In each terminal:
 
@@ -49,8 +49,8 @@ pose:
     w: 0.707"
 ```
 
-HUSKY SIMULATION ON DOCKER
---------------------------
+## ON DOCKER
+
 
 * Start docker:
 
