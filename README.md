@@ -1,5 +1,5 @@
 # HUSKY SIMULATION
-## ON MY PC
+## My PC
 
 * In each terminal:
 
@@ -49,7 +49,7 @@ pose:
     w: 0.707"
 ```
 
-## ON DOCKER
+## Docker
 
 
 * Start docker:
@@ -71,8 +71,8 @@ source devel/setup.bash
 * Terminal 2 (move the robot).
 
 
-USEFUL LINKS
-------------
+# USEFUL LINKS
+
 
 Docker:
 
@@ -116,8 +116,8 @@ Others:
 
 [Quaternions and Euler angles Online Transform](https://quaternions.online/)
 
-CHANGES DONE
-------------
+# CHANGES DONE
+
 
 * /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
@@ -289,10 +289,9 @@ cd rviz
 ```bash
       <shadows>0</shadows>
 ```
+# TERMINAL COMMANDS
 
-
-GIT COMMANDS
-------------
+## Git commands
 
 * Obtain the repo:
 
@@ -307,8 +306,8 @@ git commit -m "readme"
 git push
 ```
 
-DOCKER COMMANDS
---------------
+## Docker commands
+
 * Start docker:
 
 ```bash
@@ -337,8 +336,8 @@ sudo chmod +x run.bash
 docker rename ingeniarius-simulators ingeniarius-mzX
 ```
 
-FILE FROM PC TO DOCKER
-----------------------
+## File from PC to Docker
+
 
 * Get the path of a folder:
     
@@ -359,8 +358,8 @@ docker container ls -a
 docker cp  /host/local/path/file <containerId>:/file/path/in/container/
 ```
 
-FILE FROM DOCKER TO PC
-----------------------
+## File from Docker to PC
+
 
 * General command:
 
@@ -368,8 +367,7 @@ FILE FROM DOCKER TO PC
 docker cp <containerId>:/file/path/in/container/file /host/local/path/
 ```
 
-PKG FROM DOCKER TO PC
----------------------
+## Full pkg from Docker to PC
 
 * Create a Catkin Workspace:
 
@@ -398,8 +396,8 @@ sudo apt install ros-melodic-octomap-server
 sudo apt install ros-melodic-rtabmap-ros
 ```
 
-INSTALL SUBLIME
----------------
+## Install Sublime
+
 
 * Install sublime
 
@@ -411,8 +409,7 @@ sudo apt-get update
 sudo apt-get install sublime-text
 ```
 
-TELEOP
-------
+## Teleop Twist Keyboard
 
 * Install:
 
@@ -430,8 +427,7 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=name_of_the_new_topic
 ```
 
-EXTRA NOTES
------------
+## Extra notes
 
 * Find where is a pkg:
 
@@ -457,70 +453,12 @@ sudo su
 exit
 ```
 
-INFO/EXTRA LIST
----------------
+# ODOM INPUTS
 
-* DynamicParams:
-
-```bash
-Odometry parameters:
-
-    left wheel radius multiplier: 1
-    right wheel radius multiplier: 1
-    wheel separation multiplier: 1.875
-
-Publication parameters:
-
-    Publish executed velocity command: disabled
-    Publication rate: 50
-    Publish frame odom on tf: disabled
-```
-
-ODOM INPUTS
------------
 
 NOT updated!
 
-* rostopic echo -n1 /rtabmap/odom_rgbd_icp
-
-    *Using ICP config on RTABMAP*
-
-```bash
-header: 
-  seq: 43
-  stamp: 
-    secs: 45
-    nsecs: 456000000
-  frame_id: "odom"
-child_frame_id: "base_link"
-pose: 
-  pose: 
-    position: 
-      x: 0.0
-      y: 0.0
-      z: 0.0
-    orientation: 
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 0.0
-  covariance: [9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0]
-twist: 
-  twist: 
-    linear: 
-      x: 0.0
-      y: 0.0
-      z: 0.0
-    angular: 
-      x: 0.0
-      y: 0.0
-      z: 0.0
-  covariance: [9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9999.0]
----
-```
-* rostopic echo -n1 /rtabmap/odom_rgbd_icp
-
-    *Using RGBD config on RTABMAP.*
+* rostopic echo -n1 /rtabmap/rgbd_odom
 
 ```bash
 header: 
@@ -621,8 +559,8 @@ linear_acceleration_covariance: [2.5e-05, 0.0, 0.0, 0.0, 2.5e-05, 0.0, 0.0, 0.0,
 ---
 ```
 
-ROSNODE LIST
-------------
+# ROSNODE LIST
+
 
 ```bash
 /base_controller_spawner
@@ -644,8 +582,8 @@ ROSNODE LIST
 /twist_mux
 ```
 
-ROSTOPIC LIST
-------------
+# ROSTOPIC LIST
+
 
 ```bash
 /clicked_point
@@ -804,8 +742,9 @@ ROSTOPIC LIST
 /user_data_async
 ```
 
-COMPLETE PARAMETERS LIST RTABMAP
---------------------------------
+# PARAMETERS LIST RTABMAP
+
+All the paramatres except the rtabmap (generals) and rgbd_odometry params. Those mising paramatres are: [ROS Wiki RTAB-Map](http://wiki.ros.org/rtabmap_ros) .
 
 * BRIEF
 ```bash
@@ -1269,8 +1208,8 @@ Param: g2o/RobustKernelDelta = "8"                         [Robust kernel delta 
 Param: g2o/Solver = "0"                                    [0=csparse 1=pcg 2=cholmod 3=Eigen]
 ```
 
-COMPLETE PARAMETERS LIST EKF
-----------------------------
+# PARAMETERS LIST EKF
+
 ```bash
 /ekf_local/base_link_frame
 /ekf_local/debug
@@ -1344,36 +1283,4 @@ COMPLETE PARAMETERS LIST EKF
 /ekf_global/two_d_mode
 /ekf_global/use_control
 /ekf_global/world_frame* 
-```
-
-COMPLETE PARAMETERS LIST Octomap_server
----------------------------------------
-
-```bash
-/octomap_server/base_frame_id
-/octomap_server/compress_map
-/octomap_server/filter_ground
-/octomap_server/filter_speckles
-/octomap_server/frame_id
-/octomap_server/ground_filter/angle
-/octomap_server/ground_filter/distance
-/octomap_server/ground_filter/plane_distance
-/octomap_server/ground_filter_angle
-/octomap_server/ground_filter_distance
-/octomap_server/ground_filter_plane_distance
-/octomap_server/height_map
-/octomap_server/incremental_2D_projection
-/octomap_server/latch
-/octomap_server/max_depth
-/octomap_server/occupancy_max_z
-/octomap_server/occupancy_min_z
-/octomap_server/pointcloud_max_z
-/octomap_server/pointcloud_min_z
-/octomap_server/resolution
-/octomap_server/sensor_model/max_range
-/octomap_server/sensor_model_hit
-/octomap_server/sensor_model_max
-/octomap_server/sensor_model_max_range
-/octomap_server/sensor_model_min
-/octomap_server/sensor_model_miss
 ```
