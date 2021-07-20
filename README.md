@@ -20,7 +20,7 @@ roslaunch agriculture_launcher inspect_bringup.launch
 
 * Terminal 2 (move the robot):
 
-  *Also can be done by adding 2D navigation markers on Rviz.*
+Also can be done by adding 2D navigation markers on Rviz.
 
 ```bash
 rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 5.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
