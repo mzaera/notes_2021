@@ -624,683 +624,756 @@ linear_acceleration_covariance: [2.5e-05, 0.0, 0.0, 0.0, 2.5e-05, 0.0, 0.0, 0.0,
 ROSNODE LIST
 ------------
 
-NOT updated!
+```bash
+/base_controller_spawner
+/ekf_global
+/ekf_local
+/gazebo
+/gazebo_gui
+/move_base
+/navsat_transform_node
+/octomap_server
+/realsense_to_laserscan
+/robot_state_publisher
+/rosout
+/rostopic_8124_1626769758575
+/rtabmap/rgbd_odometry
+/rtabmap/rtabmap
+/rviz
+/twist_marker_server
+/twist_mux
+```
 
-* /base_controller_spawner
-* /ekf_global
-* /ekf_local
-* /gazebo
-* /gazebo_gui
-* /navsat_transform_node
-* /realsense_to_laserscan
-* /robot_state_publisher
-* /rosout
-* /rtabmap/icp_odometry
-* /rtabmap/rtabmap
-* /rviz_1625154693621032645
-* /twist_marker_server
-* /twist_mux
+ROSTOPIC LIST
+------------
 
-
-INICIAL PARAMETERS
-------------------
-
-NOT updated!
-
- * /ekf_global/base_link_frame: base_link
- * /ekf_global/debug: False
- * /ekf_global/frequency: 30
- * /ekf_global/imu0: imu/data
- * /ekf_global/imu0_config: [False, False, Fa...
- * /ekf_global/imu0_differential: False
- * /ekf_global/imu0_linear_acceleration_rejection_threshold: 0.8
- * /ekf_global/imu0_nodelay: False
- * /ekf_global/imu0_pose_rejection_threshold: 0.8
- * /ekf_global/imu0_queue_size: 5
- * /ekf_global/imu0_relative: False
- * /ekf_global/imu0_remove_gravitational_acceleration: True
- * /ekf_global/imu0_twist_rejection_threshold: 0.8
- * /ekf_global/initial_estimate_covariance: [1.0, 0, 0, 0, 0,...
- * /ekf_global/map_frame: map
- * /ekf_global/odom0: rtabmap/odom_rgbd...
- * /ekf_global/odom0_config: [True, True, True...
- * /ekf_global/odom0_differential: True
- * /ekf_global/odom0_nodelay: True
- * /ekf_global/odom0_pose_rejection_threshold: 5
- * /ekf_global/odom0_queue_size: 5
- * /ekf_global/odom0_relative: False
- * /ekf_global/odom0_twist_rejection_threshold: 1
- * /ekf_global/odom1: ekf/gps_converted...
- * /ekf_global/odom1_config: [True, True, True...
- * /ekf_global/odom1_differential: False
- * /ekf_global/odom1_nodelay: True
- * /ekf_global/odom1_queue_size: 2
- * /ekf_global/odom1_relative: False
- * /ekf_global/odom_frame: odom
- * /ekf_global/print_diagnostics: True
- * /ekf_global/process_noise_covariance: [1.0, 0, 0, 0, 0,...
- * /ekf_global/publish_tf: True
- * /ekf_global/sensor_timeout: 0.1
- * /ekf_global/transform_time_offset: 0.05
- * /ekf_global/transform_timeout: 0.0
- * /ekf_global/two_d_mode: True
- * /ekf_global/use_control: False
- * /ekf_global/world_frame: map
- * /ekf_local/base_link_frame: base_link
- * /ekf_local/debug: False
- * /ekf_local/frequency: 30
- * /ekf_local/imu0: imu/data
- * /ekf_local/imu0_config: [False, False, Fa...
- * /ekf_local/imu0_differential: False
- * /ekf_local/imu0_linear_acceleration_rejection_threshold: 0.8
- * /ekf_local/imu0_nodelay: False
- * /ekf_local/imu0_pose_rejection_threshold: 0.8
- * /ekf_local/imu0_queue_size: 5
- * /ekf_local/imu0_relative: False
- * /ekf_local/imu0_remove_gravitational_acceleration: True
- * /ekf_local/imu0_twist_rejection_threshold: 0.8
- * /ekf_local/initial_estimate_covariance: ['1e-9', 0, 0, 0,...
- * /ekf_local/map_frame: map
- * /ekf_local/odom0: rtabmap/odom_rgbd...
- * /ekf_local/odom0_config: [False, False, Fa...
- * /ekf_local/odom0_differential: False
- * /ekf_local/odom0_nodelay: False
- * /ekf_local/odom0_pose_rejection_threshold: 5
- * /ekf_local/odom0_queue_size: 5
- * /ekf_local/odom0_relative: False
- * /ekf_local/odom0_twist_rejection_threshold: 1
- * /ekf_local/odom_frame: odom
- * /ekf_local/print_diagnostics: True
- * /ekf_local/process_noise_covariance: ['1e-3', 0, 0, 0,...
- * /ekf_local/publish_tf: True
- * /ekf_local/sensor_timeout: 0.1
- * /ekf_local/transform_time_offset: 0.05
- * /ekf_local/transform_timeout: 0.0
- * /ekf_local/two_d_mode: True
- * /ekf_local/use_control: False
- * /ekf_local/world_frame: odom
- * /gazebo/enable_ros_network: True
- * /husky_joint_publisher/publish_rate: 50
- * /husky_joint_publisher/type: joint_state_contr...
- * /husky_velocity_controller/angular/z/has_acceleration_limits: True
- * /husky_velocity_controller/angular/z/has_velocity_limits: True
- * /husky_velocity_controller/angular/z/max_acceleration: 6.0
- * /husky_velocity_controller/angular/z/max_velocity: 2.0
- * /husky_velocity_controller/base_frame_id: base_link
- * /husky_velocity_controller/cmd_vel_timeout: 0.25
- * /husky_velocity_controller/enable_odom_tf: False
- * /husky_velocity_controller/estimate_velocity_from_position: False
- * /husky_velocity_controller/left_wheel: ['front_left_whee...
- * /husky_velocity_controller/linear/x/has_acceleration_limits: True
- * /husky_velocity_controller/linear/x/has_velocity_limits: True
- * /husky_velocity_controller/linear/x/max_acceleration: 3.0
- * /husky_velocity_controller/linear/x/max_velocity: 1.0
- * /husky_velocity_controller/pose_covariance_diagonal: [0.001, 0.001, 0....
- * /husky_velocity_controller/publish_rate: 50
- * /husky_velocity_controller/right_wheel: ['front_right_whe...
- * /husky_velocity_controller/twist_covariance_diagonal: [0.001, 0.001, 0....
- * /husky_velocity_controller/type: diff_drive_contro...
- * /husky_velocity_controller/velocity_rolling_window_size: 2
- * /husky_velocity_controller/wheel_radius_multiplier: 1.0
- * /husky_velocity_controller/wheel_separation_multiplier: 1.875
- * /navsat_transform_node/broadcast_utm_transform: True
- * /navsat_transform_node/broadcast_utm_transform_as_parent_frame: True
- * /navsat_transform_node/datum: [49.8999999596, 8...
- * /navsat_transform_node/delay: 3
- * /navsat_transform_node/frequency: 30
- * /navsat_transform_node/magnetic_declination_radians: 0.0349066
- * /navsat_transform_node/publish_filtered_gps: False
- * /navsat_transform_node/transform_timeout: 0.1
- * /navsat_transform_node/use_odometry_yaw: True
- * /navsat_transform_node/wait_for_datum: True
- * /navsat_transform_node/yaw_offset: 1.570796
- * /navsat_transform_node/zero_altitude: True
- * /octomap_server/frame_id: map
- * /octomap_server/resolution: 0.05
- * /octomap_server/sensor_model/max_range: 500.0
- * /realsense_to_laserscan/angle_increment: 0.005
- * /realsense_to_laserscan/angle_max: 0.759218224618
- * /realsense_to_laserscan/angle_min: -0.759218224618
- * /realsense_to_laserscan/concurrency_level: 1
- * /realsense_to_laserscan/max_height: 1.0
- * /realsense_to_laserscan/min_height: 0.05
- * /realsense_to_laserscan/range_max: 8.0
- * /realsense_to_laserscan/range_min: 0.105
- * /realsense_to_laserscan/scan_time: 0.3333
- * /realsense_to_laserscan/target_frame: base_link
- * /realsense_to_laserscan/tolerance: 1.0
- * /realsense_to_laserscan/use_inf: True
- * /rosdistro: melodic
- * /rosversion: 1.14.11
- * /rtabmap/icp_odometry/config_path: 
- * /rtabmap/icp_odometry/expected_update_rate: 0.0
- * /rtabmap/icp_odometry/frame_id: base_link
- * /rtabmap/icp_odometry/ground_truth_base_frame_id: 
- * /rtabmap/icp_odometry/ground_truth_frame_id: 
- * /rtabmap/icp_odometry/guess_frame_id: 
- * /rtabmap/icp_odometry/guess_min_rotation: 0.0
- * /rtabmap/icp_odometry/guess_min_translation: 0.0
- * /rtabmap/icp_odometry/max_update_rate: 0.0
- * /rtabmap/icp_odometry/odom_frame_id: odom
- * /rtabmap/icp_odometry/publish_tf: False
- * /rtabmap/icp_odometry/queue_size: 10
- * /rtabmap/icp_odometry/scan_cloud_max_points: 0
- * /rtabmap/icp_odometry/wait_for_transform_duration: 0.2
- * /rtabmap/icp_odometry/wait_imu_to_init: False
- * /rtabmap/rtabmap/Grid/FromDepth: True
- * /rtabmap/rtabmap/Mem/IncrementalMemory: true
- * /rtabmap/rtabmap/Mem/InitWMWithAllNodes: false
- * /rtabmap/rtabmap/Optimizer/Iterations: 100
- * /rtabmap/rtabmap/approx_sync: True
- * /rtabmap/rtabmap/config_path: 
- * /rtabmap/rtabmap/database_path: ~/.ros/rtabmap.db
- * /rtabmap/rtabmap/frame_id: base_link
- * /rtabmap/rtabmap/gen_scan: False
- * /rtabmap/rtabmap/ground_truth_base_frame_id: 
- * /rtabmap/rtabmap/ground_truth_frame_id: 
- * /rtabmap/rtabmap/landmark_angular_variance: 9999.0
- * /rtabmap/rtabmap/landmark_linear_variance: 0.0001
- * /rtabmap/rtabmap/latch: True
- * /rtabmap/rtabmap/map_always_update: True
- * /rtabmap/rtabmap/map_cleanup: False
- * /rtabmap/rtabmap/map_frame_id: map
- * /rtabmap/rtabmap/odom_frame_id: odom
- * /rtabmap/rtabmap/odom_sensor_sync: False
- * /rtabmap/rtabmap/odom_tf_angular_variance: 1.0
- * /rtabmap/rtabmap/odom_tf_linear_variance: 1.0
- * /rtabmap/rtabmap/publish_tf: False
- * /rtabmap/rtabmap/queue_size: 10
- * /rtabmap/rtabmap/scan_cloud_max_points: 0
- * /rtabmap/rtabmap/subscribe_depth: False
- * /rtabmap/rtabmap/subscribe_odom_info: True
- * /rtabmap/rtabmap/subscribe_rgb: False
- * /rtabmap/rtabmap/subscribe_rgbd: False
- * /rtabmap/rtabmap/subscribe_scan: False
- * /rtabmap/rtabmap/subscribe_scan_cloud: True
- * /rtabmap/rtabmap/subscribe_scan_descriptor: False
- * /rtabmap/rtabmap/subscribe_stereo: False
- * /rtabmap/rtabmap/subscribe_user_data: False
- * /rtabmap/rtabmap/wait_for_transform_duration: 0.2
- * /twist_mux/locks: [{'topic': 'e_sto...
- * /twist_mux/topics: [{'topic': 'joy_t...
- * /use_sim_time: True
-
-
+```bash
+/clicked_point
+/clock
+/cmd_vel
+/diagnostics
+/e_stop
+/ekf/global_odom
+/ekf/gps_converted_odom
+/ekf/local_odom
+/free_cells_vis_array
+/gazebo/link_states
+/gazebo/model_states
+/gazebo/parameter_descriptions
+/gazebo/parameter_updates
+/gazebo/set_link_state
+/gazebo/set_model_state
+/gps/fix
+/gps/fix/position/parameter_descriptions
+/gps/fix/position/parameter_updates
+/gps/fix/status/parameter_descriptions
+/gps/fix/status/parameter_updates
+/gps/fix/velocity/parameter_descriptions
+/gps/fix/velocity/parameter_updates
+/gps/vel
+/ground_truth/state
+/husky_velocity_controller/cmd_vel
+/husky_velocity_controller/odom
+/husky_velocity_controller/parameter_descriptions
+/husky_velocity_controller/parameter_updates
+/imu/data
+/imu/data/accel/parameter_descriptions
+/imu/data/accel/parameter_updates
+/imu/data/bias
+/imu/data/rate/parameter_descriptions
+/imu/data/rate/parameter_updates
+/imu/data/yaw/parameter_descriptions
+/imu/data/yaw/parameter_updates
+/initialpose
+/joint_states
+/joy_teleop/cmd_vel
+/move_base/DWAPlannerROS/cost_cloud
+/move_base/DWAPlannerROS/global_plan
+/move_base/DWAPlannerROS/local_plan
+/move_base/DWAPlannerROS/parameter_descriptions
+/move_base/DWAPlannerROS/parameter_updates
+/move_base/DWAPlannerROS/trajectory_cloud
+/move_base/NavfnROS/plan
+/move_base/cancel
+/move_base/current_goal
+/move_base/feedback
+/move_base/global_costmap/costmap
+/move_base/global_costmap/costmap_updates
+/move_base/global_costmap/footprint
+/move_base/global_costmap/inflation/parameter_descriptions
+/move_base/global_costmap/inflation/parameter_updates
+/move_base/global_costmap/obstacles_laser/parameter_descriptions
+/move_base/global_costmap/obstacles_laser/parameter_updates
+/move_base/global_costmap/parameter_descriptions
+/move_base/global_costmap/parameter_updates
+/move_base/goal
+/move_base/local_costmap/costmap
+/move_base/local_costmap/costmap_updates
+/move_base/local_costmap/footprint
+/move_base/local_costmap/inflation/parameter_descriptions
+/move_base/local_costmap/inflation/parameter_updates
+/move_base/local_costmap/obstacles_laser/parameter_descriptions
+/move_base/local_costmap/obstacles_laser/parameter_updates
+/move_base/local_costmap/parameter_descriptions
+/move_base/local_costmap/parameter_updates
+/move_base/parameter_descriptions
+/move_base/parameter_updates
+/move_base/result
+/move_base/status
+/move_base_simple/goal
+/occupied_cells_vis_array
+/octomap_binary
+/octomap_full
+/octomap_point_cloud_centers
+/octomap_server/parameter_descriptions
+/octomap_server/parameter_updates
+/odom
+/points
+/projected_map
+/projected_map_updates
+/realsense/color/camera_info
+/realsense/color/image_raw
+/realsense/color/image_raw/compressed
+/realsense/color/image_raw/compressed/parameter_descriptions
+/realsense/color/image_raw/compressed/parameter_updates
+/realsense/color/image_raw/compressedDepth
+/realsense/color/image_raw/compressedDepth/parameter_descriptions
+/realsense/color/image_raw/compressedDepth/parameter_updates
+/realsense/color/image_raw/theora
+/realsense/color/image_raw/theora/parameter_descriptions
+/realsense/color/image_raw/theora/parameter_updates
+/realsense/depth/camera_info
+/realsense/depth/color/points
+/realsense/depth/image_rect_raw
+/realsense/parameter_descriptions
+/realsense/parameter_updates
+/realsense/scan
+/rosout
+/rosout_agg
+/rtabmap/cloud_ground
+/rtabmap/cloud_map
+/rtabmap/cloud_obstacles
+/rtabmap/global_path
+/rtabmap/global_path_nodes
+/rtabmap/global_pose
+/rtabmap/goal
+/rtabmap/goal_node
+/rtabmap/goal_out
+/rtabmap/goal_reached
+/rtabmap/gps/fix
+/rtabmap/grid_map
+/rtabmap/grid_prob_map
+/rtabmap/info
+/rtabmap/initialpose
+/rtabmap/labels
+/rtabmap/landmarks
+/rtabmap/local_grid_empty
+/rtabmap/local_grid_ground
+/rtabmap/local_grid_obstacle
+/rtabmap/local_path
+/rtabmap/local_path_nodes
+/rtabmap/localization_pose
+/rtabmap/mapData
+/rtabmap/mapGraph
+/rtabmap/mapPath
+/rtabmap/octomap_binary
+/rtabmap/octomap_empty_space
+/rtabmap/octomap_full
+/rtabmap/octomap_global_frontier_space
+/rtabmap/octomap_grid
+/rtabmap/octomap_ground
+/rtabmap/octomap_obstacles
+/rtabmap/octomap_occupied_space
+/rtabmap/odom_info
+/rtabmap/odom_info_lite
+/rtabmap/odom_last_frame
+/rtabmap/odom_local_map
+/rtabmap/odom_local_scan_map
+/rtabmap/odom_rgbd_image
+/rtabmap/proj_map
+/rtabmap/rgbd_odom
+/rtabmap/scan_map
+/scan
+/set_pose
+/tf
+/tf_static
+/twist_marker_server/cmd_vel
+/twist_marker_server/feedback
+/twist_marker_server/update
+/twist_marker_server/update_full
+/user_data_async
+```
 
 COMPLETE PARAMETERS LIST RTABMAP
 --------------------------------
 
-* /rtabmap/BRIEF/Bytes
-* /rtabmap/BRISK/Octaves
-* /rtabmap/BRISK/PatternScale
-* /rtabmap/BRISK/Thresh
-* /rtabmap/Bayes/FullPredictionUpdate
-* /rtabmap/Bayes/PredictionLC
-* /rtabmap/Bayes/VirtualPlacePriorThr
-* /rtabmap/Db/TargetVersion
-* /rtabmap/DbSqlite3/CacheSize
-* /rtabmap/DbSqlite3/InMemory
-* /rtabmap/DbSqlite3/JournalMode
-* /rtabmap/DbSqlite3/Synchronous
-* /rtabmap/DbSqlite3/TempStore
-* /rtabmap/FAST/CV
-* /rtabmap/FAST/Gpu
-* /rtabmap/FAST/GpuKeypointsRatio
-* /rtabmap/FAST/GridCols
-* /rtabmap/FAST/GridRows
-* /rtabmap/FAST/MaxThreshold
-* /rtabmap/FAST/MinThreshold
-* /rtabmap/FAST/NonmaxSuppression
-* /rtabmap/FAST/Threshold
-* /rtabmap/FREAK/NOctaves
-* /rtabmap/FREAK/OrientationNormalized
-* /rtabmap/FREAK/PatternScale
-* /rtabmap/FREAK/ScaleNormalized
-* /rtabmap/GFTT/BlockSize
-* /rtabmap/GFTT/K
-* /rtabmap/GFTT/MinDistance
-* /rtabmap/GFTT/QualityLevel
-* /rtabmap/GFTT/UseHarrisDetector
-* /rtabmap/GMS/ThresholdFactor
-* /rtabmap/GMS/WithRotation
-* /rtabmap/GMS/WithScale
-* /rtabmap/GTSAM/Optimizer
-* /rtabmap/Grid/3D
-* /rtabmap/Grid/CellSize
-* /rtabmap/Grid/ClusterRadius
-* /rtabmap/Grid/DepthDecimation
-* /rtabmap/Grid/DepthRoiRatios
-* /rtabmap/Grid/FlatObstacleDetected
-* /rtabmap/Grid/FootprintHeight
-* /rtabmap/Grid/FootprintLength
-* /rtabmap/Grid/FootprintWidth
-* /rtabmap/Grid/FromDepth
-* /rtabmap/Grid/GroundIsObstacle
-* /rtabmap/Grid/MapFrameProjection
-* /rtabmap/Grid/MaxGroundAngle
-* /rtabmap/Grid/MaxGroundHeight
-* /rtabmap/Grid/MaxObstacleHeight
-* /rtabmap/Grid/MinClusterSize
-* /rtabmap/Grid/MinGroundHeight
-* /rtabmap/Grid/NoiseFilteringMinNeighbors
-* /rtabmap/Grid/NoiseFilteringRadius
-* /rtabmap/Grid/NormalK
-* /rtabmap/Grid/NormalsSegmentation
-* /rtabmap/Grid/PreVoxelFiltering
-* /rtabmap/Grid/RangeMax
-* /rtabmap/Grid/RangeMin
-* /rtabmap/Grid/RayTracing
-* /rtabmap/Grid/Scan2dUnknownSpaceFilled
-* /rtabmap/Grid/ScanDecimation
-* /rtabmap/GridGlobal/AltitudeDelta
-* /rtabmap/GridGlobal/Eroded
-* /rtabmap/GridGlobal/FootprintRadius
-* /rtabmap/GridGlobal/FullUpdate
-* /rtabmap/GridGlobal/MaxNodes
-* /rtabmap/GridGlobal/MinSize
-* /rtabmap/GridGlobal/OccupancyThr
-* /rtabmap/GridGlobal/ProbClampingMax
-* /rtabmap/GridGlobal/ProbClampingMin
-* /rtabmap/GridGlobal/ProbHit
-* /rtabmap/GridGlobal/ProbMiss
-* /rtabmap/GridGlobal/UpdateError
-* /rtabmap/Icp/CCFilterOutFarthestPoints
-* /rtabmap/Icp/CCMaxFinalRMS
-* /rtabmap/Icp/CCSamplingLimit
-* /rtabmap/Icp/CorrespondenceRatio
-* /rtabmap/Icp/DownsamplingStep
-* /rtabmap/Icp/Epsilon
-* /rtabmap/Icp/Force4DoF
-* /rtabmap/Icp/Iterations
-* /rtabmap/Icp/MaxCorrespondenceDistance
-* /rtabmap/Icp/MaxRotation
-* /rtabmap/Icp/MaxTranslation
-* /rtabmap/Icp/OutlierRatio
-* /rtabmap/Icp/PMConfig
-* /rtabmap/Icp/PMMatcherEpsilon
-* /rtabmap/Icp/PMMatcherIntensity
-* /rtabmap/Icp/PMMatcherKnn
-* /rtabmap/Icp/PointToPlane
-* /rtabmap/Icp/PointToPlaneGroundNormalsUp
-* /rtabmap/Icp/PointToPlaneK
-* /rtabmap/Icp/PointToPlaneLowComplexityStrategy
-* /rtabmap/Icp/PointToPlaneMinComplexity
-* /rtabmap/Icp/PointToPlaneRadius
-* /rtabmap/Icp/RangeMax
-* /rtabmap/Icp/RangeMin
-* /rtabmap/Icp/Strategy
-* /rtabmap/Icp/VoxelSize
-* /rtabmap/ImuFilter/ComplementaryBiasAlpha
-* /rtabmap/ImuFilter/ComplementaryDoAdpativeGain
-* /rtabmap/ImuFilter/ComplementaryDoBiasEstimation
-* /rtabmap/ImuFilter/ComplementaryGainAcc
-* /rtabmap/ImuFilter/MadgwickGain
-* /rtabmap/ImuFilter/MadgwickZeta
-* /rtabmap/KAZE/Diffusivity
-* /rtabmap/KAZE/Extended
-* /rtabmap/KAZE/NOctaveLayers
-* /rtabmap/KAZE/NOctaves
-* /rtabmap/KAZE/Threshold
-* /rtabmap/KAZE/Upright
-* /rtabmap/Kp/BadSignRatio
-* /rtabmap/Kp/ByteToFloat
-* /rtabmap/Kp/DetectorStrategy
-* /rtabmap/Kp/DictionaryPath
-* /rtabmap/Kp/FlannRebalancingFactor
-* /rtabmap/Kp/GridCols
-* /rtabmap/Kp/GridRows
-* /rtabmap/Kp/IncrementalDictionary
-* /rtabmap/Kp/IncrementalFlann
-* /rtabmap/Kp/MaxDepth
-* /rtabmap/Kp/MaxFeatures
-* /rtabmap/Kp/MinDepth
-* /rtabmap/Kp/NNStrategy
-* /rtabmap/Kp/NewWordsComparedTogether
-* /rtabmap/Kp/NndrRatio
-* /rtabmap/Kp/Parallelized
-* /rtabmap/Kp/RoiRatios
-* /rtabmap/Kp/SubPixEps
-* /rtabmap/Kp/SubPixIterations
-* /rtabmap/Kp/SubPixWinSize
-* /rtabmap/Kp/TfIdfLikelihoodUsed
-* /rtabmap/Marker/CornerRefinementMethod
-* /rtabmap/Marker/Dictionary
-* /rtabmap/Marker/Length
-* /rtabmap/Marker/MaxDepthError
-* /rtabmap/Marker/MaxRange
-* /rtabmap/Marker/MinRange
-* /rtabmap/Marker/VarianceAngular
-* /rtabmap/Marker/VarianceLinear
-* /rtabmap/Mem/BadSignaturesIgnored
-* /rtabmap/Mem/BinDataKept
-* /rtabmap/Mem/CompressionParallelized
-* /rtabmap/Mem/CovOffDiagIgnored
-* /rtabmap/Mem/DepthAsMask
-* /rtabmap/Mem/GenerateIds
-* /rtabmap/Mem/ImageCompressionFormat
-* /rtabmap/Mem/ImageKept
-* /rtabmap/Mem/ImagePostDecimation
-* /rtabmap/Mem/ImagePreDecimation
-* /rtabmap/Mem/IncrementalMemory
-* /rtabmap/Mem/InitWMWithAllNodes
-* /rtabmap/Mem/IntermediateNodeDataKept
-* /rtabmap/Mem/LaserScanDownsampleStepSize
-* /rtabmap/Mem/LaserScanNormalK
-* /rtabmap/Mem/LaserScanNormalRadius
-* /rtabmap/Mem/LaserScanVoxelSize
-* /rtabmap/Mem/LocalizationDataSaved
-* /rtabmap/Mem/MapLabelsAdded
-* /rtabmap/Mem/NotLinkedNodesKept
-* /rtabmap/Mem/RawDescriptorsKept
-* /rtabmap/Mem/RecentWmRatio
-* /rtabmap/Mem/ReduceGraph
-* /rtabmap/Mem/RehearsalIdUpdatedToNewOne
-* /rtabmap/Mem/RehearsalSimilarity
-* /rtabmap/Mem/RehearsalWeightIgnoredWhileMoving
-* /rtabmap/Mem/STMSize
-* /rtabmap/Mem/SaveDepth16Format
-* /rtabmap/Mem/StereoFromMotion
-* /rtabmap/Mem/TransferSortingByWeightId
-* /rtabmap/Mem/UseOdomFeatures
-* /rtabmap/Mem/UseOdomGravity
-* /rtabmap/ORB/EdgeThreshold
-* /rtabmap/ORB/FirstLevel
-* /rtabmap/ORB/Gpu
-* /rtabmap/ORB/NLevels
-* /rtabmap/ORB/PatchSize
-* /rtabmap/ORB/ScaleFactor
-* /rtabmap/ORB/ScoreType
-* /rtabmap/ORB/WTA_K
-* /rtabmap/Optimizer/Epsilon
-* /rtabmap/Optimizer/GravitySigma
-* /rtabmap/Optimizer/Iterations
-* /rtabmap/Optimizer/LandmarksIgnored
-* /rtabmap/Optimizer/PriorsIgnored
-* /rtabmap/Optimizer/Robust
-* /rtabmap/Optimizer/Strategy
-* /rtabmap/Optimizer/VarianceIgnored
-* /rtabmap/PyDetector/Cuda
-* /rtabmap/PyDetector/Path
-* /rtabmap/PyMatcher/Cuda
-* /rtabmap/PyMatcher/Iterations
-* /rtabmap/PyMatcher/Model
-* /rtabmap/PyMatcher/Path
-* /rtabmap/PyMatcher/Threshold
-* /rtabmap/RGBD/AngularSpeedUpdate
-* /rtabmap/RGBD/AngularUpdate
-* /rtabmap/RGBD/CreateOccupancyGrid
-* /rtabmap/RGBD/Enabled
-* /rtabmap/RGBD/GoalReachedRadius
-* /rtabmap/RGBD/GoalsSavedInUserData
-* /rtabmap/RGBD/LinearSpeedUpdate
-* /rtabmap/RGBD/LinearUpdate
-* /rtabmap/RGBD/LocalBundleOnLoopClosure
-* /rtabmap/RGBD/LocalImmunizationRatio
-* /rtabmap/RGBD/LocalRadius
-* /rtabmap/RGBD/LoopClosureIdentityGuess
-* /rtabmap/RGBD/LoopClosureReextractFeatures
-* /rtabmap/RGBD/LoopCovLimited
-* /rtabmap/RGBD/MarkerDetection
-* /rtabmap/RGBD/MaxLocalRetrieved
-* /rtabmap/RGBD/MaxLoopClosureDistance
-* /rtabmap/RGBD/MaxOdomCacheSize
-* /rtabmap/RGBD/NeighborLinkRefining
-* /rtabmap/RGBD/NewMapOdomChangeDistance
-* /rtabmap/RGBD/OptimizeFromGraphEnd
-* /rtabmap/RGBD/OptimizeMaxError
-* /rtabmap/RGBD/PlanAngularVelocity
-* /rtabmap/RGBD/PlanLinearVelocity
-* /rtabmap/RGBD/PlanStuckIterations
-* /rtabmap/RGBD/ProximityAngle
-* /rtabmap/RGBD/ProximityBySpace
-* /rtabmap/RGBD/ProximityByTime
-* /rtabmap/RGBD/ProximityMaxGraphDepth
-* /rtabmap/RGBD/ProximityMaxPaths
-* /rtabmap/RGBD/ProximityOdomGuess
-* /rtabmap/RGBD/ProximityPathFilteringRadius
-* /rtabmap/RGBD/ProximityPathMaxNeighbors
-* /rtabmap/RGBD/ProximityPathRawPosesUsed
-* /rtabmap/RGBD/ScanMatchingIdsSavedInLinks
-* /rtabmap/RGBD/StartAtOrigin
-* /rtabmap/Reg/Force3DoF
-* /rtabmap/Reg/RepeatOnce
-* /rtabmap/Reg/Strategy
-* /rtabmap/Rtabmap/ComputeRMSE
-* /rtabmap/Rtabmap/CreateIntermediateNodes
-* /rtabmap/Rtabmap/DetectionRate
-* /rtabmap/Rtabmap/ImageBufferSize
-* /rtabmap/Rtabmap/ImagesAlreadyRectified
-* /rtabmap/Rtabmap/LoopGPS
-* /rtabmap/Rtabmap/LoopRatio
-* /rtabmap/Rtabmap/LoopThr
-* /rtabmap/Rtabmap/MaxRetrieved
-* /rtabmap/Rtabmap/MemoryThr
-* /rtabmap/Rtabmap/PublishLastSignature
-* /rtabmap/Rtabmap/PublishLikelihood
-* /rtabmap/Rtabmap/PublishPdf
-* /rtabmap/Rtabmap/PublishRAMUsage
-* /rtabmap/Rtabmap/PublishStats
-* /rtabmap/Rtabmap/RectifyOnlyFeatures
-* /rtabmap/Rtabmap/SaveWMState
-* /rtabmap/Rtabmap/StartNewMapOnGoodSignature
-* /rtabmap/Rtabmap/StartNewMapOnLoopClosure
-* /rtabmap/Rtabmap/StatisticLogged
-* /rtabmap/Rtabmap/StatisticLoggedHeaders
-* /rtabmap/Rtabmap/StatisticLogsBufferedInRAM
-* /rtabmap/Rtabmap/TimeThr
-* /rtabmap/Rtabmap/WorkingDirectory
-* /rtabmap/SIFT/ContrastThreshold
-* /rtabmap/SIFT/EdgeThreshold
-* /rtabmap/SIFT/NFeatures
-* /rtabmap/SIFT/NOctaveLayers
-* /rtabmap/SIFT/RootSIFT
-* /rtabmap/SIFT/Sigma
-* /rtabmap/SURF/Extended
-* /rtabmap/SURF/GpuKeypointsRatio
-* /rtabmap/SURF/GpuVersion
-* /rtabmap/SURF/HessianThreshold
-* /rtabmap/SURF/OctaveLayers
-* /rtabmap/SURF/Octaves
-* /rtabmap/SURF/Upright
-* /rtabmap/Stereo/DenseStrategy
-* /rtabmap/Stereo/Eps
-* /rtabmap/Stereo/Iterations
-* /rtabmap/Stereo/MaxDisparity
-* /rtabmap/Stereo/MaxLevel
-* /rtabmap/Stereo/MinDisparity
-* /rtabmap/Stereo/OpticalFlow
-* /rtabmap/Stereo/SSD
-* /rtabmap/Stereo/WinHeight
-* /rtabmap/Stereo/WinWidth
-* /rtabmap/StereoBM/BlockSize
-* /rtabmap/StereoBM/Disp12MaxDiff
-* /rtabmap/StereoBM/MinDisparity
-* /rtabmap/StereoBM/NumDisparities
-* /rtabmap/StereoBM/PreFilterCap
-* /rtabmap/StereoBM/PreFilterSize
-* /rtabmap/StereoBM/SpeckleRange
-* /rtabmap/StereoBM/SpeckleWindowSize
-* /rtabmap/StereoBM/TextureThreshold
-* /rtabmap/StereoBM/UniquenessRatio
-* /rtabmap/StereoSGBM/BlockSize
-* /rtabmap/StereoSGBM/Disp12MaxDiff
-* /rtabmap/StereoSGBM/MinDisparity
-* /rtabmap/StereoSGBM/Mode
-* /rtabmap/StereoSGBM/NumDisparities
-* /rtabmap/StereoSGBM/P1
-* /rtabmap/StereoSGBM/P2
-* /rtabmap/StereoSGBM/PreFilterCap
-* /rtabmap/StereoSGBM/SpeckleRange
-* /rtabmap/StereoSGBM/SpeckleWindowSize
-* /rtabmap/StereoSGBM/UniquenessRatio
-* /rtabmap/SuperPoint/Cuda
-* /rtabmap/SuperPoint/ModelPath
-* /rtabmap/SuperPoint/NMS
-* /rtabmap/SuperPoint/NMSRadius
-* /rtabmap/SuperPoint/Threshold
-* /rtabmap/VhEp/Enabled
-* /rtabmap/VhEp/MatchCountMin
-* /rtabmap/VhEp/RansacParam1
-* /rtabmap/VhEp/RansacParam2
-* /rtabmap/Vis/BundleAdjustment
-* /rtabmap/Vis/CorFlowEps
-* /rtabmap/Vis/CorFlowIterations
-* /rtabmap/Vis/CorFlowMaxLevel
-* /rtabmap/Vis/CorFlowWinSize
-* /rtabmap/Vis/CorGuessMatchToProjection
-* /rtabmap/Vis/CorGuessWinSize
-* /rtabmap/Vis/CorNNDR
-* /rtabmap/Vis/CorNNType
-* /rtabmap/Vis/CorType
-* /rtabmap/Vis/DepthAsMask
-* /rtabmap/Vis/EpipolarGeometryVar
-* /rtabmap/Vis/EstimationType
-* /rtabmap/Vis/FeatureType
-* /rtabmap/Vis/ForwardEstOnly
-* /rtabmap/Vis/GridCols
-* /rtabmap/Vis/GridRows
-* /rtabmap/Vis/InlierDistance
-* /rtabmap/Vis/Iterations
-* /rtabmap/Vis/MaxDepth
-* /rtabmap/Vis/MaxFeatures
-* /rtabmap/Vis/MeanInliersDistance
-* /rtabmap/Vis/MinDepth
-* /rtabmap/Vis/MinInliers
-* /rtabmap/Vis/MinInliersDistribution
-* /rtabmap/Vis/PnPFlags
-* /rtabmap/Vis/PnPRefineIterations
-* /rtabmap/Vis/PnPReprojError
-* /rtabmap/Vis/RefineIterations
-* /rtabmap/Vis/RoiRatios
-* /rtabmap/Vis/SubPixEps
-* /rtabmap/Vis/SubPixIterations
-* /rtabmap/Vis/SubPixWinSize
-* /rtabmap/g2o/Baseline
-* /rtabmap/g2o/Optimizer
-* /rtabmap/g2o/PixelVariance
-* /rtabmap/g2o/RobustKernelDelta
-* /rtabmap/g2o/Solver
-* /rtabmap/is_rtabmap_paused
-* /rtabmap/rgbd_odometry/approx_sync
-* /rtabmap/rgbd_odometry/config_path
-* /rtabmap/rgbd_odometry/expected_update_rate
-* /rtabmap/rgbd_odometry/frame_id
-* /rtabmap/rgbd_odometry/ground_truth_base_frame_id
-* /rtabmap/rgbd_odometry/ground_truth_frame_id
-* /rtabmap/rgbd_odometry/guess_frame_id
-* /rtabmap/rgbd_odometry/guess_min_rotation
-* /rtabmap/rgbd_odometry/guess_min_translation
-* /rtabmap/rgbd_odometry/keep_color
-* /rtabmap/rgbd_odometry/max_update_rate
-* /rtabmap/rgbd_odometry/odom_frame_id
-* /rtabmap/rgbd_odometry/publish_tf
-* /rtabmap/rgbd_odometry/queue_size
-* /rtabmap/rgbd_odometry/subscribe_rgbd
-* /rtabmap/rgbd_odometry/wait_for_transform_duration
-* /rtabmap/rgbd_odometry/wait_imu_to_init
-* /rtabmap/rtabmap/Mem/IncrementalMemory
-* /rtabmap/rtabmap/Mem/InitWMWithAllNodes
-* /rtabmap/rtabmap/approx_sync
-* /rtabmap/rtabmap/config_path
-* /rtabmap/rtabmap/database_path
-* /rtabmap/rtabmap/frame_id
-* /rtabmap/rtabmap/gen_scan
-* /rtabmap/rtabmap/ground_truth_base_frame_id
-* /rtabmap/rtabmap/ground_truth_frame_id
-* /rtabmap/rtabmap/landmark_angular_variance
-* /rtabmap/rtabmap/landmark_linear_variance
-* /rtabmap/rtabmap/map_frame_id
-* /rtabmap/rtabmap/odom_frame_id
-* /rtabmap/rtabmap/odom_sensor_sync
-* /rtabmap/rtabmap/odom_tf_angular_variance
-* /rtabmap/rtabmap/odom_tf_linear_variance
-* /rtabmap/rtabmap/publish_tf
-* /rtabmap/rtabmap/queue_size
-* /rtabmap/rtabmap/scan_cloud_max_points
-* /rtabmap/rtabmap/subscribe_depth
-* /rtabmap/rtabmap/subscribe_odom_info
-* /rtabmap/rtabmap/subscribe_rgb
-* /rtabmap/rtabmap/subscribe_rgbd
-* /rtabmap/rtabmap/subscribe_scan
-* /rtabmap/rtabmap/subscribe_scan_cloud
-* /rtabmap/rtabmap/subscribe_scan_descriptor
-* /rtabmap/rtabmap/subscribe_stereo
-* /rtabmap/rtabmap/subscribe_user_data
-* /rtabmap/rtabmap/wait_for_transform_duration
-* 
+BRIEF
+```bash
+Param: BRIEF/Bytes = "32"                                  [Bytes is a length of descriptor in bytes. It can be equal 16, 32 or 64 bytes.]
+```
+BRISK
+```bash
+Param: BRISK/Octaves = "3"                                 [Detection octaves. Use 0 to do single scale.]
+Param: BRISK/PatternScale = "1"                            [Apply this scale to the pattern used for sampling the neighbourhood of a keypoint.]
+Param: BRISK/Thresh = "30"                                 [FAST/AGAST detection threshold score.]
+```
+Bayes
+```bash
+Param: Bayes/FullPredictionUpdate = "false"                [Regenerate all the prediction matrix on each iteration (otherwise only removed/added ids are updated).]
+Param: Bayes/PredictionLC = "0.1 0.36 0.30 0.16 0.062 0.0151 0.00255 0.000324 2.5e-05 1.3e-06 4.8e-08 1.2e-09 1.9e-11 2.2e-13 1.7e-15 8.5e-18 2.9e-20 6.9e-23" [Prediction of loop closures (Gaussian-like, here with sigma=1.6) - Format: {VirtualPlaceProb, LoopClosureProb, NeighborLvl1, NeighborLvl2, ...}.]
+Param: Bayes/VirtualPlacePriorThr = "0.9"                  [Virtual place prior]
+```
+Db
+```bash
+Param: Db/TargetVersion = ""                               [Target database version for backward compatibility purpose. Only Major and minor versions are used and should be set (e.g., 0.19 vs 0.20 or 1.0 vs 2.0). Patch version is ignored (e.g., 0.20.1 and 0.20.3 will generate a 0.20 database).]
+```
+DbSqlite3
+```bash
+Param: DbSqlite3/CacheSize = "10000"                       [Sqlite cache size (default is 2000).]
+Param: DbSqlite3/InMemory = "false"                        [Using database in the memory instead of a file on the hard disk.]
+Param: DbSqlite3/JournalMode = "3"                         [0=DELETE, 1=TRUNCATE, 2=PERSIST, 3=MEMORY, 4=OFF (see sqlite3 doc : "PRAGMA journal_mode")]
+Param: DbSqlite3/Synchronous = "0"                         [0=OFF, 1=NORMAL, 2=FULL (see sqlite3 doc : "PRAGMA synchronous")]
+Param: DbSqlite3/TempStore = "2"                           [0=DEFAULT, 1=FILE, 2=MEMORY (see sqlite3 doc : "PRAGMA temp_store")]
+```
+FAST
+```bash
+Param: BRISK/Thresh = "30"                                 [FAST/AGAST detection threshold score.]
+Param: FAST/CV = "0"                                       [Enable FastCV implementation if non-zero (and RTAB-Map is built with FastCV support). Values should be 9 and 10.]
+Param: FAST/Gpu = "false"                                  [GPU-FAST: Use GPU version of FAST. This option is enabled only if OpenCV is built with CUDA and GPUs are detected.]
+Param: FAST/GpuKeypointsRatio = "0.05"                     [Used with FAST GPU.]
+Param: FAST/GridCols = "0"                                 [Grid cols (0 to disable). Adapts the detector to partition the source image into a grid and detect points in each cell.]
+Param: FAST/GridRows = "0"                                 [Grid rows (0 to disable). Adapts the detector to partition the source image into a grid and detect points in each cell.]
+Param: FAST/MaxThreshold = "200"                           [Maximum threshold. Used only when FAST/GridRows and FAST/GridCols are set.]
+Param: FAST/MinThreshold = "7"                             [Minimum threshold. Used only when FAST/GridRows and FAST/GridCols are set.]
+Param: FAST/NonmaxSuppression = "true"                     [If true, non-maximum suppression is applied to detected corners (keypoints).]
+Param: FAST/Threshold = "20"                               [Threshold on difference between intensity of the central pixel and pixels of a circle around this pixel.]
+Param: Kp/DetectorStrategy = "8"                           [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
+Param: Vis/FeatureType = "8"                               [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
+```
+FREAK
+```bash
+Param: FREAK/NOctaves = "4"                                [Number of octaves covered by the detected keypoints.]
+Param: FREAK/OrientationNormalized = "true"                [Enable orientation normalization.]
+Param: FREAK/PatternScale = "22"                           [Scaling of the description pattern.]
+Param: FREAK/ScaleNormalized = "true"                      [Enable scale normalization.]
+```
+GFTT
+```bash
+Param: GFTT/BlockSize = "3"                                []
+Param: GFTT/K = "0.04"                                     []
+Param: GFTT/MinDistance = "7"                              []
+Param: GFTT/QualityLevel = "0.001"                         []
+Param: GFTT/UseHarrisDetector = "false"                    []
+Param: Kp/DetectorStrategy = "8"                           [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
+Param: Vis/FeatureType = "8"                               [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
+```
+GMS
+```bash
+Param: GMS/ThresholdFactor = "6.0"                         [The higher, the less matches.]
+Param: GMS/WithRotation = "false"                          [Take rotation transformation into account.]
+Param: GMS/WithScale = "false"                             [Take scale transformation into account.]
+```
+Grid
+```bash
+Param: Grid/3D = "true"                                    [A 3D occupancy grid is required if you want an OctoMap (3D ray tracing). Set to false if you want only a 2D map, the cloud will be projected on xy plane. A 2D map can be still generated if checked, but it requires more memory and time to generate it. Ignored if laser scan is 2D and "Grid/FromDepth" is false.]
+Param: Grid/CellSize = "0.05"                              [Resolution of the occupancy grid.]
+Param: Grid/ClusterRadius = "0.1"                          [[Grid/NormalsSegmentation=true] Cluster maximum radius.]
+Param: Grid/DepthDecimation = "4"                          [[Grid/DepthDecimation=true] Decimation of the depth image before creating cloud. Negative decimation is done from RGB size instead of depth size (if depth is smaller than RGB, it may be interpolated depending of the decimation value).]
+Param: Grid/DepthRoiRatios = "0.0 0.0 0.0 0.0"             [[Grid/FromDepth=true] Region of interest ratios [left, right, top, bottom].]
+Param: Grid/FlatObstacleDetected = "true"                  [[Grid/NormalsSegmentation=true] Flat obstacles detected.]
+Param: Grid/FootprintHeight = "0.0"                        [Footprint height used to filter points over the footprint of the robot. Footprint length and width should be set.]
+Param: Grid/FootprintLength = "0.0"                        [Footprint length used to filter points over the footprint of the robot.]
+Param: Grid/FootprintWidth = "0.0"                         [Footprint width used to filter points over the footprint of the robot. Footprint length should be set.]
+Param: Grid/FromDepth = "true"                             [Create occupancy grid from depth image(s), otherwise it is created from laser scan.]
+Param: Grid/GroundIsObstacle = "false"                     [[Grid/3D=true] Ground segmentation (Grid/NormalsSegmentation) is ignored, all points are obstacles. Use this only if you want an OctoMap with ground identified as an obstacle (e.g., with an UAV).]
+Param: Grid/MapFrameProjection = "false"                   [Projection in map frame. On a 3D terrain and a fixed local camera transform (the cloud is created relative to ground), you may want to disable this to do the projection in robot frame instead.]
+Param: Grid/MaxGroundAngle = "45"                          [[Grid/NormalsSegmentation=true] Maximum angle (degrees) between point's normal to ground's normal to label it as ground. Points with higher angle difference are considered as obstacles.]
+Param: Grid/MaxGroundHeight = "0.0"                        [Maximum ground height (0=disabled). Should be set if "Grid/NormalsSegmentation" is false.]
+Param: Grid/MaxObstacleHeight = "0.0"                      [Maximum obstacles height (0=disabled).]
+Param: Grid/MinClusterSize = "10"                          [[Grid/NormalsSegmentation=true] Minimum cluster size to project the points.]
+Param: Grid/MinGroundHeight = "0.0"                        [Minimum ground height (0=disabled).]
+Param: Grid/NoiseFilteringMinNeighbors = "5"               [Noise filtering minimum neighbors.]
+Param: Grid/NoiseFilteringRadius = "0.0"                   [Noise filtering radius (0=disabled). Done after segmentation.]
+Param: Grid/NormalK = "20"                                 [[Grid/NormalsSegmentation=true] K neighbors to compute normals.]
+Param: Grid/NormalsSegmentation = "true"                   [Segment ground from obstacles using point normals, otherwise a fast passthrough is used.]
+Param: Grid/PreVoxelFiltering = "true"                     [Input cloud is downsampled by voxel filter (voxel size is "Grid/CellSize") before doing segmentation of obstacles and ground.]
+Param: Grid/RangeMax = "5.0"                               [Maximum range from sensor. 0=inf.]
+Param: Grid/RangeMin = "0.0"                               [Minimum range from sensor.]
+Param: Grid/RayTracing = "false"                           [Ray tracing is done for each occupied cell, filling unknown space between the sensor and occupied cells. If Grid/3D=true, RTAB-Map should be built with OctoMap support, otherwise 3D ray tracing is ignored.]
+Param: Grid/Scan2dUnknownSpaceFilled = "false"             [Unknown space filled. Only used with 2D laser scans. Use Grid/RangeMax to set maximum range if laser scan max range is to set.]
+Param: Grid/ScanDecimation = "1"                           [[Grid/FromDepth=false] Decimation of the laser scan before creating cloud.]
+```
+GridGlobal
+```bash
+Param: GridGlobal/AltitudeDelta = "0"                      [Assemble only nodes that have the same altitude of +-delta meters of the current pose (0=disabled). This is used to generate 2D occupancy grid based on the current altitude (e.g., multi-floor building).]
+Param: GridGlobal/Eroded = "false"                         [Erode obstacle cells.]
+Param: GridGlobal/FootprintRadius = "0.0"                  [Footprint radius (m) used to clear all obstacles under the graph.]
+Param: GridGlobal/FullUpdate = "true"                      [When the graph is changed, the whole map will be reconstructed instead of moving individually each cells of the map. Also, data added to cache won't be released after updating the map. This process is longer but more robust to drift that would erase some parts of the map when it should not.]
+Param: GridGlobal/MaxNodes = "0"                           [Maximum nodes assembled in the map starting from the last node (0=unlimited).]
+Param: GridGlobal/MinSize = "0.0"                          [Minimum map size (m).]
+Param: GridGlobal/OccupancyThr = "0.5"                     [Occupancy threshold (value between 0 and 1).]
+Param: GridGlobal/ProbClampingMax = "0.971"                [Probability clamping maximum (value between 0 and 1).]
+Param: GridGlobal/ProbClampingMin = "0.1192"               [Probability clamping minimum (value between 0 and 1).]
+Param: GridGlobal/ProbHit = "0.7"                          [Probability of a hit (value between 0.5 and 1).]
+Param: GridGlobal/ProbMiss = "0.4"                         [Probability of a miss (value between 0 and 0.5).]
+Param: GridGlobal/UpdateError = "0.01"                     [Graph changed detection error (m). Update map only if poses in new optimized graph have moved more than this value.]
+```
+Icp
+```bash
+Param: Icp/CCFilterOutFarthestPoints = "false"             [If true, the algorithm will automatically ignore farthest points from the reference, for better convergence.]
+Param: Icp/CCMaxFinalRMS = "0.2"                           [Maximum final RMS error.]
+Param: Icp/CCSamplingLimit = "50000"                       [Maximum number of points per cloud (they are randomly resampled below this limit otherwise).]
+Param: Icp/CorrespondenceRatio = "0.1"                     [Ratio of matching correspondences to accept the transform.]
+Param: Icp/DownsamplingStep = "1"                          [Downsampling step size (1=no sampling). This is done before uniform sampling.]
+Param: Icp/Epsilon = "0"                                   [Set the transformation epsilon (maximum allowable difference between two consecutive transformations) in order for an optimization to be considered as having converged to the final solution.]
+Param: Icp/Force4DoF = "false"                             [Limit ICP to x, y, z and yaw DoF. Available if Icp/Strategy > 0.]
+Param: Icp/Iterations = "30"                               [Max iterations.]
+Param: Icp/MaxCorrespondenceDistance = "0.05"              [Max distance for point correspondences.]
+Param: Icp/MaxRotation = "0.78"                            [Maximum ICP rotation correction accepted (rad).]
+Param: Icp/MaxTranslation = "0.2"                          [Maximum ICP translation correction accepted (m).]
+Param: Icp/OutlierRatio = "0.85"                           [Outlier ratio used with Icp/Strategy>0. For libpointmatcher, this parameter set TrimmedDistOutlierFilter/ratio for convenience when configuration file is not set. For CCCoreLib, this parameter set the "finalOverlapRatio". The value should be between 0 and 1.]
+Param: Icp/PMConfig = ""                                   [Configuration file (*.yaml) used by libpointmatcher. Note that data filters set for libpointmatcher are done after filtering done by rtabmap (i.e., Icp/VoxelSize, Icp/DownsamplingStep), so make sure to disable those in rtabmap if you want to use only those from libpointmatcher. Parameters Icp/Iterations, Icp/Epsilon and Icp/MaxCorrespondenceDistance are also ignored if configuration file is set.]
+Param: Icp/PMMatcherEpsilon = "0.0"                        [KDTreeMatcher/epsilon: approximation to use for the nearest-neighbor search. For convenience when configuration file is not set.]
+Param: Icp/PMMatcherIntensity = "false"                    [KDTreeMatcher:  among nearest neighbors, keep only the one with the most similar intensity. This only work with Icp/PMMatcherKnn>1.]
+Param: Icp/PMMatcherKnn = "1"                              [KDTreeMatcher/knn: number of nearest neighbors to consider it the reference. For convenience when configuration file is not set.]
+Param: Icp/PointToPlane = "false"                          [Use point to plane ICP.]
+Param: Icp/PointToPlaneGroundNormalsUp = "0.0"             [Invert normals on ground if they are pointing down (useful for ring-like 3D LiDARs). 0 means disabled, 1 means only normals perfectly aligned with -z axis. This is only done with 3D scans.]
+Param: Icp/PointToPlaneK = "5"                             [Number of neighbors to compute normals for point to plane if the cloud doesn't have already normals.]
+Param: Icp/PointToPlaneLowComplexityStrategy = "1"         [If structural complexity is below Icp/PointToPlaneMinComplexity: set to 0 to so that the transform is automatically rejected, set to 1 to limit ICP correction in axes with most constraints (e.g., for a corridor-like environment, the resulting transform will be limited in y and yaw, x will taken from the guess), set to 2 to accept "as is" the transform computed by PointToPoint.]
+Param: Icp/PointToPlaneMinComplexity = "0.02"              [Minimum structural complexity (0.0=low, 1.0=high) of the scan to do PointToPlane registration, otherwise PointToPoint registration is done instead and strategy from Icp/PointToPlaneLowComplexityStrategy is used. This check is done only when Icp/PointToPlane=true.]
+Param: Icp/PointToPlaneRadius = "1.0"                      [Search radius to compute normals for point to plane if the cloud doesn't have already normals.]
+Param: Icp/RangeMax = "0"                                  [Maximum range filtering (0=disabled).]
+Param: Icp/RangeMin = "0"                                  [Minimum range filtering (0=disabled).]
+Param: Icp/Strategy = "0"                                  [ICP implementation: 0=Point Cloud Library, 1=libpointmatcher, 2=CCCoreLib (CloudCompare).]
+Param: Icp/VoxelSize = "0.05"                              [Uniform sampling voxel size (0=disabled).]
+
+```
+ImuFilter
+```bash
+Param: ImuFilter/ComplementaryBiasAlpha = "0.01"           [Bias estimation gain parameter, belongs in [0, 1].]
+Param: ImuFilter/ComplementaryDoAdpativeGain = "true"      [Parameter whether to do adaptive gain or not.]
+Param: ImuFilter/ComplementaryDoBiasEstimation = "true"    [Parameter whether to do bias estimation or not.]
+Param: ImuFilter/ComplementaryGainAcc = "0.01"             [Gain parameter for the complementary filter, belongs in [0, 1].]
+Param: ImuFilter/MadgwickGain = "0.1"                      [Gain of the filter. Higher values lead to faster convergence but more noise. Lower values lead to slower convergence but smoother signal, belongs in [0, 1].]
+Param: ImuFilter/MadgwickZeta = "0.0"                      [Gyro drift gain (approx. rad/s), belongs in [-1, 1].]
+```
+KAZE
+```bash
+Param: KAZE/Diffusivity = "1"                              [Diffusivity type: 0=DIFF_PM_G1, 1=DIFF_PM_G2, 2=DIFF_WEICKERT or 3=DIFF_CHARBONNIER.]
+Param: KAZE/Extended = "false"                             [Set to enable extraction of extended (128-byte) descriptor.]
+Param: KAZE/NOctaveLayers = "4"                            [Default number of sublevels per scale level.]
+Param: KAZE/NOctaves = "4"                                 [Maximum octave evolution of the image.]
+Param: KAZE/Threshold = "0.001"                            [Detector response threshold to accept keypoint.]
+Param: KAZE/Upright = "false"                              [Set to enable use of upright descriptors (non rotation-invariant).]
+```
+Kp
+```bash
+Param: Kp/BadSignRatio = "0.5"                             [Bad signature ratio (less than Ratio x AverageWordsPerImage = bad).]
+Param: Kp/ByteToFloat = "false"                            [For Kp/NNStrategy=1, binary descriptors are converted to float by converting each byte to float instead of converting each bit to float. When converting bytes instead of bits, less memory is used and search is faster at the cost of slightly less accurate matching.]
+Param: Kp/DetectorStrategy = "8"                           [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
+Param: Kp/DictionaryPath = ""                              [Path of the pre-computed dictionary]
+Param: Kp/FlannRebalancingFactor = "2.0"                   [Factor used when rebuilding the incremental FLANN index (see "Kp/IncrementalFlann"). Set <=1 to disable.]
+Param: Kp/GridCols = "1"                                   [Number of columns of the grid used to extract uniformly "Kp/MaxFeatures / grid cells" features from each cell.]
+Param: Kp/GridRows = "1"                                   [Number of rows of the grid used to extract uniformly "Kp/MaxFeatures / grid cells" features from each cell.]
+Param: Kp/IncrementalDictionary = "true"                   []
+Param: Kp/IncrementalFlann = "true"                        [When using FLANN based strategy, add/remove points to its index without always rebuilding the index (the index is built only when the dictionary increases of the factor "Kp/FlannRebalancingFactor" in size).]
+Param: Kp/MaxDepth = "0"                                   [Filter extracted keypoints by depth (0=inf).]
+Param: Kp/MaxFeatures = "500"                              [Maximum features extracted from the images (0 means not bounded, <0 means no extraction).]
+Param: Kp/MinDepth = "0"                                   [Filter extracted keypoints by depth.]
+Param: Kp/NNStrategy = "1"                                 [kNNFlannNaive=0, kNNFlannKdTree=1, kNNFlannLSH=2, kNNBruteForce=3, kNNBruteForceGPU=4]
+Param: Kp/NewWordsComparedTogether = "true"                [When adding new words to dictionary, they are compared also with each other (to detect same words in the same signature).]
+Param: Kp/NndrRatio = "0.8"                                [NNDR ratio (A matching pair is detected, if its distance is closer than X times the distance of the second nearest neighbor.)]
+Param: Kp/Parallelized = "true"                            [If the dictionary update and signature creation were parallelized.]
+Param: Kp/RoiRatios = "0.0 0.0 0.0 0.0"                    [Region of interest ratios [left, right, top, bottom].]
+Param: Kp/SubPixEps = "0.02"                               [See cv::cornerSubPix().]
+Param: Kp/SubPixIterations = "0"                           [See cv::cornerSubPix(). 0 disables sub pixel refining.]
+Param: Kp/SubPixWinSize = "3"                              [See cv::cornerSubPix().]
+Param: Kp/TfIdfLikelihoodUsed = "true"                     [Use of the td-idf strategy to compute the likelihood.]
+Param: Rtabmap/StartNewMapOnGoodSignature = "false"        [Start a new map only if the first signature is not bad (i.e., has enough features, see Kp/BadSignRatio).]
+```
+Marker
+```bash
+Param: Marker/CornerRefinementMethod = "0"                 [Corner refinement method (0: None, 1: Subpixel, 2:contour, 3: AprilTag2). For OpenCV <3.3.0, this is "doCornerRefinement" parameter: set 0 for false and 1 for true.]
+Param: Marker/Dictionary = "0"                             [Dictionary to use: DICT_ARUCO_4X4_50=0, DICT_ARUCO_4X4_100=1, DICT_ARUCO_4X4_250=2, DICT_ARUCO_4X4_1000=3, DICT_ARUCO_5X5_50=4, DICT_ARUCO_5X5_100=5, DICT_ARUCO_5X5_250=6, DICT_ARUCO_5X5_1000=7, DICT_ARUCO_6X6_50=8, DICT_ARUCO_6X6_100=9, DICT_ARUCO_6X6_250=10, DICT_ARUCO_6X6_1000=11, DICT_ARUCO_7X7_50=12, DICT_ARUCO_7X7_100=13, DICT_ARUCO_7X7_250=14, DICT_ARUCO_7X7_1000=15, DICT_ARUCO_ORIGINAL = 16, DICT_APRILTAG_16h5=17, DICT_APRILTAG_25h9=18, DICT_APRILTAG_36h10=19, DICT_APRILTAG_36h11=20]
+Param: Marker/Length = "0"                                 [The length (m) of the markers' side. 0 means automatic marker length estimation using the depth image (the camera should look at the marker perpendicularly for initialization).]
+Param: Marker/MaxDepthError = "0.01"                       [Maximum depth error between all corners of a marker when estimating the marker length (when Marker/Length is 0). The smaller it is, the more perpendicular the camera should be toward the marker to initialize the length.]
+Param: Marker/MaxRange = "0.0"                             [Maximum range in which markers will be detected. <=0 for unlimited range.]
+Param: Marker/MinRange = "0.0"                             [Miniminum range in which markers will be detected. <=0 for unlimited range.]
+Param: Marker/VarianceAngular = "0.01"                     [Angular variance to set on marker detections. Set to >=9999 to use only position (xyz) constraint in graph optimization.]
+Param: Marker/VarianceLinear = "0.001"                     [Linear variance to set on marker detections.]
+```
+Mem
+```bash
+Param: Mem/BadSignaturesIgnored = "false"                  [Bad signatures are ignored.]
+Param: Mem/BinDataKept = "true"                            [Keep binary data in db.]
+Param: Mem/CompressionParallelized = "true"                [Compression of sensor data is multi-threaded.]
+Param: Mem/CovOffDiagIgnored = "true"                      [Ignore off diagonal values of the covariance matrix.]
+Param: Mem/DepthAsMask = "true"                            [Use depth image as mask when extracting features for vocabulary.]
+Param: Mem/GenerateIds = "true"                            [True=Generate location IDs, False=use input image IDs.]
+Param: Mem/ImageCompressionFormat = ".jpg"                 [RGB image compression format. It should be ".jpg" or ".png".]
+Param: Mem/ImageKept = "false"                             [Keep raw images in RAM.]
+Param: Mem/ImagePostDecimation = "1"                       [Image decimation (>=1) of saved data in created signatures (after features extraction). Decimation is done from the original image.]
+Param: Mem/ImagePreDecimation = "1"                        [Image decimation (>=1) before features extraction.]
+Param: Mem/IncrementalMemory = "true"                      [SLAM mode, otherwise it is Localization mode.]
+Param: Mem/InitWMWithAllNodes = "false"                    [Initialize the Working Memory with all nodes in Long-Term Memory. When false, it is initialized with nodes of the previous session.]
+Param: Mem/IntermediateNodeDataKept = "false"              [Keep intermediate node data in db.]
+Param: Mem/LaserScanDownsampleStepSize = "1"               [If > 1, downsample the laser scans when creating a signature.]
+Param: Mem/LaserScanNormalK = "0"                          [If > 0 and laser scans don't have normals, normals will be computed with K search neighbors when creating a signature.]
+Param: Mem/LaserScanNormalRadius = "0.0"                   [If > 0 m and laser scans don't have normals, normals will be computed with radius search neighbors when creating a signature.]
+Param: Mem/LaserScanVoxelSize = "0.0"                      [If > 0 m, voxel filtering is done on laser scans when creating a signature. If the laser scan had normals, they will be removed. To recompute the normals, make sure to use "Mem/LaserScanNormalK" or "Mem/LaserScanNormalRadius" parameters.]
+Param: Mem/LocalizationDataSaved = "false"                 [Save localization data during localization session (when Mem/IncrementalMemory=false). When enabled, the database will then also grow in localization mode. This mode would be used only for debugging purpose.]
+Param: Mem/MapLabelsAdded = "true"                         [Create map labels. The first node of a map will be labelled as "map#" where # is the map ID.]
+Param: Mem/NotLinkedNodesKept = "true"                     [Keep not linked nodes in db (rehearsed nodes and deleted nodes).]
+Param: Mem/RawDescriptorsKept = "true"                     [Raw descriptors kept in memory.]
+Param: Mem/RecentWmRatio = "0.2"                           [Ratio of locations after the last loop closure in WM that cannot be transferred.]
+Param: Mem/ReduceGraph = "false"                           [Reduce graph. Merge nodes when loop closures are added (ignoring those with user data set).]
+Param: Mem/RehearsalIdUpdatedToNewOne = "false"            [On merge, update to new id. When false, no copy.]
+Param: Mem/RehearsalSimilarity = "0.6"                     [Rehearsal similarity.]
+Param: Mem/RehearsalWeightIgnoredWhileMoving = "false"     [When the robot is moving, weights are not updated on rehearsal.]
+Param: Mem/STMSize = "10"                                  [Short-term memory size.]
+Param: Mem/SaveDepth16Format = "false"                     [Save depth image into 16 bits format to reduce memory used. Warning: values over ~65 meters are ignored (maximum 65535 millimeters).]
+Param: Mem/StereoFromMotion = "false"                      [Triangulate features without depth using stereo from motion (odometry). It would be ignored if Mem/DepthAsMask is true and the feature detector used supports masking.]
+Param: Mem/TransferSortingByWeightId = "false"             [On transfer, signatures are sorted by weight->ID only (i.e. the oldest of the lowest weighted signatures are transferred first). If false, the signatures are sorted by weight->Age->ID (i.e. the oldest inserted in WM of the lowest weighted signatures are transferred first). Note that retrieval updates the age, not the ID.]
+Param: Mem/UseOdomFeatures = "true"                        [Use odometry features instead of regenerating them.]
+Param: Mem/UseOdomGravity = "false"                        [Use odometry instead of IMU orientation to add gravity links to new nodes created. We assume that odometry is already aligned with gravity (e.g., we are using a VIO approach). Gravity constraints are used by graph optimization only if "Optimizer/GravitySigma" is not zero.]
+Param: RGBD/MaxOdomCacheSize = "0"                         [Maximum odometry cache size. Used only in localization mode (when Mem/IncrementalMemory=false) and when RGBD/OptimizeMaxError!=0. This is used to verify localization transforms to make sure we don't teleport to a location very similar to one we previously localized on. When the cache is full, the whole cache is cleared and the next localization is automatically accepted without verification. Set 0 to disable caching.]
+Param: RGBD/StartAtOrigin = "false"                        [If true, rtabmap will assume the robot is starting from origin of the map. If false, rtabmap will assume the robot is restarting from the last saved localization pose from previous session (the place where it shut down previously). Used only in localization mode (Mem/IncrementalMemory=false).]
+```
+ORB
+```bash
+Param: ORB/EdgeThreshold = "19"                            [This is size of the border where the features are not detected. It should roughly match the patchSize parameter.]
+Param: ORB/FirstLevel = "0"                                [It should be 0 in the current implementation.]
+Param: ORB/Gpu = "false"                                   [GPU-ORB: Use GPU version of ORB. This option is enabled only if OpenCV is built with CUDA and GPUs are detected.]
+Param: ORB/NLevels = "3"                                   [The number of pyramid levels. The smallest level will have linear size equal to input_image_linear_size/pow(scaleFactor, nlevels).]
+Param: ORB/PatchSize = "31"                                [size of the patch used by the oriented BRIEF descriptor. Of course, on smaller pyramid layers the perceived image area covered by a feature will be larger.]
+Param: ORB/ScaleFactor = "2"                               [Pyramid decimation ratio, greater than 1. scaleFactor==2 means the classical pyramid, where each next level has 4x less pixels than the previous, but such a big scale factor will degrade feature matching scores dramatically. On the other hand, too close to 1 scale factor will mean that to cover certain scale range you will need more pyramid levels and so the speed will suffer.]
+Param: ORB/ScoreType = "0"                                 [The default HARRIS_SCORE=0 means that Harris algorithm is used to rank features (the score is written to KeyPoint::score and is used to retain best nfeatures features); FAST_SCORE=1 is alternative value of the parameter that produces slightly less stable keypoints, but it is a little faster to compute.]
+Param: ORB/WTA_K = "2"                                     [The number of points that produce each element of the oriented BRIEF descriptor. The default value 2 means the BRIEF where we take a random point pair and compare their brightnesses, so we get 0/1 response. Other possible values are 3 and 4. For example, 3 means that we take 3 random points (of course, those point coordinates are random, but they are generated from the pre-defined seed, so each element of BRIEF descriptor is computed deterministically from the pixel rectangle), find point of maximum brightness and output index of the winner (0, 1 or 2). Such output will occupy 2 bits, and therefore it will need a special variant of Hamming distance, denoted as NORM_HAMMING2 (2 bits per bin). When WTA_K=4, we take 4 random points to compute each bin (that will also occupy 2 bits with possible values 0, 1, 2 or 3).]
+```
+Optimizer
+```bash
+Param: Optimizer/Epsilon = "0.0"                           [Stop optimizing when the error improvement is less than this value.]
+Param: Optimizer/GravitySigma = "0.3"                      [Gravity sigma value (>=0, typically between 0.1 and 0.3). Optimization is done while preserving gravity orientation of the poses. This should be used only with visual/lidar inertial odometry approaches, for which we assume that all odometry poses are aligned with gravity. Set to 0 to disable gravity constraints. Currently supported only with g2o and GTSAM optimization strategies (see Optimizer/Strategy).]
+Param: Optimizer/Iterations = "20"                         [Optimization iterations.]
+Param: Optimizer/LandmarksIgnored = "false"                [Ignore landmark constraints while optimizing. Currently only g2o and gtsam optimization supports this.]
+Param: Optimizer/PriorsIgnored = "true"                    [Ignore prior constraints (global pose or GPS) while optimizing. Currently only g2o and gtsam optimization supports this.]
+Param: Optimizer/Robust = "false"                          [Robust graph optimization using Vertigo (only work for g2o and GTSAM optimization strategies). Not compatible with "RGBD/OptimizeMaxError" if enabled.]
+Param: Optimizer/Strategy = "1"                            [Graph optimization strategy: 0=TORO, 1=g2o, 2=GTSAM and 3=Ceres.]
+Param: Optimizer/VarianceIgnored = "false"                 [Ignore constraints' variance. If checked, identity information matrix is used for each constraint. Otherwise, an information matrix is generated from the variance saved in the links.]
+Param: RGBD/OptimizeMaxError = "3.0"                       [Reject loop closures if optimization error ratio is greater than this value (0=disabled). Ratio is computed as absolute error over standard deviation of each link. This will help to detect when a wrong loop closure is added to the graph. Not compatible with "Optimizer/Robust" if enabled.]
+```
+PyDetector
+```bash
+Param: PyDetector/Cuda = "true"                            [Use cuda.]
+Param: PyDetector/Path = ""                                [Path to python script file (see available ones in rtabmap/corelib/src/python/*). See the header to see where the script should be copied.]
+```
+PyMatcher
+```bash
+Param: PyMatcher/Cuda = "true"                             [Used by SuperGlue.]
+Param: PyMatcher/Iterations = "20"                         [Sinkhorn iterations. Used by SuperGlue.]
+Param: PyMatcher/Model = "indoor"                          [For SuperGlue, set only "indoor" or "outdoor". For OANet, set path to one of the pth file (e.g., "OANet/model/gl3d/sift-4000/model_best.pth").]
+Param: PyMatcher/Path = ""                                 [Path to python script file (see available ones in rtabmap/corelib/src/python/*). See the header to see where the script should be copied.]
+Param: PyMatcher/Threshold = "0.2"                         [Used by SuperGlue.]
+```
+RGBD
+```bash
+Param: RGBD/AngularSpeedUpdate = "0.0"                     [Maximum angular speed (rad/s) to update the map (0 means not limit).]
+Param: RGBD/AngularUpdate = "0.1"                          [Minimum angular displacement (rad) to update the map. Rehearsal is done prior to this, so weights are still updated.]
+Param: RGBD/CreateOccupancyGrid = "false"                  [Create local occupancy grid maps. See "Grid" group for parameters.]
+Param: RGBD/Enabled = "true"                               [Activate metric SLAM. If set to false, classic RTAB-Map loop closure detection is done using only images and without any metric information.]
+Param: RGBD/GoalReachedRadius = "0.5"                      [Goal reached radius (m).]
+Param: RGBD/GoalsSavedInUserData = "false"                 [When a goal is received and processed with success, it is saved in user data of the location with this format: "GOAL:#".]
+Param: RGBD/LinearSpeedUpdate = "0.0"                      [Maximum linear speed (m/s) to update the map (0 means not limit).]
+Param: RGBD/LinearUpdate = "0.1"                           [Minimum linear displacement (m) to update the map. Rehearsal is done prior to this, so weights are still updated.]
+Param: RGBD/LocalBundleOnLoopClosure = "false"             [Do local bundle adjustment with neighborhood of the loop closure.]
+Param: RGBD/LocalImmunizationRatio = "0.25"                [Ratio of working memory for which local nodes are immunized from transfer.]
+Param: RGBD/LocalRadius = "10"                             [Local radius (m) for nodes selection in the local map. This parameter is used in some approaches about the local map management.]
+Param: RGBD/LoopClosureIdentityGuess = "false"             [Use Identity matrix as guess when computing loop closure transform, otherwise no guess is used, thus assuming that registration strategy selected (Reg/Strategy) can deal with transformation estimation without guess.]
+Param: RGBD/LoopClosureReextractFeatures = "false"         [Extract features even if there are some already in the nodes.]
+Param: RGBD/LoopCovLimited = "false"                       [Limit covariance of non-neighbor links to minimum covariance of neighbor links. In other words, if covariance of a loop closure link is smaller than the minimum covariance of odometry links, its covariance is set to minimum covariance of odometry links.]
+Param: RGBD/MarkerDetection = "false"                      [Detect static markers to be added as landmarks for graph optimization. If input data have already landmarks, this will be ignored. See "Marker" group for parameters.]
+Param: RGBD/MaxLocalRetrieved = "2"                        [Maximum local locations retrieved (0=disabled) near the current pose in the local map or on the current planned path (those on the planned path have priority).]
+Param: RGBD/MaxLoopClosureDistance = "0.0"                 [Reject loop closures/localizations if the distance from the map is over this distance (0=disabled).]
+Param: RGBD/MaxOdomCacheSize = "0"                         [Maximum odometry cache size. Used only in localization mode (when Mem/IncrementalMemory=false) and when RGBD/OptimizeMaxError!=0. This is used to verify localization transforms to make sure we don't teleport to a location very similar to one we previously localized on. When the cache is full, the whole cache is cleared and the next localization is automatically accepted without verification. Set 0 to disable caching.]
+Param: RGBD/NeighborLinkRefining = "false"                 [When a new node is added to the graph, the transformation of its neighbor link to the previous node is refined using registration approach selected (Reg/Strategy).]
+Param: RGBD/NewMapOdomChangeDistance = "0"                 [A new map is created if a change of odometry translation greater than X m is detected (0 m = disabled).]
+Param: RGBD/OptimizeFromGraphEnd = "false"                 [Optimize graph from the newest node. If false, the graph is optimized from the oldest node of the current graph (this adds an overhead computation to detect to oldest node of the current graph, but it can be useful to preserve the map referential from the oldest node). Warning when set to false: when some nodes are transferred, the first referential of the local map may change, resulting in momentary changes in robot/map position (which are annoying in teleoperation).]
+Param: RGBD/OptimizeMaxError = "3.0"                       [Reject loop closures if optimization error ratio is greater than this value (0=disabled). Ratio is computed as absolute error over standard deviation of each link. This will help to detect when a wrong loop closure is added to the graph. Not compatible with "Optimizer/Robust" if enabled.]
+Param: RGBD/PlanAngularVelocity = "0"                      [Angular velocity (rad/sec) used to compute path weights.]
+Param: RGBD/PlanLinearVelocity = "0"                       [Linear velocity (m/sec) used to compute path weights.]
+Param: RGBD/PlanStuckIterations = "0"                      [Mark the current goal node on the path as unreachable if it is not updated after X iterations (0=disabled). If all upcoming nodes on the path are unreachabled, the plan fails.]
+Param: RGBD/ProximityAngle = "45"                          [Maximum angle (degrees) for one-to-one proximity detection.]
+Param: RGBD/ProximityBySpace = "true"                      [Detection over locations (in Working Memory) near in space.]
+Param: RGBD/ProximityByTime = "false"                      [Detection over all locations in STM.]
+Param: RGBD/ProximityMaxGraphDepth = "50"                  [Maximum depth from the current/last loop closure location and the local loop closure hypotheses. Set 0 to ignore.]
+Param: RGBD/ProximityMaxPaths = "3"                        [Maximum paths compared (from the most recent) for proximity detection. 0 means no limit.]
+Param: RGBD/ProximityOdomGuess = "false"                   [Use odometry as motion guess for one-to-one proximity detection.]
+Param: RGBD/ProximityPathFilteringRadius = "1"             [Path filtering radius to reduce the number of nodes to compare in a path in one-to-many proximity detection. The nearest node in a path should be inside that radius to be considered for one-to-one proximity detection.]
+Param: RGBD/ProximityPathMaxNeighbors = "0"                [Maximum neighbor nodes compared on each path for one-to-many proximity detection. Set to 0 to disable one-to-many proximity detection (by merging the laser scans).]
+Param: RGBD/ProximityPathRawPosesUsed = "true"             [When comparing to a local path for one-to-many proximity detection, merge the scans using the odometry poses (with neighbor link optimizations) instead of the ones in the optimized local graph.]
+Param: RGBD/ScanMatchingIdsSavedInLinks = "true"           [Save scan matching IDs from one-to-many proximity detection in link's user data.]
+Param: RGBD/StartAtOrigin = "false"                        [If true, rtabmap will assume the robot is starting from origin of the map. If false, rtabmap will assume the robot is restarting from the last saved localization pose from previous session (the place where it shut down previously). Used only in localization mode (Mem/IncrementalMemory=false).]
+Param: Rtabmap/LoopGPS = "true"                            [Use GPS to filter likelihood (if GPS is recorded). Only locations inside the local radius "RGBD/LocalRadius" of the current GPS location are considered for loop closure detection.]
+Param: VhEp/Enabled = "false"                              [Verify visual loop closure hypothesis by computing a fundamental matrix. This is done prior to transformation computation when RGBD/Enabled is enabled.]
+```
+Reg
+```bash
+Param: Reg/Force3DoF = "false"                             [Force 3 degrees-of-freedom transform (3Dof: x,y and yaw). Parameters z, roll and pitch will be set to 0.]
+Param: Reg/RepeatOnce = "true"                             [Do a second registration with the output of the first registration as guess. Only done if no guess was provided for the first registration (like on loop closure). It can be useful if the registration approach used can use a guess to get better matches.]
+Param: Reg/Strategy = "0"                                  [0=Vis, 1=Icp, 2=VisIcp]
+```
+Rtabmap
+```bash
+Param: Rtabmap/ComputeRMSE = "true"                        [Compute root mean square error (RMSE) and publish it in statistics, if ground truth is provided.]
+Param: Rtabmap/CreateIntermediateNodes = "false"           [Create intermediate nodes between loop closure detection. Only used when Rtabmap/DetectionRate>0.]
+Param: Rtabmap/DetectionRate = "1"                         [Detection rate (Hz). RTAB-Map will filter input images to satisfy this rate.]
+Param: Rtabmap/ImageBufferSize = "1"                       [Data buffer size (0 min inf).]
+Param: Rtabmap/ImagesAlreadyRectified = "true"             [Images are already rectified. By default RTAB-Map assumes that received images are rectified. If they are not, they can be rectified by RTAB-Map if this parameter is false.]
+Param: Rtabmap/LoopGPS = "true"                            [Use GPS to filter likelihood (if GPS is recorded). Only locations inside the local radius "RGBD/LocalRadius" of the current GPS location are considered for loop closure detection.]
+Param: Rtabmap/LoopRatio = "0"                             [The loop closure hypothesis must be over LoopRatio x lastHypothesisValue.]
+Param: Rtabmap/LoopThr = "0.11"                            [Loop closing threshold.]
+Param: Rtabmap/MaxRetrieved = "2"                          [Maximum locations retrieved at the same time from LTM.]
+Param: Rtabmap/MemoryThr = "0"                             [Maximum nodes in the Working Memory (0 means infinity). Similar to "Rtabmap/TimeThr", when the number of nodes in Working Memory (WM) exceeds this treshold, some nodes are transferred to Long-Term Memory to keep WM size fixed.]
+Param: Rtabmap/PublishLastSignature = "true"               [Publishing last signature.]
+Param: Rtabmap/PublishLikelihood = "true"                  [Publishing likelihood.]
+Param: Rtabmap/PublishPdf = "true"                         [Publishing pdf.]
+Param: Rtabmap/PublishRAMUsage = "false"                   [Publishing RAM usage in statistics (may add a small overhead to get info from the system).]
+Param: Rtabmap/PublishStats = "true"                       [Publishing statistics.]
+Param: Rtabmap/RectifyOnlyFeatures = "false"               [If "Rtabmap/ImagesAlreadyRectified" is false and this parameter is true, the whole RGB image will not be rectified, only the features. Warning: As projection of RGB-D image to point cloud is assuming that images are rectified, the generated point cloud map will have wrong colors if this parameter is true.]
+Param: Rtabmap/SaveWMState = "false"                       [Save working memory state after each update in statistics.]
+Param: Rtabmap/StartNewMapOnGoodSignature = "false"        [Start a new map only if the first signature is not bad (i.e., has enough features, see Kp/BadSignRatio).]
+Param: Rtabmap/StartNewMapOnLoopClosure = "false"          [Start a new map only if there is a global loop closure with a previous map.]
+Param: Rtabmap/StatisticLogged = "false"                   [Logging enabled.]
+Param: Rtabmap/StatisticLoggedHeaders = "true"             [Add column header description to log files.]
+Param: Rtabmap/StatisticLogsBufferedInRAM = "true"         [Statistic logs buffered in RAM instead of written to hard drive after each iteration.]
+Param: Rtabmap/TimeThr = "0"                               [Maximum time allowed for map update (ms) (0 means infinity). When map update time exceeds this fixed time threshold, some nodes in Working Memory (WM) are transferred to Long-Term Memory to limit the size of the WM and decrease the update time.]
+Param: Rtabmap/WorkingDirectory = ""                       [Working directory.]
+```
+SIFT
+```bash
+Param: SIFT/ContrastThreshold = "0.04"                     [The contrast threshold used to filter out weak features in semi-uniform (low-contrast) regions. The larger the threshold, the less features are produced by the detector.]
+Param: SIFT/EdgeThreshold = "10"                           [The threshold used to filter out edge-like features. Note that the its meaning is different from the contrastThreshold, i.e. the larger the edgeThreshold, the less features are filtered out (more features are retained).]
+Param: SIFT/NFeatures = "0"                                [The number of best features to retain. The features are ranked by their scores (measured in SIFT algorithm as the local contrast).]
+Param: SIFT/NOctaveLayers = "3"                            [The number of layers in each octave. 3 is the value used in D. Lowe paper. The number of octaves is computed automatically from the image resolution.]
+Param: SIFT/RootSIFT = "false"                             [Apply RootSIFT normalization of the descriptors.]
+Param: SIFT/Sigma = "1.6"                                  [The sigma of the Gaussian applied to the input image at the octave #0. If your image is captured with a weak camera with soft lenses, you might want to reduce the number.]
+```
+SURF
+```bash
+Param: SURF/Extended = "false"                             [Extended descriptor flag (true - use extended 128-element descriptors; false - use 64-element descriptors).]
+Param: SURF/GpuKeypointsRatio = "0.01"                     [Used with SURF GPU.]
+Param: SURF/GpuVersion = "false"                           [GPU-SURF: Use GPU version of SURF. This option is enabled only if OpenCV is built with CUDA and GPUs are detected.]
+Param: SURF/HessianThreshold = "500"                       [Threshold for hessian keypoint detector used in SURF.]
+Param: SURF/OctaveLayers = "2"                             [Number of octave layers within each octave.]
+Param: SURF/Octaves = "4"                                  [Number of pyramid octaves the keypoint detector will use.]
+Param: SURF/Upright = "false"                              [Up-right or rotated features flag (true - do not compute orientation of features; false - compute orientation).]
+Param: Vis/FeatureType = "8"                               [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
+```
+Stereo
+```bash
+Param: Stereo/DenseStrategy = "0"                          [0=cv::StereoBM, 1=cv::StereoSGBM]
+Param: Stereo/Eps = "0.01"                                 [[Stereo/OpticalFlow=true] Epsilon stop criterion.]
+Param: Stereo/Iterations = "30"                            [Maximum iterations.]
+Param: Stereo/MaxDisparity = "128.0"                       [Maximum disparity.]
+Param: Stereo/MaxLevel = "5"                               [Maximum pyramid level.]
+Param: Stereo/MinDisparity = "0.5"                         [Minimum disparity.]
+Param: Stereo/OpticalFlow = "true"                         [Use optical flow to find stereo correspondences, otherwise a simple block matching approach is used.]
+Param: Stereo/SSD = "true"                                 [[Stereo/OpticalFlow=false] Use Sum of Squared Differences (SSD) window, otherwise Sum of Absolute Differences (SAD) window is used.]
+Param: Stereo/WinHeight = "3"                              [Window height.]
+Param: Stereo/WinWidth = "15"                              [Window width.]
+```
+StereoBM
+```bash
+Param: StereoBM/BlockSize = "15"                           [See cv::StereoBM]
+Param: StereoBM/Disp12MaxDiff = "-1"                       [See cv::StereoBM]
+Param: StereoBM/MinDisparity = "0"                         [See cv::StereoBM]
+Param: StereoBM/NumDisparities = "128"                     [See cv::StereoBM]
+Param: StereoBM/PreFilterCap = "31"                        [See cv::StereoBM]
+Param: StereoBM/PreFilterSize = "9"                        [See cv::StereoBM]
+Param: StereoBM/SpeckleRange = "4"                         [See cv::StereoBM]
+Param: StereoBM/SpeckleWindowSize = "100"                  [See cv::StereoBM]
+Param: StereoBM/TextureThreshold = "10"                    [See cv::StereoBM]
+Param: StereoBM/UniquenessRatio = "15"                     [See cv::StereoBM]
+```
+StereoSGBM
+```bash
+Param: StereoSGBM/BlockSize = "15"                         [See cv::StereoSGBM]
+Param: StereoSGBM/Disp12MaxDiff = "1"                      [See cv::StereoSGBM]
+Param: StereoSGBM/MinDisparity = "0"                       [See cv::StereoSGBM]
+Param: StereoSGBM/Mode = "2"                               [See cv::StereoSGBM]
+Param: StereoSGBM/NumDisparities = "128"                   [See cv::StereoSGBM]
+Param: StereoSGBM/P1 = "2"                                 [See cv::StereoSGBM]
+Param: StereoSGBM/P2 = "5"                                 [See cv::StereoSGBM]
+Param: StereoSGBM/PreFilterCap = "31"                      [See cv::StereoSGBM]
+Param: StereoSGBM/SpeckleRange = "4"                       [See cv::StereoSGBM]
+Param: StereoSGBM/SpeckleWindowSize = "100"                [See cv::StereoSGBM]
+Param: StereoSGBM/UniquenessRatio = "20"                   [See cv::StereoSGBM]
+```
+SuperPoint
+```bash
+Param: SuperPoint/Cuda = "true"                            [Use Cuda device for Torch, otherwise CPU device is used by default.]
+Param: SuperPoint/ModelPath = ""                           [[Required] Path to pre-trained weights Torch file of SuperPoint (*.pt).]
+Param: SuperPoint/NMS = "true"                             [If true, non-maximum suppression is applied to detected keypoints.]
+Param: SuperPoint/NMSRadius = "4"                          [[SuperPoint/NMS=true] Minimum distance (pixels) between keypoints.]
+Param: SuperPoint/Threshold = "0.010"                      [Detector response threshold to accept keypoint.]
+```
+VhEp
+```bash
+Param: VhEp/Enabled = "false"                              [Verify visual loop closure hypothesis by computing a fundamental matrix. This is done prior to transformation computation when RGBD/Enabled is enabled.]
+Param: VhEp/MatchCountMin = "8"                            [Minimum of matching visual words pairs to accept the loop hypothesis.]
+Param: VhEp/RansacParam1 = "3"                             [Fundamental matrix (see cvFindFundamentalMat()): Max distance (in pixels) from the epipolar line for a point to be inlier.]
+Param: VhEp/RansacParam2 = "0.99"                          [Fundamental matrix (see cvFindFundamentalMat()): Performance of RANSAC.]
+```
+Vis
+```bash
+Param: Vis/BundleAdjustment = "1"                          [Optimization with bundle adjustment: 0=disabled, 1=g2o, 2=cvsba, 3=Ceres.]
+Param: Vis/CorFlowEps = "0.01"                             [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
+Param: Vis/CorFlowIterations = "30"                        [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
+Param: Vis/CorFlowMaxLevel = "3"                           [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
+Param: Vis/CorFlowWinSize = "16"                           [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
+Param: Vis/CorGuessMatchToProjection = "false"             [[Vis/CorType=0] Match frame's corners to source's projected points (when guess transform is provided) instead of projected points to frames corners.]
+Param: Vis/CorGuessWinSize = "40"                          [[Vis/CorType=0] Matching window size (pixels) around projected points when a guess transform is provided to find correspondences. 0 means disabled.]
+Param: Vis/CorNNDR = "0.8"                                 [[Vis/CorType=0] NNDR: nearest neighbor distance ratio. Used for knn features matching approach.]
+Param: Vis/CorNNType = "1"                                 [[Vis/CorType=0] kNNFlannNaive=0, kNNFlannKdTree=1, kNNFlannLSH=2, kNNBruteForce=3, kNNBruteForceGPU=4, BruteForceCrossCheck=5, SuperGlue=6, GMS=7. Used for features matching approach.]
+Param: Vis/CorType = "0"                                   [Correspondences computation approach: 0=Features Matching, 1=Optical Flow]
+Param: Vis/DepthAsMask = "true"                            [Use depth image as mask when extracting features.]
+Param: Vis/EpipolarGeometryVar = "0.1"                     [[Vis/EstimationType = 2] Epipolar geometry maximum variance to accept the transformation.]
+Param: Vis/EstimationType = "1"                            [Motion estimation approach: 0:3D->3D, 1:3D->2D (PnP), 2:2D->2D (Epipolar Geometry)]
+Param: Vis/FeatureType = "8"                               [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
+Param: Vis/ForwardEstOnly = "true"                         [Forward estimation only (A->B). If false, a transformation is also computed in backward direction (B->A), then the two resulting transforms are merged (middle interpolation between the transforms).]
+Param: Vis/GridCols = "1"                                  [Number of columns of the grid used to extract uniformly "Vis/MaxFeatures / grid cells" features from each cell.]
+Param: Vis/GridRows = "1"                                  [Number of rows of the grid used to extract uniformly "Vis/MaxFeatures / grid cells" features from each cell.]
+Param: Vis/InlierDistance = "0.1"                          [[Vis/EstimationType = 0] Maximum distance for feature correspondences. Used by 3D->3D estimation approach.]
+Param: Vis/Iterations = "300"                              [Maximum iterations to compute the transform.]
+Param: Vis/MaxDepth = "0"                                  [Max depth of the features (0 means no limit).]
+Param: Vis/MaxFeatures = "1000"                            [0 no limits.]
+Param: Vis/MeanInliersDistance = "0.0"                     [Maximum distance (m) of the mean distance of inliers from the camera to accept the transformation. 0 means disabled.]
+Param: Vis/MinDepth = "0"                                  [Min depth of the features (0 means no limit).]
+Param: Vis/MinInliers = "20"                               [Minimum feature correspondences to compute/accept the transformation.]
+Param: Vis/MinInliersDistribution = "0.0"                  [Minimum distribution value of the inliers in the image to accept the transformation. The distribution is the second eigen value of the PCA (Principal Component Analysis) on the keypoints of the normalized image [-0.5, 0.5]. The value would be between 0 and 0.5. 0 means disabled.]
+Param: Vis/PnPFlags = "0"                                  [[Vis/EstimationType = 1] PnP flags: 0=Iterative, 1=EPNP, 2=P3P]
+Param: Vis/PnPRefineIterations = "0"                       [[Vis/EstimationType = 1] Refine iterations. Set to 0 if "Vis/BundleAdjustment" is also used.]
+Param: Vis/PnPReprojError = "2"                            [[Vis/EstimationType = 1] PnP reprojection error.]
+Param: Vis/RefineIterations = "5"                          [[Vis/EstimationType = 0] Number of iterations used to refine the transformation found by RANSAC. 0 means that the transformation is not refined.]
+Param: Vis/RoiRatios = "0.0 0.0 0.0 0.0"                   [Region of interest ratios [left, right, top, bottom].]
+Param: Vis/SubPixEps = "0.02"                              [See cv::cornerSubPix().]
+Param: Vis/SubPixIterations = "0"                          [See cv::cornerSubPix(). 0 disables sub pixel refining.]
+Param: Vis/SubPixWinSize = "3"                             [See cv::cornerSubPix().]
+```
+g2o
+```bash
+Param: g2o/Baseline = "0.075"                              [When doing bundle adjustment with RGB-D data, we can set a fake baseline (m) to do stereo bundle adjustment (if 0, mono bundle adjustment is done). For stereo data, the baseline in the calibration is used directly.]
+Param: g2o/Optimizer = "0"                                 [0=Levenberg 1=GaussNewton]
+Param: g2o/PixelVariance = "1.0"                           [Pixel variance used for bundle adjustment.]
+Param: g2o/RobustKernelDelta = "8"                         [Robust kernel delta used for bundle adjustment (0 means don't use robust kernel). Observations with chi2 over this threshold will be ignored in the second optimization pass.]
+Param: g2o/Solver = "0"                                    [0=csparse 1=pcg 2=cholmod 3=Eigen]
+```
 
 COMPLETE PARAMETERS LIST EKF
 ----------------------------
+```bash
+/ekf_local/base_link_frame
+/ekf_local/debug
+/ekf_local/frequency
+/ekf_local/imu0
+/ekf_local/imu0_config
+/ekf_local/imu0_differential
+/ekf_local/imu0_linear_acceleration_rejection_threshold
+/ekf_local/imu0_nodelay
+/ekf_local/imu0_pose_rejection_threshold
+/ekf_local/imu0_queue_size
+/ekf_local/imu0_relative
+/ekf_local/imu0_remove_gravitational_acceleration
+/ekf_local/imu0_twist_rejection_threshold
+/ekf_local/initial_estimate_covariance
+/ekf_local/map_frame
+/ekf_local/odom0
+/ekf_local/odom0_config
+/ekf_local/odom0_differential
+/ekf_local/odom0_nodelay
+/ekf_local/odom0_pose_rejection_threshold
+/ekf_local/odom0_queue_size
+/ekf_local/odom0_relative
+/ekf_local/odom0_twist_rejection_threshold
+/ekf_local/odom_frame
+/ekf_local/print_diagnostics
+/ekf_local/process_noise_covariance
+/ekf_local/publish_tf
+/ekf_local/sensor_timeout
+/ekf_local/transform_time_offset
+/ekf_local/transform_timeout
+/ekf_local/two_d_mode
+/ekf_local/use_control
+/ekf_local/world_frame
+/ekf_global/base_link_frame
+/ekf_global/debug
+/ekf_global/frequency
+/ekf_global/imu0
+/ekf_global/imu0_config
+/ekf_global/imu0_differential
+/ekf_global/imu0_linear_acceleration_rejection_threshold
+/ekf_global/imu0_nodelay
+/ekf_global/imu0_pose_rejection_threshold
+/ekf_global/imu0_queue_size
+/ekf_global/imu0_relative
+/ekf_global/imu0_remove_gravitational_acceleration
+/ekf_global/imu0_twist_rejection_threshold
+/ekf_global/initial_estimate_covariance
+/ekf_global/map_frame
+/ekf_global/odom0
+/ekf_global/odom0_config
+/ekf_global/odom0_differential
+/ekf_global/odom0_nodelay
+/ekf_global/odom0_pose_rejection_threshold
+/ekf_global/odom0_queue_size
+/ekf_global/odom0_relative
+/ekf_global/odom0_twist_rejection_threshold
+/ekf_global/odom1
+/ekf_global/odom1_config
+/ekf_global/odom1_differential
+/ekf_global/odom1_nodelay
+/ekf_global/odom1_queue_size
+/ekf_global/odom1_relative
+/ekf_global/odom_frame
+/ekf_global/print_diagnostics
+/ekf_global/process_noise_covariance
+/ekf_global/publish_tf
+/ekf_global/sensor_timeout
+/ekf_global/transform_time_offset
+/ekf_global/transform_timeout
+/ekf_global/two_d_mode
+/ekf_global/use_control
+/ekf_global/world_frame* 
+```
 
-* /ekf_local/base_link_frame
-* /ekf_local/debug
-* /ekf_local/frequency
-* /ekf_local/imu0
-* /ekf_local/imu0_config
-* /ekf_local/imu0_differential
-* /ekf_local/imu0_linear_acceleration_rejection_threshold
-* /ekf_local/imu0_nodelay
-* /ekf_local/imu0_pose_rejection_threshold
-* /ekf_local/imu0_queue_size
-* /ekf_local/imu0_relative
-* /ekf_local/imu0_remove_gravitational_acceleration
-* /ekf_local/imu0_twist_rejection_threshold
-* /ekf_local/initial_estimate_covariance
-* /ekf_local/map_frame
-* /ekf_local/odom0
-* /ekf_local/odom0_config
-* /ekf_local/odom0_differential
-* /ekf_local/odom0_nodelay
-* /ekf_local/odom0_pose_rejection_threshold
-* /ekf_local/odom0_queue_size
-* /ekf_local/odom0_relative
-* /ekf_local/odom0_twist_rejection_threshold
-* /ekf_local/odom_frame
-* /ekf_local/print_diagnostics
-* /ekf_local/process_noise_covariance
-* /ekf_local/publish_tf
-* /ekf_local/sensor_timeout
-* /ekf_local/transform_time_offset
-* /ekf_local/transform_timeout
-* /ekf_local/two_d_mode
-* /ekf_local/use_control
-* /ekf_local/world_frame
-* /ekf_global/base_link_frame
-* /ekf_global/debug
-* /ekf_global/frequency
-* /ekf_global/imu0
-* /ekf_global/imu0_config
-* /ekf_global/imu0_differential
-* /ekf_global/imu0_linear_acceleration_rejection_threshold
-* /ekf_global/imu0_nodelay
-* /ekf_global/imu0_pose_rejection_threshold
-* /ekf_global/imu0_queue_size
-* /ekf_global/imu0_relative
-* /ekf_global/imu0_remove_gravitational_acceleration
-* /ekf_global/imu0_twist_rejection_threshold
-* /ekf_global/initial_estimate_covariance
-* /ekf_global/map_frame
-* /ekf_global/odom0
-* /ekf_global/odom0_config
-* /ekf_global/odom0_differential
-* /ekf_global/odom0_nodelay
-* /ekf_global/odom0_pose_rejection_threshold
-* /ekf_global/odom0_queue_size
-* /ekf_global/odom0_relative
-* /ekf_global/odom0_twist_rejection_threshold
-* /ekf_global/odom1
-* /ekf_global/odom1_config
-* /ekf_global/odom1_differential
-* /ekf_global/odom1_nodelay
-* /ekf_global/odom1_queue_size
-* /ekf_global/odom1_relative
-* /ekf_global/odom_frame
-* /ekf_global/print_diagnostics
-* /ekf_global/process_noise_covariance
-* /ekf_global/publish_tf
-* /ekf_global/sensor_timeout
-* /ekf_global/transform_time_offset
-* /ekf_global/transform_timeout
-* /ekf_global/two_d_mode
-* /ekf_global/use_control
-* /ekf_global/world_frame* 
+COMPLETE PARAMETERS LIST Octomap_server
+---------------------------------------
+
+```bash
+/octomap_server/base_frame_id
+/octomap_server/compress_map
+/octomap_server/filter_ground
+/octomap_server/filter_speckles
+/octomap_server/frame_id
+/octomap_server/ground_filter/angle
+/octomap_server/ground_filter/distance
+/octomap_server/ground_filter/plane_distance
+/octomap_server/ground_filter_angle
+/octomap_server/ground_filter_distance
+/octomap_server/ground_filter_plane_distance
+/octomap_server/height_map
+/octomap_server/incremental_2D_projection
+/octomap_server/latch
+/octomap_server/max_depth
+/octomap_server/occupancy_max_z
+/octomap_server/occupancy_min_z
+/octomap_server/pointcloud_max_z
+/octomap_server/pointcloud_min_z
+/octomap_server/resolution
+/octomap_server/sensor_model/max_range
+/octomap_server/sensor_model_hit
+/octomap_server/sensor_model_max
+/octomap_server/sensor_model_max_range
+/octomap_server/sensor_model_min
+/octomap_server/sensor_model_miss
+```
