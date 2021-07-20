@@ -925,7 +925,7 @@ catkin_make
 * Install the missing pkgs:
 
 ```bash
-sudo apt install ros-melodic-octomap-server
+sudo apt-get install ros-melodic-octomap-rviz-plugins
 sudo apt install ros-melodic-rtabmap-ros
 ```
 
@@ -987,7 +987,6 @@ exit
 ```
 
 # ODOM INPUTS
-
 
 NOT updated!
 
