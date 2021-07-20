@@ -73,12 +73,11 @@ source devel/setup.bash
 
 # USEFUL LINKS
 
-
-Docker:
+## Docker:
 
 [Docker instalation guide](https://hub.docker.com/r/ingeniarius/ingeniarius-simulators)
 
-Gazebo:
+## Gazebo:
 
 [Git MAS-UAV pkg](https://github.com/Rezenders/mas_uav)
 
@@ -86,7 +85,7 @@ Gazebo:
 
 [Agriculture envairoment](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/additional_sim_worlds.html)
 
-RTABMAP:
+## RTABMAP:
 
 [ RTAB-Map Webpage](http://introlab.github.io/rtabmap/)
 
@@ -94,7 +93,7 @@ RTABMAP:
 
 [ROS Wiki RTAB-Map](http://wiki.ros.org/rtabmap_ros)
 
-Robot Localization:
+## Robot Localization:
 
 [Robot_localization GIT](https://github.com/cra-ros-pkg/robot_localization)
 
@@ -104,11 +103,11 @@ Robot Localization:
 
 [Data robot_localization](http://docs.ros.org/en/indigo/api/robot_localization/html/preparing_sensor_data.html)
 
-Octomap:
+## Octomap:
 
 [Octomap_server Wiki](http://wiki.ros.org/octomap_server)
 
-Others:
+## Others:
 
 [Covariance matrices](https://manialabs.wordpress.com/2012/08/06/covariance-matrices-with-a-practical-example/)
 
@@ -118,7 +117,9 @@ Others:
 
 # CHANGES DONE
 
-## /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
+## Bringup.launch
+
+Path: ?/agriculture_sim/src/agriculture_launcher/bringup.launch
 
 ```bash
 <launch>
@@ -147,7 +148,9 @@ Others:
 </launch>
 ```
 
-## /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap
+## Rtabmap_simulation_husky.launch
+
+Path: ?/agriculture_sim/src/agriculture_launcher/rtabmap
 
 Generate a file called "rtabmap_simulation_husky.launch"
 
@@ -302,7 +305,9 @@ Generate a file called "rtabmap_simulation_husky.launch"
 </launch>
 ```
 
-## /home/developer/agriculture_sim/src/agriculture_launcher/rviz
+## Rviz_rtabmap_config.rviz & Rviz_husky.launch
+
+Path: ?/agriculture_sim/src/agriculture_launcher/rviz
 
 Copy from this repo the file called "rviz_rtabmap_config.rviz" on the generated rviz folder and add the launch file rviz_husky.launch.
 
@@ -319,7 +324,9 @@ cd rviz
 
 ```
 
-## /home/developer/agriculture_sim/src/agriculture_launcher
+## Inspect_bringup.launch
+
+Path: ?/agriculture_sim/src/agriculture_launcher
 
 Generate a file called inspect_bringup.launch".
 
@@ -350,7 +357,9 @@ Generate a file called inspect_bringup.launch".
 </launch>
 ```
 
-## /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/launch/inspection_world.launch
+## Inspection_world.launch
+
+Path: ?/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/launch/inspection_world.launch
 
 Modify the spawn point of the husky. Line 5 - 8.
 
@@ -361,7 +370,9 @@ Modify the spawn point of the husky. Line 5 - 8.
 <arg name="yaw" default="0.2" />
 ```
 
-## /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/worlds/inspection_world.world
+## Inspection_world.world
+
+Path: ?/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/worlds/inspection_world.world
 
 Turn off the shadows. Line 23.
 
@@ -369,7 +380,9 @@ Turn off the shadows. Line 23.
       <shadows>0</shadows>
 ```
 
-## PROVISIONAL SOLUTION: /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
+## PROVISIONAL SOLUTION: navsat_transform.yaml
+
+Path: ?/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
 ### 2D mode
 
@@ -383,7 +396,9 @@ Turn off the shadows. Line 23.
 
 ```
 
-## PROVISIONAL SOLUTION: /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
+## PROVISIONAL SOLUTION: ekf_global.yaml
+
+Path: ?/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
 
 ### 2D mode
 
@@ -397,7 +412,9 @@ Turn off the shadows. Line 23.
 
 ```
 
-## PROVISIONAL SOLUTION: /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
+## PROVISIONAL SOLUTION: ekf_local.yaml
+
+Path: ?/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
 
 ### 2D mode
 
