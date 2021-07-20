@@ -118,43 +118,11 @@ Others:
 
 # CHANGES DONE
 
-
-* /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
-
-    *Add yaw offset correcting that way the wrong orientation on rviz and robot_localization pkg.*
-
-```bash
-yaw_offset: 1.570796
-```
-* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
-
-    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting.*
-
-```bash
-odom0_pose_rejection_threshold: 50
-odom0_twist_rejection_threshold: 50
-imu0_pose_rejection_threshold: 50                 
-imu0_twist_rejection_threshold: 50               
-imu0_linear_acceleration_rejection_threshold: 50  
-```
-* /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
-
-    *PROVISIONAL SOLUTION: Increase the rejection threshold (to inf) to fix the wrongs lectures while rotatting.*
-
-```bash
-odom0_pose_rejection_threshold: 50
-odom0_twist_rejection_threshold: 50
-imu0_pose_rejection_threshold: 50                 
-imu0_twist_rejection_threshold: 50               
-imu0_linear_acceleration_rejection_threshold: 50  
-```
-* /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
-
-    *Add: octomap_server launch file, husky_navigation launch file and the new rtabmap launch file.*
+## /home/developer/agriculture_sim/src/agriculture_launcher/bringup.launch
 
 ```bash
 <launch>
-    
+
     <include file="$(find cpr_agriculture_gazebo)/launch/agriculture_world.launch">
       <arg name="platform"          value="husky" />
     </include> 
@@ -162,67 +130,181 @@ imu0_linear_acceleration_rejection_threshold: 50
     <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
     <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
 
-    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch">
-      <arg name="node_start_delay"  value="5.0"/>
-    </include> 
-
-    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch">  
-      <arg name="node_start_delay"  value="5.0"/>
-      <arg name="ground"            value="false"/>
-    </include>   
-
     <include file="$(find husky_navigation)/launch/move_base.launch">
       <arg name="no_static_map"     value="true"/>
     </include>
 
-    <include file="$(find agriculture_launcher)/rviz/rviz_husky.launch">  
+    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch">
+      <arg name="node_start_delay"  value="10.0"/>
+      <arg name="max_range"         value="20.0"/>
+      <arg name="max_obst"          value="3.5"/>
+    </include> 
+
+    <include file="$(find agriculture_launcher)/rviz/rviz_rtabmap.launch">  
       <arg name="node_start_delay" value="10.0"/>
     </include> 
 
 </launch>
 ```
-* /home/developer/agriculture_sim/src/agriculture_launcher
 
-    *Generate a file called "octomap_server_start.launch" on the octomap folder.*
+## /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap
 
-```bash
-mkdir octomap
-cd octomap
-```
+Generate a file called "rtabmap_simulation_husky.launch"
 
 ```bash
-<launch>
-  <arg  name="node_start_delay"                   default="0.0"/>                 
-  <arg  name="ground"                             default="false"/>                 
-
-  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'">
-
-    <param name="resolution"                    type="double"   value="0.1" /> <!--0.05 -->
-    <param name="frame_id"                      type="string"   value="map" />
-    <param name="base_frame_id"                 type="string"   value="base_link" />
-    <param name="height_map"                    type="bool"     value="true" />
-    <param name="sensor_model/max_range"        type="double"   value="500.0" /> <!--5.0 -->
-    <param name="latch"                         type="bool"     value="true" />
-    <param name="filter_ground"                 type="bool"     value="false" />
-    <param name="ground_filter/distance"        type="double"   value="0.1" /> <!--0.04 -->
-    <param name="ground_filter/angle "          type="double"   value="0.3" /> <!--0.15 -->
-    <param name="ground_filter/plane_distance"  type="double"   value="0.1" /> <!--0.07 -->
-
-    <remap unless="$(arg ground)" from="cloud_in" to="/rtabmap/cloud_obstacles" /> 
-    <remap if="$(arg ground)"     from="cloud_in" to="/rtabmap/octomap_occupied_space" /> 
+<launch>       
+     
+  <param  name="use_sim_time"                       type="bool"   value="true"/>
+  <arg    name="args"                               default="-- delete_db_on_start -d"/>                 
   
-  </node>
+  <arg    name="node_start_delay"                   default="0.0"/>                 
+                         
+  <arg    name="max_range"                          default="25.0"/>                 
+  <arg    name="max_obst"                           default="100.0"/>                 
+
+                            
+  <group ns="rtabmap">
+
+    <!--RGB-D Odometry-->
+    <node name="rgbd_odometry" pkg="rtabmap_ros" type="rgbd_odometry" output="log" args="$(arg args)" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'" >
+
+      <!--Normal Params-->
+      <param name="frame_id"                    type="string" value="base_link"/>
+      <param name="odom_frame_id"               type="string" value="odom"/>
+      <param name="publish_tf"                  type="bool"   value="false"/>
+      <param name="wait_for_transform_duration" type="double" value="0.5"/>
+      <param name="initial_pose"                type="string" value=""/>
+      <param name="queue_size"                  type="int"    value="100"/>
+      <param name="publish_null_when_lost"      type="bool"   value="true"/>
+      <param name="ground_truth_frame_id"       type="string" value=""/>
+      <param name="ground_truth_base_frame_id"  type="string" value=""/>
+      <param name="guess_frame_id"              type="string" value=""/>
+      <param name="guess_min_translation"       type="double" value="0.0"/>
+      <param name="guess_min_rotation"          type="double" value="0.0"/>
+      <param name="config_path"                 type="string" value=""/>
+  
+      <param name="approx_sync"                 type="bool"   value="true"/>
+      <param name="rgbd_cameras"                type="int"    value="1"/>
+      <param name="subscribe_rgbd"              type="bool"   value="false"/>
+
+      <!--Extra Params-->
+      <param name="wait_imu_to_init"            type="bool"   value="false"/>
+      <param name="keep_color"                  type="bool"   value="false"/>
+
+      <!--Remaps-->
+      <remap from="rgb/image"       to="/realsense/color/image_raw"/>
+      <remap from="depth/image"     to="/realsense/depth/image_rect_raw"/>
+      <remap from="rgb/camera_info" to="/realsense/color/camera_info"/>
+      <remap from="odom"            to="/rtabmap/rgbd_odom"/>
+      <remap from="imu"             to="/imu/data"/>
+    </node>
+
+    <!--RTABMAP-->
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="$(arg args)" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'" >
+
+      <!-- Normal Params-->
+      <param name="subscribe_depth"                 type="bool"   value="true"/>
+      <param name="subscribe_scan"                  type="bool"   value="false"/>
+      <param name="subscribe_scan_cloud"            type="bool"   value="true"/>
+      <param name="subscribe_stereo"                type="bool"   value="false"/>
+      <param name="subscribe_rgbd"                  type="bool"   value="false"/>
+      <param name="frame_id"                        type="string" value="base_link"/>
+      <param name="map_frame_id"                    type="string" value="map"/>
+      <param name="odom_frame_id"                   type="string" value="map"/> <!--(odom) map ??? -->
+      <param name="odom_tf_linear_variance"         type="double" value="1.0"/> <!--1.0 when simulation else 0.0005-->
+      <param name="odom_tf_angular_variance"        type="double" value="1.0"/> <!--1.0 when simulaton else 0.0005-->
+      <param name="queue_size"                      type="int"    value="100"/>
+      <param name="publish_tf"                      type="bool"   value="false"/>
+      <param name="tf_delay"                        type="double" value="0.05"/>
+      <param name="wait_for_transform"              type="bool"   value="true"/>
+      <param name="wait_for_transform_duration"     type="double" value="0.5"/>
+      <param name="config_path"                     type="string" value=""/>
+      <param name="database_path"                   type="string" value="~/.ros/rtabmap.db"/>
+      <param name="gen_scan"                        type="bool"   value="false"/>
+      <param name="gen_scan_max_depth"              type="double" value="4.0"/>
+      <param name="approx_sync"                     type="bool"   value="true"/>
+      <param name="rgbd_cameras"                    type="int"    value="1"/>
+      <param name="use_action_for_goal"             type="bool"   value="true"/>
+      <param name="odom_sensor_sync"                type="bool"   value="false"/>
+      <param name="gen_depth"                       type="bool"   value="false"/> 
+      <param name="gen_depth_decimation"            type="int"    value="1"/>
+      <param name="gen_depth_fill_holes_size"       type="int"    value="0"/>
+      <param name="gen_depth_fill_iterations"       type="double" value="0.1"/>      
+      <param name="gen_depth_fill_holes_error"      type="int"    value="1"/>
+      <param name="map_filter_radius"               type="double" value="0.0"/>      
+      <param name="map_filter_angle"                type="double" value="30.0"/>      
+      <param name="map_cleanup"                     type="bool"   value="true"/> 
+      <param name="latch"                           type="bool"   value="true"/>
+      <param name="map_always_update"               type="bool"   value="false"/>
+      <param name="map_empty_ray_tracing"           type="bool"   value="true"/>
+      <param name="cloud_output_voxelized"          type="bool"   value="false"/> 
+      <param name="cloud_subtract_filtering"                  type="bool" value="true"/> 
+      <param name="cloud_subtract_filtering_min_neighbors"    type="int"  value="5"/> 
+
+      <!--Extra Params-->
+      <param name="Grid/3D"                         type="bool"   value="true"/>      
+      <param name="Grid/CellSize"                   type="double" value="0.1"/>
+      <param name="Grid/FromDepth"                  type="bool"   value="false"/>
+      <param name="Grid/NoiseFilteringMinNeighbors" type="int"    value="0"/>
+      <param name="Grid/NoiseFilteringRadius"       type="double" value="0.0"/>
+      <param name="Grid/ClusterRadius"              type="int"    value="1"/> 
+      <param name="Grid/RayTracing"                 type="bool"   value="true"/> 
+      <param name="Grid/MapFrameProjection"         type="bool"   value="true"/>
+      <param name="Grid/PreVoxelFiltering"          type="bool"   value="false"/>
+
+      <param name="Grid/RangeMax"                   type="double" value="$(arg max_range)"/> 
+
+      <param name="Grid/NormalsSegmentation"        type="bool"   value="true"/>
+      <param name="Grid/MaxObstacleHeight"          type="double" value="$(arg max_obst)"/>  
+      <param name="Grid/MaxGroundHeight"            type="double" value="0.15"/> 
+      <param name="Grid/MinGroundHeight"            type="double" value="0.0"/> 
+      <param name="Grid/MaxGroundAngle"             type="int"    value="40"/>
+
+      <param name="Kp/DetectorStrategy"             type="string" value="0"/>
+
+      <param name="Mem/NotLinkedNodesKept"          type="string" value="false"/>
+
+      <param name="OdomF2M/ScanSubtractRadius"      type="double" value="0.1"/> 
+      <param name="OdomF2M/ScanMaxSize"             type="int"    value="0"/>
+
+      <param name="Optimizer/Iterations"            type="int"    value="100"/> 
+
+      <param name="Reg/Force3DoF"                   type="string" value="true"/>
+      <param name="Reg/Strategy"                    type="string" value="1"/>
+
+      <param name="RGBD/NeighborLinkRefining"       type="bool"   value="true"/> 
+      <param name="RGBD/OptimizeMaxError"           type="string" value="3.0"/>
+      <param name="RGBD/OptimizeFromGraphEnd"       type="string" value="false"/>
+      <param name="RGBD/AngularUpdate"              type="string" value="0.1"/>
+      <param name="RGBD/LinearUpdate"               type="string" value="0.1"/>
+      <param name="RGBD/LoopClosureReextractFeatures" type="string" value="true"/>
+
+      <param name="SURF/HessianThreshold"           type="string" value="300"/>
+
+      <param name="Vis/MinInliers"                  type="string" value="25"/>
+      <param name="Vis/FeatureType"                 type="string" value="0"/>
+
+      <!--Remaps-->
+      <remap from="rgb/image"              to="/realsense/color/image_raw"/>
+      <remap from="depth/image"            to="/realsense/depth/image_rect_raw"/>
+      <remap from="rgb/camera_info"        to="/realsense/color/camera_info"/>
+      <remap from="scan_cloud"             to="/points"/>
+      <remap from="scan_descriptor"        to="/scan_descriptor"/>
+      <remap from="user_data"              to="/user_data"/>
+      <remap from="user_data_async"        to="/user_data_async"/>
+      <remap from="tag_detections"         to="/tag_detections"/>
+      <remap from="odom"                   to="rtabmap/rgbd_odom"/>
+      <remap from="imu"                    to="/imu/data"/>
+    </node>
+  
+  </group> 
+
 </launch>
 ```
 
-* /home/developer/agriculture_sim/src/agriculture_launcher/rtabmap
+## /home/developer/agriculture_sim/src/agriculture_launcher/rviz
 
-    *Generate a file called "rtabmap_simulation_husky.launch". You can obtain it from this repo.*
-
-
-* /home/developer/agriculture_sim/src/agriculture_launcher/rviz
-
-    *Copy from this repo the file called "rviz_husky_config.rviz" on the generated rviz folder and add the launch file rviz_husky.launch.*
+Copy from this repo the file called "rviz_rtabmap_config.rviz" on the generated rviz folder and add the launch file rviz_husky.launch.
 
 ```bash
 mkdir rviz
@@ -232,14 +314,14 @@ cd rviz
 ```bash
 <launch>
   <arg  name="node_start_delay"  default="0.0"/>                 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agriculture_launcher)/rviz/rviz_husky_config.rviz" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agriculture_launcher)/rviz/rviz_rtabmap_config.rviz" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
 </launch>
 
 ```
 
-* /home/developer/agriculture_sim/src/agriculture_launcher
+## /home/developer/agriculture_sim/src/agriculture_launcher
 
-    *Generate a file called inspect_bringup.launch". You can obtain it from this repo.*
+Generate a file called inspect_bringup.launch".
 
 ```bash
 <launch>
@@ -251,29 +333,26 @@ cd rviz
     <include file="$(find agriculture_launcher)/robot_localization/localization_local.launch"/>
     <include file="$(find agriculture_launcher)/robot_localization/localization_global.launch"/>
 
-    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch">
-      <arg name="node_start_delay" value="20.0"/>
-    </include> 
-
-    <include file="$(find agriculture_launcher)/octomap/octomap_server_start.launch">  
-      <arg name="node_start_delay" value="20.0"/>
-      <arg name="ground"           value="true"/>
-    </include> 
-
     <include file="$(find husky_navigation)/launch/move_base.launch">
       <arg name="no_static_map" value="true"/>
     </include>
 
-    <include file="$(find agriculture_launcher)/rviz/rviz_husky.launch">  
+    <include file="$(find agriculture_launcher)/rtabmap/rtabmap_simulation_husky.launch">
+      <arg name="node_start_delay"  value="20.0"/>
+      <arg name="max_range"         value="20.0"/>
+      <arg name="max_obst"          value="500.0"/>
+    </include> 
+
+    <include file="$(find agriculture_launcher)/rviz/rviz_rtabmap.launch">  
       <arg name="node_start_delay" value="10.0"/>
     </include> 
 
 </launch>
 ```
 
-* /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/launch/inspection_world.launch
+## /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/launch/inspection_world.launch
 
-    *Modify the spawn point of the husky.*
+Modify the spawn point of the husky. Line 5 - 8.
 
 ```bash
 <arg name="x" default="-17.177975"/>
@@ -282,13 +361,57 @@ cd rviz
 <arg name="yaw" default="0.2" />
 ```
 
-* /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/worlds/inspection_world.world
+## /home/developer/agriculture_sim/src/cpr_gazebo/cpr_inspection_gazebo/worlds/inspection_world.world
 
-    *Disable the shadows to be able to use visual odometry.*
+Turn off the shadows. Line 23.
 
 ```bash
       <shadows>0</shadows>
 ```
+
+## PROVISIONAL SOLUTION: /home/developer/agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
+
+### 2D mode
+
+```bash
+
+```
+
+### 3D mode
+
+```bash
+
+```
+
+## PROVISIONAL SOLUTION: /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
+
+### 2D mode
+
+```bash
+
+```
+
+### 3D mode
+
+```bash
+
+```
+
+## PROVISIONAL SOLUTION: /home/developer/agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
+
+### 2D mode
+
+```bash
+
+```
+
+### 3D mode
+
+```bash
+
+```
+
+
 # TERMINAL COMMANDS
 
 ## Git commands
