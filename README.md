@@ -807,27 +807,27 @@ ROSTOPIC LIST
 COMPLETE PARAMETERS LIST RTABMAP
 --------------------------------
 
-BRIEF
+* BRIEF
 ```bash
 Param: BRIEF/Bytes = "32"                                  [Bytes is a length of descriptor in bytes. It can be equal 16, 32 or 64 bytes.]
 ```
-BRISK
+* BRISK
 ```bash
 Param: BRISK/Octaves = "3"                                 [Detection octaves. Use 0 to do single scale.]
 Param: BRISK/PatternScale = "1"                            [Apply this scale to the pattern used for sampling the neighbourhood of a keypoint.]
 Param: BRISK/Thresh = "30"                                 [FAST/AGAST detection threshold score.]
 ```
-Bayes
+* Bayes
 ```bash
 Param: Bayes/FullPredictionUpdate = "false"                [Regenerate all the prediction matrix on each iteration (otherwise only removed/added ids are updated).]
 Param: Bayes/PredictionLC = "0.1 0.36 0.30 0.16 0.062 0.0151 0.00255 0.000324 2.5e-05 1.3e-06 4.8e-08 1.2e-09 1.9e-11 2.2e-13 1.7e-15 8.5e-18 2.9e-20 6.9e-23" [Prediction of loop closures (Gaussian-like, here with sigma=1.6) - Format: {VirtualPlaceProb, LoopClosureProb, NeighborLvl1, NeighborLvl2, ...}.]
 Param: Bayes/VirtualPlacePriorThr = "0.9"                  [Virtual place prior]
 ```
-Db
+* Db
 ```bash
 Param: Db/TargetVersion = ""                               [Target database version for backward compatibility purpose. Only Major and minor versions are used and should be set (e.g., 0.19 vs 0.20 or 1.0 vs 2.0). Patch version is ignored (e.g., 0.20.1 and 0.20.3 will generate a 0.20 database).]
 ```
-DbSqlite3
+* DbSqlite3
 ```bash
 Param: DbSqlite3/CacheSize = "10000"                       [Sqlite cache size (default is 2000).]
 Param: DbSqlite3/InMemory = "false"                        [Using database in the memory instead of a file on the hard disk.]
@@ -835,7 +835,7 @@ Param: DbSqlite3/JournalMode = "3"                         [0=DELETE, 1=TRUNCATE
 Param: DbSqlite3/Synchronous = "0"                         [0=OFF, 1=NORMAL, 2=FULL (see sqlite3 doc : "PRAGMA synchronous")]
 Param: DbSqlite3/TempStore = "2"                           [0=DEFAULT, 1=FILE, 2=MEMORY (see sqlite3 doc : "PRAGMA temp_store")]
 ```
-FAST
+* FAST
 ```bash
 Param: BRISK/Thresh = "30"                                 [FAST/AGAST detection threshold score.]
 Param: FAST/CV = "0"                                       [Enable FastCV implementation if non-zero (and RTAB-Map is built with FastCV support). Values should be 9 and 10.]
@@ -850,14 +850,14 @@ Param: FAST/Threshold = "20"                               [Threshold on differe
 Param: Kp/DetectorStrategy = "8"                           [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
 Param: Vis/FeatureType = "8"                               [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
 ```
-FREAK
+* FREAK
 ```bash
 Param: FREAK/NOctaves = "4"                                [Number of octaves covered by the detected keypoints.]
 Param: FREAK/OrientationNormalized = "true"                [Enable orientation normalization.]
 Param: FREAK/PatternScale = "22"                           [Scaling of the description pattern.]
 Param: FREAK/ScaleNormalized = "true"                      [Enable scale normalization.]
 ```
-GFTT
+* GFTT
 ```bash
 Param: GFTT/BlockSize = "3"                                []
 Param: GFTT/K = "0.04"                                     []
@@ -867,13 +867,13 @@ Param: GFTT/UseHarrisDetector = "false"                    []
 Param: Kp/DetectorStrategy = "8"                           [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
 Param: Vis/FeatureType = "8"                               [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
 ```
-GMS
+* GMS
 ```bash
 Param: GMS/ThresholdFactor = "6.0"                         [The higher, the less matches.]
 Param: GMS/WithRotation = "false"                          [Take rotation transformation into account.]
 Param: GMS/WithScale = "false"                             [Take scale transformation into account.]
 ```
-Grid
+* Grid
 ```bash
 Param: Grid/3D = "true"                                    [A 3D occupancy grid is required if you want an OctoMap (3D ray tracing). Set to false if you want only a 2D map, the cloud will be projected on xy plane. A 2D map can be still generated if checked, but it requires more memory and time to generate it. Ignored if laser scan is 2D and "Grid/FromDepth" is false.]
 Param: Grid/CellSize = "0.05"                              [Resolution of the occupancy grid.]
@@ -887,7 +887,7 @@ Param: Grid/FootprintWidth = "0.0"                         [Footprint width used
 Param: Grid/FromDepth = "true"                             [Create occupancy grid from depth image(s), otherwise it is created from laser scan.]
 Param: Grid/GroundIsObstacle = "false"                     [[Grid/3D=true] Ground segmentation (Grid/NormalsSegmentation) is ignored, all points are obstacles. Use this only if you want an OctoMap with ground identified as an obstacle (e.g., with an UAV).]
 Param: Grid/MapFrameProjection = "false"                   [Projection in map frame. On a 3D terrain and a fixed local camera transform (the cloud is created relative to ground), you may want to disable this to do the projection in robot frame instead.]
-Param: Grid/MaxGroundAngle = "45"                          [[Grid/NormalsSegmentation=true] Maximum angle (degrees) between point's normal to ground's normal to label it as ground. Points with higher angle difference are considered as obstacles.]
+Param: Grid/MaxGroundAngle = "45"                          [[Grid/NormalsSegmentation=true] Maximum angle (degrees) between points normal to grounds normal to label it as ground. Points with higher angle difference are considered as obstacles.]
 Param: Grid/MaxGroundHeight = "0.0"                        [Maximum ground height (0=disabled). Should be set if "Grid/NormalsSegmentation" is false.]
 Param: Grid/MaxObstacleHeight = "0.0"                      [Maximum obstacles height (0=disabled).]
 Param: Grid/MinClusterSize = "10"                          [[Grid/NormalsSegmentation=true] Minimum cluster size to project the points.]
@@ -903,12 +903,12 @@ Param: Grid/RayTracing = "false"                           [Ray tracing is done 
 Param: Grid/Scan2dUnknownSpaceFilled = "false"             [Unknown space filled. Only used with 2D laser scans. Use Grid/RangeMax to set maximum range if laser scan max range is to set.]
 Param: Grid/ScanDecimation = "1"                           [[Grid/FromDepth=false] Decimation of the laser scan before creating cloud.]
 ```
-GridGlobal
+* GridGlobal
 ```bash
 Param: GridGlobal/AltitudeDelta = "0"                      [Assemble only nodes that have the same altitude of +-delta meters of the current pose (0=disabled). This is used to generate 2D occupancy grid based on the current altitude (e.g., multi-floor building).]
 Param: GridGlobal/Eroded = "false"                         [Erode obstacle cells.]
 Param: GridGlobal/FootprintRadius = "0.0"                  [Footprint radius (m) used to clear all obstacles under the graph.]
-Param: GridGlobal/FullUpdate = "true"                      [When the graph is changed, the whole map will be reconstructed instead of moving individually each cells of the map. Also, data added to cache won't be released after updating the map. This process is longer but more robust to drift that would erase some parts of the map when it should not.]
+Param: GridGlobal/FullUpdate = "true"                      [When the graph is changed, the whole map will be reconstructed instead of moving individually each cells of the map. Also, data added to cache wont be released after updating the map. This process is longer but more robust to drift that would erase some parts of the map when it should not.]
 Param: GridGlobal/MaxNodes = "0"                           [Maximum nodes assembled in the map starting from the last node (0=unlimited).]
 Param: GridGlobal/MinSize = "0.0"                          [Minimum map size (m).]
 Param: GridGlobal/OccupancyThr = "0.5"                     [Occupancy threshold (value between 0 and 1).]
@@ -918,7 +918,7 @@ Param: GridGlobal/ProbHit = "0.7"                          [Probability of a hit
 Param: GridGlobal/ProbMiss = "0.4"                         [Probability of a miss (value between 0 and 0.5).]
 Param: GridGlobal/UpdateError = "0.01"                     [Graph changed detection error (m). Update map only if poses in new optimized graph have moved more than this value.]
 ```
-Icp
+* Icp
 ```bash
 Param: Icp/CCFilterOutFarthestPoints = "false"             [If true, the algorithm will automatically ignore farthest points from the reference, for better convergence.]
 Param: Icp/CCMaxFinalRMS = "0.2"                           [Maximum final RMS error.]
@@ -938,17 +938,17 @@ Param: Icp/PMMatcherIntensity = "false"                    [KDTreeMatcher:  amon
 Param: Icp/PMMatcherKnn = "1"                              [KDTreeMatcher/knn: number of nearest neighbors to consider it the reference. For convenience when configuration file is not set.]
 Param: Icp/PointToPlane = "false"                          [Use point to plane ICP.]
 Param: Icp/PointToPlaneGroundNormalsUp = "0.0"             [Invert normals on ground if they are pointing down (useful for ring-like 3D LiDARs). 0 means disabled, 1 means only normals perfectly aligned with -z axis. This is only done with 3D scans.]
-Param: Icp/PointToPlaneK = "5"                             [Number of neighbors to compute normals for point to plane if the cloud doesn't have already normals.]
+Param: Icp/PointToPlaneK = "5"                             [Number of neighbors to compute normals for point to plane if the cloud doesnt have already normals.]
 Param: Icp/PointToPlaneLowComplexityStrategy = "1"         [If structural complexity is below Icp/PointToPlaneMinComplexity: set to 0 to so that the transform is automatically rejected, set to 1 to limit ICP correction in axes with most constraints (e.g., for a corridor-like environment, the resulting transform will be limited in y and yaw, x will taken from the guess), set to 2 to accept "as is" the transform computed by PointToPoint.]
 Param: Icp/PointToPlaneMinComplexity = "0.02"              [Minimum structural complexity (0.0=low, 1.0=high) of the scan to do PointToPlane registration, otherwise PointToPoint registration is done instead and strategy from Icp/PointToPlaneLowComplexityStrategy is used. This check is done only when Icp/PointToPlane=true.]
-Param: Icp/PointToPlaneRadius = "1.0"                      [Search radius to compute normals for point to plane if the cloud doesn't have already normals.]
+Param: Icp/PointToPlaneRadius = "1.0"                      [Search radius to compute normals for point to plane if the cloud doesnt have already normals.]
 Param: Icp/RangeMax = "0"                                  [Maximum range filtering (0=disabled).]
 Param: Icp/RangeMin = "0"                                  [Minimum range filtering (0=disabled).]
 Param: Icp/Strategy = "0"                                  [ICP implementation: 0=Point Cloud Library, 1=libpointmatcher, 2=CCCoreLib (CloudCompare).]
 Param: Icp/VoxelSize = "0.05"                              [Uniform sampling voxel size (0=disabled).]
 
 ```
-ImuFilter
+* ImuFilter
 ```bash
 Param: ImuFilter/ComplementaryBiasAlpha = "0.01"           [Bias estimation gain parameter, belongs in [0, 1].]
 Param: ImuFilter/ComplementaryDoAdpativeGain = "true"      [Parameter whether to do adaptive gain or not.]
@@ -957,7 +957,7 @@ Param: ImuFilter/ComplementaryGainAcc = "0.01"             [Gain parameter for t
 Param: ImuFilter/MadgwickGain = "0.1"                      [Gain of the filter. Higher values lead to faster convergence but more noise. Lower values lead to slower convergence but smoother signal, belongs in [0, 1].]
 Param: ImuFilter/MadgwickZeta = "0.0"                      [Gyro drift gain (approx. rad/s), belongs in [-1, 1].]
 ```
-KAZE
+* KAZE
 ```bash
 Param: KAZE/Diffusivity = "1"                              [Diffusivity type: 0=DIFF_PM_G1, 1=DIFF_PM_G2, 2=DIFF_WEICKERT or 3=DIFF_CHARBONNIER.]
 Param: KAZE/Extended = "false"                             [Set to enable extraction of extended (128-byte) descriptor.]
@@ -966,7 +966,7 @@ Param: KAZE/NOctaves = "4"                                 [Maximum octave evolu
 Param: KAZE/Threshold = "0.001"                            [Detector response threshold to accept keypoint.]
 Param: KAZE/Upright = "false"                              [Set to enable use of upright descriptors (non rotation-invariant).]
 ```
-Kp
+* Kp
 ```bash
 Param: Kp/BadSignRatio = "0.5"                             [Bad signature ratio (less than Ratio x AverageWordsPerImage = bad).]
 Param: Kp/ByteToFloat = "false"                            [For Kp/NNStrategy=1, binary descriptors are converted to float by converting each byte to float instead of converting each bit to float. When converting bytes instead of bits, less memory is used and search is faster at the cost of slightly less accurate matching.]
@@ -991,20 +991,20 @@ Param: Kp/SubPixWinSize = "3"                              [See cv::cornerSubPix
 Param: Kp/TfIdfLikelihoodUsed = "true"                     [Use of the td-idf strategy to compute the likelihood.]
 Param: Rtabmap/StartNewMapOnGoodSignature = "false"        [Start a new map only if the first signature is not bad (i.e., has enough features, see Kp/BadSignRatio).]
 ```
-Marker
+* Marker
 ```bash
 Param: Marker/CornerRefinementMethod = "0"                 [Corner refinement method (0: None, 1: Subpixel, 2:contour, 3: AprilTag2). For OpenCV <3.3.0, this is "doCornerRefinement" parameter: set 0 for false and 1 for true.]
 Param: Marker/Dictionary = "0"                             [Dictionary to use: DICT_ARUCO_4X4_50=0, DICT_ARUCO_4X4_100=1, DICT_ARUCO_4X4_250=2, DICT_ARUCO_4X4_1000=3, DICT_ARUCO_5X5_50=4, DICT_ARUCO_5X5_100=5, DICT_ARUCO_5X5_250=6, DICT_ARUCO_5X5_1000=7, DICT_ARUCO_6X6_50=8, DICT_ARUCO_6X6_100=9, DICT_ARUCO_6X6_250=10, DICT_ARUCO_6X6_1000=11, DICT_ARUCO_7X7_50=12, DICT_ARUCO_7X7_100=13, DICT_ARUCO_7X7_250=14, DICT_ARUCO_7X7_1000=15, DICT_ARUCO_ORIGINAL = 16, DICT_APRILTAG_16h5=17, DICT_APRILTAG_25h9=18, DICT_APRILTAG_36h10=19, DICT_APRILTAG_36h11=20]
-Param: Marker/Length = "0"                                 [The length (m) of the markers' side. 0 means automatic marker length estimation using the depth image (the camera should look at the marker perpendicularly for initialization).]
+Param: Marker/Length = "0"                                 [The length (m) of the markers side. 0 means automatic marker length estimation using the depth image (the camera should look at the marker perpendicularly for initialization).]
 Param: Marker/MaxDepthError = "0.01"                       [Maximum depth error between all corners of a marker when estimating the marker length (when Marker/Length is 0). The smaller it is, the more perpendicular the camera should be toward the marker to initialize the length.]
 Param: Marker/MaxRange = "0.0"                             [Maximum range in which markers will be detected. <=0 for unlimited range.]
 Param: Marker/MinRange = "0.0"                             [Miniminum range in which markers will be detected. <=0 for unlimited range.]
 Param: Marker/VarianceAngular = "0.01"                     [Angular variance to set on marker detections. Set to >=9999 to use only position (xyz) constraint in graph optimization.]
 Param: Marker/VarianceLinear = "0.001"                     [Linear variance to set on marker detections.]
 ```
-Mem
+* Mem
 ```bash
-Param: Mem/BadSignaturesIgnored = "false"                  [Bad signatures are ignored.]
+Param: Mem/BadSignatures* Ignored = "false"                  [Bad signatures are ignored.]
 Param: Mem/BinDataKept = "true"                            [Keep binary data in db.]
 Param: Mem/CompressionParallelized = "true"                [Compression of sensor data is multi-threaded.]
 Param: Mem/CovOffDiagIgnored = "true"                      [Ignore off diagonal values of the covariance matrix.]
@@ -1018,8 +1018,8 @@ Param: Mem/IncrementalMemory = "true"                      [SLAM mode, otherwise
 Param: Mem/InitWMWithAllNodes = "false"                    [Initialize the Working Memory with all nodes in Long-Term Memory. When false, it is initialized with nodes of the previous session.]
 Param: Mem/IntermediateNodeDataKept = "false"              [Keep intermediate node data in db.]
 Param: Mem/LaserScanDownsampleStepSize = "1"               [If > 1, downsample the laser scans when creating a signature.]
-Param: Mem/LaserScanNormalK = "0"                          [If > 0 and laser scans don't have normals, normals will be computed with K search neighbors when creating a signature.]
-Param: Mem/LaserScanNormalRadius = "0.0"                   [If > 0 m and laser scans don't have normals, normals will be computed with radius search neighbors when creating a signature.]
+Param: Mem/LaserScanNormalK = "0"                          [If > 0 and laser scans dont have normals, normals will be computed with K search neighbors when creating a signature.]
+Param: Mem/LaserScanNormalRadius = "0.0"                   [If > 0 m and laser scans dont have normals, normals will be computed with radius search neighbors when creating a signature.]
 Param: Mem/LaserScanVoxelSize = "0.0"                      [If > 0 m, voxel filtering is done on laser scans when creating a signature. If the laser scan had normals, they will be removed. To recompute the normals, make sure to use "Mem/LaserScanNormalK" or "Mem/LaserScanNormalRadius" parameters.]
 Param: Mem/LocalizationDataSaved = "false"                 [Save localization data during localization session (when Mem/IncrementalMemory=false). When enabled, the database will then also grow in localization mode. This mode would be used only for debugging purpose.]
 Param: Mem/MapLabelsAdded = "true"                         [Create map labels. The first node of a map will be labelled as "map#" where # is the map ID.]
@@ -1036,10 +1036,10 @@ Param: Mem/StereoFromMotion = "false"                      [Triangulate features
 Param: Mem/TransferSortingByWeightId = "false"             [On transfer, signatures are sorted by weight->ID only (i.e. the oldest of the lowest weighted signatures are transferred first). If false, the signatures are sorted by weight->Age->ID (i.e. the oldest inserted in WM of the lowest weighted signatures are transferred first). Note that retrieval updates the age, not the ID.]
 Param: Mem/UseOdomFeatures = "true"                        [Use odometry features instead of regenerating them.]
 Param: Mem/UseOdomGravity = "false"                        [Use odometry instead of IMU orientation to add gravity links to new nodes created. We assume that odometry is already aligned with gravity (e.g., we are using a VIO approach). Gravity constraints are used by graph optimization only if "Optimizer/GravitySigma" is not zero.]
-Param: RGBD/MaxOdomCacheSize = "0"                         [Maximum odometry cache size. Used only in localization mode (when Mem/IncrementalMemory=false) and when RGBD/OptimizeMaxError!=0. This is used to verify localization transforms to make sure we don't teleport to a location very similar to one we previously localized on. When the cache is full, the whole cache is cleared and the next localization is automatically accepted without verification. Set 0 to disable caching.]
+Param: RGBD/MaxOdomCacheSize = "0"                         [Maximum odometry cache size. Used only in localization mode (when Mem/IncrementalMemory=false) and when RGBD/OptimizeMaxError!=0. This is used to verify localization transforms to make sure we dont teleport to a location very similar to one we previously localized on. When the cache is full, the whole cache is cleared and the next localization is automatically accepted without verification. Set 0 to disable caching.]
 Param: RGBD/StartAtOrigin = "false"                        [If true, rtabmap will assume the robot is starting from origin of the map. If false, rtabmap will assume the robot is restarting from the last saved localization pose from previous session (the place where it shut down previously). Used only in localization mode (Mem/IncrementalMemory=false).]
 ```
-ORB
+* ORB
 ```bash
 Param: ORB/EdgeThreshold = "19"                            [This is size of the border where the features are not detected. It should roughly match the patchSize parameter.]
 Param: ORB/FirstLevel = "0"                                [It should be 0 in the current implementation.]
@@ -1050,7 +1050,7 @@ Param: ORB/ScaleFactor = "2"                               [Pyramid decimation r
 Param: ORB/ScoreType = "0"                                 [The default HARRIS_SCORE=0 means that Harris algorithm is used to rank features (the score is written to KeyPoint::score and is used to retain best nfeatures features); FAST_SCORE=1 is alternative value of the parameter that produces slightly less stable keypoints, but it is a little faster to compute.]
 Param: ORB/WTA_K = "2"                                     [The number of points that produce each element of the oriented BRIEF descriptor. The default value 2 means the BRIEF where we take a random point pair and compare their brightnesses, so we get 0/1 response. Other possible values are 3 and 4. For example, 3 means that we take 3 random points (of course, those point coordinates are random, but they are generated from the pre-defined seed, so each element of BRIEF descriptor is computed deterministically from the pixel rectangle), find point of maximum brightness and output index of the winner (0, 1 or 2). Such output will occupy 2 bits, and therefore it will need a special variant of Hamming distance, denoted as NORM_HAMMING2 (2 bits per bin). When WTA_K=4, we take 4 random points to compute each bin (that will also occupy 2 bits with possible values 0, 1, 2 or 3).]
 ```
-Optimizer
+* Optimizer
 ```bash
 Param: Optimizer/Epsilon = "0.0"                           [Stop optimizing when the error improvement is less than this value.]
 Param: Optimizer/GravitySigma = "0.3"                      [Gravity sigma value (>=0, typically between 0.1 and 0.3). Optimization is done while preserving gravity orientation of the poses. This should be used only with visual/lidar inertial odometry approaches, for which we assume that all odometry poses are aligned with gravity. Set to 0 to disable gravity constraints. Currently supported only with g2o and GTSAM optimization strategies (see Optimizer/Strategy).]
@@ -1059,15 +1059,15 @@ Param: Optimizer/LandmarksIgnored = "false"                [Ignore landmark cons
 Param: Optimizer/PriorsIgnored = "true"                    [Ignore prior constraints (global pose or GPS) while optimizing. Currently only g2o and gtsam optimization supports this.]
 Param: Optimizer/Robust = "false"                          [Robust graph optimization using Vertigo (only work for g2o and GTSAM optimization strategies). Not compatible with "RGBD/OptimizeMaxError" if enabled.]
 Param: Optimizer/Strategy = "1"                            [Graph optimization strategy: 0=TORO, 1=g2o, 2=GTSAM and 3=Ceres.]
-Param: Optimizer/VarianceIgnored = "false"                 [Ignore constraints' variance. If checked, identity information matrix is used for each constraint. Otherwise, an information matrix is generated from the variance saved in the links.]
+Param: Optimizer/VarianceIgnored = "false"                 [Ignore constraints variance. If checked, identity information matrix is used for each constraint. Otherwise, an information matrix is generated from the variance saved in the links.]
 Param: RGBD/OptimizeMaxError = "3.0"                       [Reject loop closures if optimization error ratio is greater than this value (0=disabled). Ratio is computed as absolute error over standard deviation of each link. This will help to detect when a wrong loop closure is added to the graph. Not compatible with "Optimizer/Robust" if enabled.]
 ```
-PyDetector
+* PyDetector
 ```bash
 Param: PyDetector/Cuda = "true"                            [Use cuda.]
 Param: PyDetector/Path = ""                                [Path to python script file (see available ones in rtabmap/corelib/src/python/*). See the header to see where the script should be copied.]
 ```
-PyMatcher
+* PyMatcher
 ```bash
 Param: PyMatcher/Cuda = "true"                             [Used by SuperGlue.]
 Param: PyMatcher/Iterations = "20"                         [Sinkhorn iterations. Used by SuperGlue.]
@@ -1075,7 +1075,7 @@ Param: PyMatcher/Model = "indoor"                          [For SuperGlue, set o
 Param: PyMatcher/Path = ""                                 [Path to python script file (see available ones in rtabmap/corelib/src/python/*). See the header to see where the script should be copied.]
 Param: PyMatcher/Threshold = "0.2"                         [Used by SuperGlue.]
 ```
-RGBD
+* RGBD
 ```bash
 Param: RGBD/AngularSpeedUpdate = "0.0"                     [Maximum angular speed (rad/s) to update the map (0 means not limit).]
 Param: RGBD/AngularUpdate = "0.1"                          [Minimum angular displacement (rad) to update the map. Rehearsal is done prior to this, so weights are still updated.]
@@ -1094,7 +1094,7 @@ Param: RGBD/LoopCovLimited = "false"                       [Limit covariance of 
 Param: RGBD/MarkerDetection = "false"                      [Detect static markers to be added as landmarks for graph optimization. If input data have already landmarks, this will be ignored. See "Marker" group for parameters.]
 Param: RGBD/MaxLocalRetrieved = "2"                        [Maximum local locations retrieved (0=disabled) near the current pose in the local map or on the current planned path (those on the planned path have priority).]
 Param: RGBD/MaxLoopClosureDistance = "0.0"                 [Reject loop closures/localizations if the distance from the map is over this distance (0=disabled).]
-Param: RGBD/MaxOdomCacheSize = "0"                         [Maximum odometry cache size. Used only in localization mode (when Mem/IncrementalMemory=false) and when RGBD/OptimizeMaxError!=0. This is used to verify localization transforms to make sure we don't teleport to a location very similar to one we previously localized on. When the cache is full, the whole cache is cleared and the next localization is automatically accepted without verification. Set 0 to disable caching.]
+Param: RGBD/MaxOdomCacheSize = "0"                         [Maximum odometry cache size. Used only in localization mode (when Mem/IncrementalMemory=false) and when RGBD/OptimizeMaxError!=0. This is used to verify localization transforms to make sure we dont teleport to a location very similar to one we previously localized on. When the cache is full, the whole cache is cleared and the next localization is automatically accepted without verification. Set 0 to disable caching.]
 Param: RGBD/NeighborLinkRefining = "false"                 [When a new node is added to the graph, the transformation of its neighbor link to the previous node is refined using registration approach selected (Reg/Strategy).]
 Param: RGBD/NewMapOdomChangeDistance = "0"                 [A new map is created if a change of odometry translation greater than X m is detected (0 m = disabled).]
 Param: RGBD/OptimizeFromGraphEnd = "false"                 [Optimize graph from the newest node. If false, the graph is optimized from the oldest node of the current graph (this adds an overhead computation to detect to oldest node of the current graph, but it can be useful to preserve the map referential from the oldest node). Warning when set to false: when some nodes are transferred, the first referential of the local map may change, resulting in momentary changes in robot/map position (which are annoying in teleoperation).]
@@ -1111,18 +1111,18 @@ Param: RGBD/ProximityOdomGuess = "false"                   [Use odometry as moti
 Param: RGBD/ProximityPathFilteringRadius = "1"             [Path filtering radius to reduce the number of nodes to compare in a path in one-to-many proximity detection. The nearest node in a path should be inside that radius to be considered for one-to-one proximity detection.]
 Param: RGBD/ProximityPathMaxNeighbors = "0"                [Maximum neighbor nodes compared on each path for one-to-many proximity detection. Set to 0 to disable one-to-many proximity detection (by merging the laser scans).]
 Param: RGBD/ProximityPathRawPosesUsed = "true"             [When comparing to a local path for one-to-many proximity detection, merge the scans using the odometry poses (with neighbor link optimizations) instead of the ones in the optimized local graph.]
-Param: RGBD/ScanMatchingIdsSavedInLinks = "true"           [Save scan matching IDs from one-to-many proximity detection in link's user data.]
+Param: RGBD/ScanMatchingIdsSavedInLinks = "true"           [Save scan matching IDs from one-to-many proximity detection in links user data.]
 Param: RGBD/StartAtOrigin = "false"                        [If true, rtabmap will assume the robot is starting from origin of the map. If false, rtabmap will assume the robot is restarting from the last saved localization pose from previous session (the place where it shut down previously). Used only in localization mode (Mem/IncrementalMemory=false).]
 Param: Rtabmap/LoopGPS = "true"                            [Use GPS to filter likelihood (if GPS is recorded). Only locations inside the local radius "RGBD/LocalRadius" of the current GPS location are considered for loop closure detection.]
 Param: VhEp/Enabled = "false"                              [Verify visual loop closure hypothesis by computing a fundamental matrix. This is done prior to transformation computation when RGBD/Enabled is enabled.]
 ```
-Reg
+* Reg
 ```bash
 Param: Reg/Force3DoF = "false"                             [Force 3 degrees-of-freedom transform (3Dof: x,y and yaw). Parameters z, roll and pitch will be set to 0.]
 Param: Reg/RepeatOnce = "true"                             [Do a second registration with the output of the first registration as guess. Only done if no guess was provided for the first registration (like on loop closure). It can be useful if the registration approach used can use a guess to get better matches.]
 Param: Reg/Strategy = "0"                                  [0=Vis, 1=Icp, 2=VisIcp]
 ```
-Rtabmap
+* Rtabmap
 ```bash
 Param: Rtabmap/ComputeRMSE = "true"                        [Compute root mean square error (RMSE) and publish it in statistics, if ground truth is provided.]
 Param: Rtabmap/CreateIntermediateNodes = "false"           [Create intermediate nodes between loop closure detection. Only used when Rtabmap/DetectionRate>0.]
@@ -1149,7 +1149,7 @@ Param: Rtabmap/StatisticLogsBufferedInRAM = "true"         [Statistic logs buffe
 Param: Rtabmap/TimeThr = "0"                               [Maximum time allowed for map update (ms) (0 means infinity). When map update time exceeds this fixed time threshold, some nodes in Working Memory (WM) are transferred to Long-Term Memory to limit the size of the WM and decrease the update time.]
 Param: Rtabmap/WorkingDirectory = ""                       [Working directory.]
 ```
-SIFT
+* SIFT
 ```bash
 Param: SIFT/ContrastThreshold = "0.04"                     [The contrast threshold used to filter out weak features in semi-uniform (low-contrast) regions. The larger the threshold, the less features are produced by the detector.]
 Param: SIFT/EdgeThreshold = "10"                           [The threshold used to filter out edge-like features. Note that the its meaning is different from the contrastThreshold, i.e. the larger the edgeThreshold, the less features are filtered out (more features are retained).]
@@ -1158,7 +1158,7 @@ Param: SIFT/NOctaveLayers = "3"                            [The number of layers
 Param: SIFT/RootSIFT = "false"                             [Apply RootSIFT normalization of the descriptors.]
 Param: SIFT/Sigma = "1.6"                                  [The sigma of the Gaussian applied to the input image at the octave #0. If your image is captured with a weak camera with soft lenses, you might want to reduce the number.]
 ```
-SURF
+* SURF
 ```bash
 Param: SURF/Extended = "false"                             [Extended descriptor flag (true - use extended 128-element descriptors; false - use 64-element descriptors).]
 Param: SURF/GpuKeypointsRatio = "0.01"                     [Used with SURF GPU.]
@@ -1169,7 +1169,7 @@ Param: SURF/Octaves = "4"                                  [Number of pyramid oc
 Param: SURF/Upright = "false"                              [Up-right or rotated features flag (true - do not compute orientation of features; false - compute orientation).]
 Param: Vis/FeatureType = "8"                               [0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB 9=KAZE 10=ORB-OCTREE 11=SuperPoint 12=SURF/FREAK 13=GFTT/DAISY 14=SURF/DAISY 15=PyDetector]
 ```
-Stereo
+* Stereo
 ```bash
 Param: Stereo/DenseStrategy = "0"                          [0=cv::StereoBM, 1=cv::StereoSGBM]
 Param: Stereo/Eps = "0.01"                                 [[Stereo/OpticalFlow=true] Epsilon stop criterion.]
@@ -1182,7 +1182,7 @@ Param: Stereo/SSD = "true"                                 [[Stereo/OpticalFlow=
 Param: Stereo/WinHeight = "3"                              [Window height.]
 Param: Stereo/WinWidth = "15"                              [Window width.]
 ```
-StereoBM
+* StereoBM
 ```bash
 Param: StereoBM/BlockSize = "15"                           [See cv::StereoBM]
 Param: StereoBM/Disp12MaxDiff = "-1"                       [See cv::StereoBM]
@@ -1195,7 +1195,7 @@ Param: StereoBM/SpeckleWindowSize = "100"                  [See cv::StereoBM]
 Param: StereoBM/TextureThreshold = "10"                    [See cv::StereoBM]
 Param: StereoBM/UniquenessRatio = "15"                     [See cv::StereoBM]
 ```
-StereoSGBM
+* StereoSGBM
 ```bash
 Param: StereoSGBM/BlockSize = "15"                         [See cv::StereoSGBM]
 Param: StereoSGBM/Disp12MaxDiff = "1"                      [See cv::StereoSGBM]
@@ -1209,7 +1209,7 @@ Param: StereoSGBM/SpeckleRange = "4"                       [See cv::StereoSGBM]
 Param: StereoSGBM/SpeckleWindowSize = "100"                [See cv::StereoSGBM]
 Param: StereoSGBM/UniquenessRatio = "20"                   [See cv::StereoSGBM]
 ```
-SuperPoint
+* SuperPoint
 ```bash
 Param: SuperPoint/Cuda = "true"                            [Use Cuda device for Torch, otherwise CPU device is used by default.]
 Param: SuperPoint/ModelPath = ""                           [[Required] Path to pre-trained weights Torch file of SuperPoint (*.pt).]
@@ -1217,21 +1217,21 @@ Param: SuperPoint/NMS = "true"                             [If true, non-maximum
 Param: SuperPoint/NMSRadius = "4"                          [[SuperPoint/NMS=true] Minimum distance (pixels) between keypoints.]
 Param: SuperPoint/Threshold = "0.010"                      [Detector response threshold to accept keypoint.]
 ```
-VhEp
+* VhEp
 ```bash
 Param: VhEp/Enabled = "false"                              [Verify visual loop closure hypothesis by computing a fundamental matrix. This is done prior to transformation computation when RGBD/Enabled is enabled.]
 Param: VhEp/MatchCountMin = "8"                            [Minimum of matching visual words pairs to accept the loop hypothesis.]
 Param: VhEp/RansacParam1 = "3"                             [Fundamental matrix (see cvFindFundamentalMat()): Max distance (in pixels) from the epipolar line for a point to be inlier.]
 Param: VhEp/RansacParam2 = "0.99"                          [Fundamental matrix (see cvFindFundamentalMat()): Performance of RANSAC.]
 ```
-Vis
+* Vis
 ```bash
 Param: Vis/BundleAdjustment = "1"                          [Optimization with bundle adjustment: 0=disabled, 1=g2o, 2=cvsba, 3=Ceres.]
 Param: Vis/CorFlowEps = "0.01"                             [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
 Param: Vis/CorFlowIterations = "30"                        [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
 Param: Vis/CorFlowMaxLevel = "3"                           [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
 Param: Vis/CorFlowWinSize = "16"                           [[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]
-Param: Vis/CorGuessMatchToProjection = "false"             [[Vis/CorType=0] Match frame's corners to source's projected points (when guess transform is provided) instead of projected points to frames corners.]
+Param: Vis/CorGuessMatchToProjection = "false"             [[Vis/CorType=0] Match frames corners to sources projected points (when guess transform is provided) instead of projected points to frames corners.]
 Param: Vis/CorGuessWinSize = "40"                          [[Vis/CorType=0] Matching window size (pixels) around projected points when a guess transform is provided to find correspondences. 0 means disabled.]
 Param: Vis/CorNNDR = "0.8"                                 [[Vis/CorType=0] NNDR: nearest neighbor distance ratio. Used for knn features matching approach.]
 Param: Vis/CorNNType = "1"                                 [[Vis/CorType=0] kNNFlannNaive=0, kNNFlannKdTree=1, kNNFlannLSH=2, kNNBruteForce=3, kNNBruteForceGPU=4, BruteForceCrossCheck=5, SuperGlue=6, GMS=7. Used for features matching approach.]
@@ -1260,12 +1260,12 @@ Param: Vis/SubPixEps = "0.02"                              [See cv::cornerSubPix
 Param: Vis/SubPixIterations = "0"                          [See cv::cornerSubPix(). 0 disables sub pixel refining.]
 Param: Vis/SubPixWinSize = "3"                             [See cv::cornerSubPix().]
 ```
-g2o
+* g2o
 ```bash
 Param: g2o/Baseline = "0.075"                              [When doing bundle adjustment with RGB-D data, we can set a fake baseline (m) to do stereo bundle adjustment (if 0, mono bundle adjustment is done). For stereo data, the baseline in the calibration is used directly.]
 Param: g2o/Optimizer = "0"                                 [0=Levenberg 1=GaussNewton]
 Param: g2o/PixelVariance = "1.0"                           [Pixel variance used for bundle adjustment.]
-Param: g2o/RobustKernelDelta = "8"                         [Robust kernel delta used for bundle adjustment (0 means don't use robust kernel). Observations with chi2 over this threshold will be ignored in the second optimization pass.]
+Param: g2o/RobustKernelDelta = "8"                         [Robust kernel delta used for bundle adjustment (0 means dont use robust kernel). Observations with chi2 over this threshold will be ignored in the second optimization pass.]
 Param: g2o/Solver = "0"                                    [0=csparse 1=pcg 2=cholmod 3=Eigen]
 ```
 
