@@ -1,4 +1,6 @@
 # HUSKY SIMULATION
+
+
 ## My PC
 
 * In each terminal:
@@ -388,25 +390,7 @@ Turn off the shadows. Line 23.
 
 Path: /agriculture_sim/src/configurations/robot_localization/navsat_transform.yaml
 
-### Original
-
-```bash
-frequency: 30
-delay: 3
-magnetic_declination_radians: 0.0349066 #check!!
-yaw_offset: 0.0
-zero_altitude: true
-broadcast_utm_transform: true
-broadcast_utm_transform_as_parent_frame: true
-publish_filtered_gps: false
-use_odometry_yaw: true
-wait_for_datum: true
-#datum: [41.2206659318, -8.52751781305, 0.0]
-datum: [49.8999999596, 8.90000090445, -0.00463541982361] #simulation
-transform_timeout: 0.1
-```
-
-### 3D mode
+### 2D mode
 
 ```bash
 frequency: 30
@@ -445,110 +429,6 @@ transform_timeout: 0.1
 ## PROVISIONAL SOLUTION: ekf_global.yaml
 
 Path: /agriculture_sim/src/configurations/robot_localization/ekf_global.yaml
-
-### Original
-
-```bash
-frequency: 30
-sensor_timeout: 0.1
-two_d_mode: true
-transform_time_offset: 0.05
-transform_timeout: 0.0
-#predict_to_current_time: true 
-print_diagnostics: true
-debug: false
-publish_tf: true
-
-map_frame: map
-odom_frame: odom
-base_link_frame: base_link
-world_frame: map
-
-# odom0: example
-# odom0_config:  [x,        y,        z,
-#                 roll,     pitch,    yaw,
-#                 vel_x,    vel_y,    vel_z,
-#                 vel_roll, vel_pitc, vel_yaw,
-#                 acc_x,    acc_y,    acc_z]
-
-odom0: rtabmap/rgbd_odom
-odom0_config: [true, true, true,
-               true, false, false,
-               false, false, false,
-               false, false, true,
-               false, false, false]
-
-odom0_queue_size: 5
-odom0_nodelay: true
-odom0_differential: true
-odom0_relative: false
-odom0_pose_rejection_threshold: 5
-odom0_twist_rejection_threshold: 1
-
-odom1: ekf/gps_converted_odom
-odom1_config: [ true,  true,  true,
-                false, false, false,
-                false, false, false,
-                false, false, false,
-                false, false, false]
-odom1_queue_size: 2
-odom1_nodelay: true
-odom1_differential: false
-odom1_relative: false
-        
-imu0: imu/data
-imu0_config: [false, false, false,
-              false, false, false,
-              false, false, false,
-              false, false, true,
-              false, false, false]
-imu0_nodelay: false
-imu0_differential: false
-imu0_relative: false
-imu0_queue_size: 5
-imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
-imu0_twist_rejection_threshold: 0.8                #
-imu0_linear_acceleration_rejection_threshold: 0.8  #
-
-# [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
-# this to true, and *make sure* your data conforms to REP-103, specifically, that the data is in ENU frame.
-imu0_remove_gravitational_acceleration: true
-
-use_control: false
-
-process_noise_covariance:  [1.0,  0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    1.0,  0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    1e-3, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0.3,  0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0.3,  0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0.01, 0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0.5,   0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0.5,   0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0.1,  0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0.3,  0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.3,  0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.3,  0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.3,  0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.3,  0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.3]
-
-initial_estimate_covariance:   [1.0,  0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                                0,    1.0,  0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                                0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                                0,    0,    0,    1.0,  0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                                0,    0,    0,    0,    1.0,  0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                                0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
-                                0,    0,    0,    0,    0,    0,    1.0,  0,    0,    0,     0,     0,     0,    0,    0,
-                                0,    0,    0,    0,    0,    0,    0,    1.0,  0,    0,     0,     0,     0,    0,    0,
-                                0,    0,    0,    0,    0,    0,    0,    0,    1.0,  0,     0,     0,     0,    0,    0,
-                                0,    0,    0,    0,    0,    0,    0,    0,    0,    1.0,   0,     0,     0,    0,    0,
-                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1.0,   0,     0,    0,    0,
-                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1.0,   0,    0,    0,
-                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1.0,  0,    0,
-                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1.0,  0,
-                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1.0]
-```
-
 
 ### 2D mode
 
@@ -756,99 +636,6 @@ initial_estimate_covariance:   [1.0,  0,    0,    0,    0,    0,    0,    0,    
 ## PROVISIONAL SOLUTION: ekf_local.yaml
 
 Path: /agriculture_sim/src/configurations/robot_localization/ekf_local.yaml
-
-### Original
-
-```bash
-frequency: 30
-sensor_timeout: 0.1
-two_d_mode: true
-transform_time_offset: 0.05
-transform_timeout: 0.0
-#predict_to_current_time: true 
-print_diagnostics: true
-debug: false
-publish_tf: true
-
-map_frame: map
-odom_frame: odom
-base_link_frame: base_link
-world_frame: odom
-
-# odom0: example
-# odom0_config:  [x,        y,        z,
-#                 roll,     pitch,    yaw,
-#                 vel_x,    vel_y,    vel_z,
-#                 vel_roll, vel_pitc, vel_yaw,
-#                 acc_x,    acc_y,    acc_z]
-
-odom0: rtabmap/rgbd_odom
-odom0_config: [false, false, false,
-               true,  false, false,
-               false, false, false,
-               false, false, true,
-               false, false, false]
-odom0_queue_size: 5
-odom0_nodelay: false
-odom0_differential: false
-odom0_relative: false
-odom0_pose_rejection_threshold: 5
-odom0_twist_rejection_threshold: 1
-
-imu0: imu/data
-imu0_config: [false, false, false,
-              false, false, false,
-              false, false, false,
-              false, false, true,
-              false, false, false]
-imu0_nodelay: false
-imu0_differential: false
-imu0_relative: false
-imu0_queue_size: 5
-imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
-imu0_twist_rejection_threshold: 0.8                #
-imu0_linear_acceleration_rejection_threshold: 0.8  #
-
-
-# [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
-# this to true, and *make sure* your data conforms to REP-103, specifically, that the data is in ENU frame.
-imu0_remove_gravitational_acceleration: true
-
-use_control: false
-
-process_noise_covariance:  [1e-3, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    1e-3, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    1e-3, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    1e-3, 0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    1e-3, 0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    1e-3, 0,     0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0.5,   0,     0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0.5,   0,    0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0.1,  0,    0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0.3,  0,    0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.3,  0,    0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.3,  0,    0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.3,  0,    0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.3,  0,
-                            0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.3]
-
-initial_estimate_covariance: [1e-9, 0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                              0,    1e-9, 0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                              0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                              0,    0,    0,    1.0,  0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                              0,    0,    0,    0,    1.0,  0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
-                              0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
-                              0,    0,    0,    0,    0,    0,    1.0,  0,    0,    0,     0,     0,     0,    0,    0,
-                              0,    0,    0,    0,    0,    0,    0,    1.0,  0,    0,     0,     0,     0,    0,    0,
-                              0,    0,    0,    0,    0,    0,    0,    0,    1.0,  0,     0,     0,     0,    0,    0,
-                              0,    0,    0,    0,    0,    0,    0,    0,    0,    1.0,   0,     0,     0,    0,    0,
-                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1.0,   0,     0,    0,    0,
-                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1.0,   0,    0,    0,
-                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1.0,  0,    0,
-                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1.0,  0,
-                              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1.0]
-
-```
 
 ### 2D mode
 
@@ -1145,6 +932,213 @@ sudo apt-get install ros-melodic-octomap-rviz-plugins
 sudo apt install ros-melodic-rtabmap-ros
 ```
 
+
+## Transporter Initial Configs
+
+### SSH
+
+```bash
+ssh solarcleano@192.168.8.70
+```
+### File folders
+
++ Other locations & connect:
+
+```bash
+sftp://solarcleano@192.168.8.70
+```
+
+And right click + "Add Bookmark".
+
+### Bash
+
+```bash
+gedit ~/.bashrc
+```
+
+```bash
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+  # We have color support; assume it's compliant with Ecma-48
+  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+  # a case would tend to support setf rather than setaf.)
+  color_prompt=yes
+    else
+  color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+source /opt/ros/melodic/setup.bash
+
+#--------------
+
+MY_IP=$(hostname -I | awk '{print $1}')
+echo 'Current IP: '$MY_IP
+
+# Debug config: IP of cleaner_1 Ingeniarius/Ingeniarius-5G/Ingeniarius-4G
+# export ROS_MASTER_URI=http://192.168.8.203:11311
+# export ROS_IP=$MY_IP
+
+
+# Debug config: IP of server Ingeniarius/Ingeniarius-5G/Ingeniarius-4G
+DEFINED_ROS_MASTER_NAMES=('localhost' 'no_name' 'no_name' 'no_name' 'no_name' 'no_name' 'transporter')
+DEFINED_ROS_MASTER_URIS=($MY_IP '192.168.8.200' '192.168.8.203' '192.168.8.15' '192.168.8.207' '192.168.8.28' '192.168.8.70')
+
+echo '---------- Available ROS_MASTER_URIs ----------'
+
+for i in ${!DEFINED_ROS_MASTER_URIS[@]}; do
+    if [ $i == 0 ]; then
+        printf '\e[1m'
+        printf '%d \t %s \t %s \t (default)\n' $i ${DEFINED_ROS_MASTER_URIS[$i]} ${DEFINED_ROS_MASTER_NAMES[$i]}
+        printf '\e[0m'
+    else
+        printf '%d \t %s \t %s\n' $i ${DEFINED_ROS_MASTER_URIS[$i]} ${DEFINED_ROS_MASTER_NAMES[$i]}
+    fi
+
+done 
+
+echo 'Select index and press [ENTER]:'
+read idx
+
+# Checks if idx is empty and if is valid
+if [ -z "$idx" ]
+then
+    echo 'Setting default IP as ROS_MASTER_URI.'
+    idx=0
+else
+    if (( $idx < 0 || $idx > $i ))
+    then
+        echo 'Selected option '$idx' is not defined!'
+        echo 'Setting up default IP.'
+        idx=0
+    fi
+fi
+
+echo 'Defined ROS_MASTER_URI »»» '${DEFINED_ROS_MASTER_URIS[$idx]}
+
+
+
+export ROS_MASTER_URI=http://${DEFINED_ROS_MASTER_URIS[$idx]}:11311
+export ROS_IP=$MY_IP
+
+
+#--------------
+
+## General BUILD ros ws
+source ~/catkin_ws/devel/setup.bash
+ROS_WORKSPACE=~/catkin_ws
+
+# Editor
+export EDITOR='code -w'
+```
+
 ## Install Sublime
 
 
@@ -1202,60 +1196,6 @@ sudo su
 exit
 ```
 
-## Add ip conections on terminal 
-
-Open the file:
-```bash
-gedit ~/.bashrc
-```
-
-Copy at the end:
-```bash
-
-printf '\t \e[1m\e[93mROS_MASTER_URIs\e[0m \n'
-MY_IP=$(hostname -I | awk '{print $1}')
-printf '\t \e[104m\e[30mIP:\e[0m \e[1m%s\e[0m \n \n' $MY_IP
-DEFINED_ROS_MASTER_NAMES=('localhost' 'solarcleano-desktop' 'poc515' 'acv' 'RangerAsusPC' 'RangerAsusPC_inside' 'ipc-core-ranger')
-DEFINED_ROS_MASTER_URIS=($MY_IP '192.168.8.200' '192.168.8.203' '192.168.8.207' '192.168.8.220' '172.16.2.2' '192.168.8.28')
-for i in ${!DEFINED_ROS_MASTER_URIS[@]}; do
-    if [ $i == 0 ]; then
-        printf '\e[1m'
-        printf '%d \t %s \t %s \t\t (default)\n' $i ${DEFINED_ROS_MASTER_URIS[$i]} ${DEFINED_ROS_MASTER_NAMES[$i]}
-        printf '\e[0m'
-    else
-        printf '%d \t %s \t %s\n' $i ${DEFINED_ROS_MASTER_URIS[$i]} ${DEFINED_ROS_MASTER_NAMES[$i]}
-    fi
-done
-printf '\nSelect index and press [ENTER]: '
-read idx
-printf '\n'
-# Checks if idx is empty and if is valid
-if [ -z "$idx" ]
-then
-    printf 'Setting default IP as ROS_MASTER_URI.'
-    idx=0
-else
-    if (( $idx < 0 || $idx > $i ))
-    then
-        printf 'Selected option %s is not defined! Setting up default IP.' $idx
-        idx=0
-    fi
-fi
-printf '\n'
-printf 'Defined ROS_MASTER_URI »»» %s \n' ${DEFINED_ROS_MASTER_URIS[$idx]}
-export ROS_MASTER_URI=http://${DEFINED_ROS_MASTER_URIS[$idx]}:11311
-export ROS_IP=$MY_IP
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ros/melodic/lib/x86_64-linux-gnu
-
-```
-## Add connected folder
-
-File --> + Other locations:
-```bash
-
-sftp://192.168.8.207/home/acv
-```
-Conect and fix the folder
 
 # ODOM INPUTS
 
