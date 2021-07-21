@@ -1135,6 +1135,7 @@ docker cp <containerId>:/file/path/in/container/ /host/local/path/
 
 ```bash
 rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+sudo apt-get install libpcap-dev
 catkin_make
 ```
 * Install the missing pkgs:
@@ -1200,6 +1201,61 @@ sudo su
 ```bash
 exit
 ```
+
+## Add ip conections on terminal 
+
+Open the file:
+```bash
+gedit ~/.bashrc
+```
+
+Copy at the end:
+```bash
+
+printf '\t \e[1m\e[93mROS_MASTER_URIs\e[0m \n'
+MY_IP=$(hostname -I | awk '{print $1}')
+printf '\t \e[104m\e[30mIP:\e[0m \e[1m%s\e[0m \n \n' $MY_IP
+DEFINED_ROS_MASTER_NAMES=('localhost' 'solarcleano-desktop' 'poc515' 'acv' 'RangerAsusPC' 'RangerAsusPC_inside' 'ipc-core-ranger')
+DEFINED_ROS_MASTER_URIS=($MY_IP '192.168.8.200' '192.168.8.203' '192.168.8.207' '192.168.8.220' '172.16.2.2' '192.168.8.28')
+for i in ${!DEFINED_ROS_MASTER_URIS[@]}; do
+    if [ $i == 0 ]; then
+        printf '\e[1m'
+        printf '%d \t %s \t %s \t\t (default)\n' $i ${DEFINED_ROS_MASTER_URIS[$i]} ${DEFINED_ROS_MASTER_NAMES[$i]}
+        printf '\e[0m'
+    else
+        printf '%d \t %s \t %s\n' $i ${DEFINED_ROS_MASTER_URIS[$i]} ${DEFINED_ROS_MASTER_NAMES[$i]}
+    fi
+done
+printf '\nSelect index and press [ENTER]: '
+read idx
+printf '\n'
+# Checks if idx is empty and if is valid
+if [ -z "$idx" ]
+then
+    printf 'Setting default IP as ROS_MASTER_URI.'
+    idx=0
+else
+    if (( $idx < 0 || $idx > $i ))
+    then
+        printf 'Selected option %s is not defined! Setting up default IP.' $idx
+        idx=0
+    fi
+fi
+printf '\n'
+printf 'Defined ROS_MASTER_URI »»» %s \n' ${DEFINED_ROS_MASTER_URIS[$idx]}
+export ROS_MASTER_URI=http://${DEFINED_ROS_MASTER_URIS[$idx]}:11311
+export ROS_IP=$MY_IP
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ros/melodic/lib/x86_64-linux-gnu
+
+```
+## Add connected folder
+
+File --> + Other locations:
+```bash
+
+sftp://192.168.8.207/home/acv
+```
+Conect and fix the folder
 
 # ODOM INPUTS
 
