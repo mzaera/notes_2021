@@ -5,6 +5,8 @@ Run full_system.launch:
 ```bash
 ssh solarcleano@192.168.8.70
 ```
+*Exit to ssh crt+d*
+
 ```bash
 cd catkin_ws
 source devel/setup.bash
@@ -12,6 +14,7 @@ source devel/setup.bash
 ```bash
 roslaunch transporter_launcher full_system.launch
 ```
+*NO cakin_make if some ccp file is modified should do catkin build*
 
 Run rviz:
 *New terminal Defined ROS_MASTER_URI » 192.168.8.70*
