@@ -18,10 +18,12 @@ source devel/setup.bash
 ```bash
 roslaunch transporter_launcher full_system.launch
 ```
-*NO cakin_make if some ccp file is modified should do catkin build*
 
+```bash
+roslaunch vinebot_launcher full_system.launch
+```
 Run rviz:
-*New terminal Defined ROS_MASTER_URI » 192.168.8.70*
+*New terminal ROS_MASTER_URI » 192.168.8.X*
 
 ```bash
 rosrun rviz rviz -d /home/mzaera/Documents/rviz_config/transporter_config.rviz
@@ -29,6 +31,7 @@ rosrun rviz rviz -d /home/mzaera/Documents/rviz_config/transporter_config.rviz
 
 
 ## Initial Configs
+*NO cakin_make if some ccp file is modified should do catkin build*
 
 ### SSH
 
