@@ -5,6 +5,10 @@ Run full_system.launch:
 ```bash
 ssh solarcleano@192.168.8.70
 ```
+
+```bash
+ssh vinebot_0@192.168.8.238
+```
 *Exit to ssh crt+d*
 
 ```bash
