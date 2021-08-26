@@ -1,0 +1,22 @@
+
+TO COMMIT CHANGES
+-----------------
+
+git pull
+
+git status
+
+git config --local user.email "martizaera99@gmail.com"
+
+git add launch/full_system.launch launch/map.launch launch/octomap/new_octomap.launch launch/rtabmap/map_mode_rtabmap.launch launch/rtabmap/save_rtabmap.launch launch/rtabmap/test_map.launch launch/rtabmap/map_saver_rtabmap.launch launch/rtabmap/rtabmap_repeat.launch launch/rtabmap/rtabmap_teach.launch
+   
+git commit -m "Map launchfiles names updated"
+
+git push
+
+
+TO SAVE TEMP WORK
+-----------------
+git checkout -b dev-marti-test
+
+git status (will point at dev-marti branch)

@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="restart_db"                          default="true"/>
+    <arg name="update_map"                          default="true"/>
+
+    <arg if="$(arg restart_db)"        name="arguments"      default="-d"/>
+    <arg unless="$(arg restart_db)"    name="arguments"      default=""/>
+
+  <!--RTABMAP NODE-->
+  <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="log" args="$(arg arguments)" launch-prefix="bash -c 'sleep 5.0; $0 $@'" >
+    <!-- Subscribe config-->
+    <param name="subscribe_depth"                   type="bool"   value="true"/>
+    <param name="subscribe_scan"                    type="bool"   value="false"/>
+    <param name="subscribe_scan_cloud"              type="bool"   value="true"/>
+    <param name="subscribe_stereo"                  type="bool"   value="false"/>
+    <param name="subscribe_rgbd"                    type="bool"   value="false"/>
+
+    <!-- TF config params -->
+    <param name="frame_id"                          type="string" value="base_link"/>
+    <param name="map_frame_id"                      type="string" value="map"/>
+    <param name="odom_frame_id"                     type="string" value=""/>
+
+    <param name="odom_tf_linear_variance"           type="double" value="1.0"/> 
+    <param name="odom_tf_angular_variance"          type="double" value="1.0"/> 
+    <param name="queue_size"                        type="int"    value="10"/>
+    <param name="publish_tf"                        type="bool"   value="false"/>
+    <param name="tf_delay"                          type="double" value="0.05"/>
+    <param name="wait_for_transform"                type="bool"   value="true"/>
+    <param name="wait_for_transform_duration"       type="double" value="0.5"/>
+    <param name="publish_tf_map"                    type="bool"   value="false"/>
+
+    <!-- General config params -->
+    <param name="config_path"                       type="string" value=""/>
+    <param name="database_path"                     type="string" value="~/.ros/rtabmap/rtabmap.db"/>
+    <param name="approx_sync"                       type="bool"   value="true"/>
+    <param name="rgbd_cameras"                      type="int"    value="1"/>
+    <param name="odom_sensor_sync"                  type="bool"   value="false"/>
+    <param name="use_action_for_goal"               type="bool"   value="false"/>
+
+    <!-- Generate sacan from depth -->
+    <param name="gen_scan"                          type="bool"   value="false"/>
+    <param name="gen_scan_max_depth"                type="double" value="4.0"/>
+    <param name="gen_depth"                         type="bool"   value="false"/> 
+    <param name="gen_depth_decimation"              type="int"    value="1"/>
+    <param name="gen_depth_fill_holes_size"         type="int"    value="0"/>
+    <param name="gen_depth_fill_iterations"         type="double" value="0.1"/>      
+    <param name="gen_depth_fill_holes_error"        type="int"    value="1"/>
+
+    <!-- Map config -->
+    <param name="map_filter_radius"                 type="double" value="0.25"/>   
+    <param name="map_filter_angle"                  type="double" value="25.0"/>   
+    <param name="map_cleanup"                       type="bool"   value="true"/> 
+    <param name="latch"                             type="bool"   value="true"/>
+    <param name="map_always_update"                 type="bool"   value="false"/>
+    <param name="map_empty_ray_tracing"             type="bool"   value="true"/>
+
+    <!--Rtabmap Main Prams -->
+    <param name="Rtabmap/DetectionRate"             type="string" value="1.0"/> 
+    <param name="Rtabmap/TimeThr"                   type="string" value="0"/>   
+    <param name="Rtabmap/MemoryThr"                 type="string" value="0"/> 
+
+    <param name="Rtabmap/LoopThr"                   type="string" value="0.11"/> 
+    <param name="Rtabmap/LoopRatio"                 type="string" value="0"/> 
+    <param name="Rtabmap/LoopGPS"                   type="string" value="true"/>  
+
+    <param name="Rtabmap/StartNewMapOnLoopClosure"  type="string" value="false"/>  
+
+    <param name="Vis/MinInliers"                    type="string" value="10"/>           
+
+    <param name="Mem/ReduceGraph"                   type="string" value="false"/>
+
+    <param name="Mem/IncrementalMemory"             type="string" value="$(arg update_map)"/>  
+
+    <!--RGB-D SLAM -->
+    <param name="RGBD/Enable"                       type="bool"   value="true"/>     
+
+    <param name="RGBD/GoalReachedRadius"            type="string" value="0.5"/>    
+    <param name="RGBD/PlanStuckIterations"          type="string" value="0"/> 
+    <param name="RGBD/PlanLinearVelocity"           type="string" value="0"/> 
+    <param name="RGBD/PlanAngularVelocity"          type="string" value="0"/> 
+    <param name="RGBD/GoalsSavedInUserData"         type="string" value="false"/> 
+    <param name="RGBD/MaxLocalRetrieved"            type="string" value="2"/> 
+
+    <param name="RGBD/AngularUpdate"                type="string" value="0.15"/> 
+    <param name="RGBD/LinearUpdate"                 type="string" value="0.05"/>  
+    <param name="RGBD/LinearSpeedUpdate"            type="string" value="0.0"/>  
+    <param name="RGBD/AngularSpeedUpdate"           type="string" value="0.0"/>  
+
+    <param name="RGBD/NewMapOdomChangeDistance"     type="string" value="0"/>      
+    <param name="RGBD/OptimizeFromGraphEnd"         type="string" value="true"/>  
+    <param name="RGBD/OptimizeMaxError"             type="string" value="0.0"/>   
+    <param name="RGBD/MaxLoopClosureDistance"       type="string" value="0"/>      
+
+    <param name="RGBD/StartAtOrigin"                type="string" value="true"/>
+  
+    <param name="RGBD/LocalRadius"                  type="string" value="200"/>  
+    <param name="RGBD/LocalImmunizationRatio"       type="string" value="0.25"/> 
+    <param name="RGBD/ScanMatchingIdsSavedInLinks"  type="string" value="true"/>
+
+    <param name="RGBD/NeighborLinkRefining"         type="bool"   value="true"/>
+        <param name="Kp/DetectorStrategy"               type="string"   value="8"/>  
+        <param name="Kp/NNStrategy"                     type="string"   value="0"/>  
+
+    <param name="RGBD/LoopClosureIdentityGuess"     type="string" value="false"/> 
+    <param name="RGBD/LoopClosureReextractFeatures" type="string" value="false"/>     
+    <param name="RGBD/LocalBundleOnLoopClosure"     type="string" value="false"/>  
+    <param name="RGBD/CreateOccupancyGrid"          type="string" value="true"/>  
+    <param name="RGBD/MarkerDetection"              type="string" value="true"/> 
+    <param name="RGBD/LoopCovLimited"               type="string" value="false"/> 
+    <param name="RGBD/MaxOdomCacheSize"             type="string" value="0"/> 
+      
+    <!-- Proximity loop closure detection -->
+    <param name="RGBD/ProximityByTime"              type="string" value="false"/>
+    <param name="RGBD/ProximityBySpace"             type="string" value="true"/>
+    <param name="RGBD/ProximityMaxGraphDepth"       type="string" value="50"/>
+    <param name="RGBD/ProximityMaxPaths"            type="string" value="0"/>
+    <param name="RGBD/ProximityPathFilteringRadius" type="string" value="15"/>  
+    <param name="RGBD/ProximityPathMaxNeighbors"    type="string" value="0"/>
+    <param name="RGBD/ProximityPathRawPosesUsed"    type="string" value="true"/>
+    <param name="RGBD/ProximityAngle"               type="string" value="90"/>
+    <param name="RGBD/ProximityOdomGuess"           type="string" value="true"/>
+    <param name="RGBD/ProximityGlobalScanMap"       type="string" value="true"/>
+
+ <!-- Graph optimization : RTABMAP_Go2 -->
+    <param name="Optimizer/Strategy"                type="string" value="1"/> 
+    <param name="Optimizer/Iterations"              type="string" value="20"/>  
+    <param name="Optimizer/Epsilon"                 type="string" value="0.0"/> 
+
+    <param name="Optimizer/VarianceIgnored"         type="bool" value="true"/>                          
+    <param name="Optimizer/Robust"                  type="bool" value="true"/> 
+    <param name="Optimizer/PriorsIgnored"           type="bool" value="true"/> 
+    <param name="Optimizer/LandmarksIgnored"        type="bool" value="false"/>  
+    <param name="Optimizer/GravitySigma"            type="string" value="0.3"/> 
+
+    <param name="g2o/Solver"                        type="string" value="0"/> 
+    <param name="g2o/Optimizer"                     type="string" value="0"/> 
+    <param name="g2o/PixelVariance"                 type="string" value="1.0"/> 
+    <param name="g2o/RobustKernelDelta"             type="string" value="8"/> 
+    <param name="g2o/Baseline"                      type="string" value="0.075"/> 
+
+    <!--Grid config -->
+    <param name="Grid/Scan2dUnknownSpaceFilled"     type="string" value="false"/> 
+    <param name="Grid/ScanDecimation"               type="string" value="1"/>      
+    <param name="Grid/RayTracing"                   type="bool"   value="true"/> 
+    <param name="Grid/PreVoxelFiltering"            type="bool"   value="true"/>
+    <param name="Grid/FootprintHeight"              type="string" value="0.0"/>
+    <param name="Grid/FootprintLength"              type="string" value="0.0"/>
+    <param name="Grid/FootprintWidth"               type="string" value="0.0"/>
+    <param name="Grid/DepthDecimation"              type="string" value="8"/>
+
+    <param name="Grid/3D"                           type="bool"   value="true"/>
+    <param name="Grid/MapFrameProjection"           type="bool"   value="false"/> 
+    <param name="Grid/FromDepth"                    type="bool"   value="false"/>
+    <param name="Grid/CellSize"                     type="double" value="0.075"/> 
+    <param name="Grid/GroundIsObstacle"             type="string" value="false"/>
+    <param name="Grid/FlatObstacleDetected"         type="string" value="false"/>
+
+    <param name="Grid/NoiseFilteringMinNeighbors"   type="int"    value="5"/>   
+    <param name="Grid/NoiseFilteringRadius"         type="double" value="0.35"/>  
+
+    <param name="Grid/RangeMax"                     type="double" value="50.0"/>  
+    <param name="Grid/RangeMin"                     type="double" value="0.0"/>  
+    <param name="Grid/MaxObstacleHeight"            type="double" value="3.0"/>
+    <param name="Grid/MinGroundHeight"              type="double" value="0.0"/>
+
+    <param name="Grid/NormalsSegmentation"          type="bool"   value="true"/>  
+    <param name="Grid/MaxGroundHeight"              type="double" value="0.25"/>   
+
+    <param name="Grid/MaxGroundAngle"               type="string" value="47.0"/>     
+    <param name="Grid/MinClusterSize"               type="int"    value="0"/>       
+    <param name="Grid/ClusterRadius"                type="double" value="0.01"/>    
+    <param name="Grid/NormalK"                      type="string" value="24"/>
+
+    <!--Grid global config -->
+    <param name="GridGlobal/AltitudeDelta"          type="string" value="0"/>
+    <param name="GridGlobal/Eroded"                 type="string" value="true"/>
+    <param name="GridGlobal/FootprintRadius"        type="string" value="0.0"/>
+    <param name="GridGlobal/FullUpdate"             type="string" value="true"/>
+    <param name="GridGlobal/MaxNodes"               type="string" value="0"/>
+    <param name="GridGlobal/MinSize"                type="string" value="30.0"/> 
+
+    <param name="GridGlobal/OccupancyThr"           type="string" value="0.5"/>   
+    <param name="GridGlobal/ProbClampingMax"        type="string" value="0.971"/> 
+    <param name="GridGlobal/ProbClampingMin"        type="string" value="0.1192"/> 
+    <param name="GridGlobal/ProbHit"                type="string" value="0.745"/> 
+    <param name="GridGlobal/ProbMiss"               type="string" value="0.475"/>`
+
+    <param name="GridGlobal/UpdateError"            type="string" value="0.01"/>     
+
+    <param name="Reg/Force3DoF"                     type="string" value="false"/>   
+    <param name="Reg/RepeatOnce"                    type="string" value="true"/>   
+    <param name="Reg/Strategy"                      type="string" value="1"/>      
+
+    <param name="Marker/Dictionary"                 type="string" value="12"/>      
+    <param name="Marker/Length"                     type="string" value="0"/>      
+    <param name="Marker/MaxDepthError"              type="string" value="0.01"/>      
+    <param name="Marker/VarianceLinear"             type="string" value="0.001"/>      
+    <param name="Marker/VarianceAngular"            type="string" value="0.01"/>      
+    <param name="Marker/CornerRefinementMethod"     type="string" value="3"/>      
+    <param name="Marker/MaxRange"                   type="string" value="0.0"/>      
+    <param name="Marker/MinRange"                   type="string" value="0.0"/>
+
+    <!--Remaps-->
+    <remap from="rgb/image"                         to="camera/color/image_raw"/>
+    <remap from="depth/image"                       to="camera/aligned_depth_to_color/image_raw"/>
+    <remap from="rgb/camera_info"                   to="camera/color/camera_info"/>
+    <remap from="scan_cloud"                        to="fused_point_cloud_camera"/> 
+    <remap from="odom"                              to="ekf/global_odom"/>  
+  </node>
+
+  <!--CAMERA POINTCLOUD FILTER NODELET-->
+  <node pkg="nodelet" type="nodelet" name="points_xyzrgb" args="standalone rtabmap_ros/point_cloud_xyzrgb" output="log">
+    <param name="decimation"                        type="double" value="4"/>
+    <param name="voxel_size"                        type="double" value="0.05"/>
+    <param name="approx_sync"                       type="bool"   value="false"/>
+    <param name="queue_size"                        type="int"    value="10"/>
+    <param name="min_depth"                         type="double" value="0.0"/>
+    <param name="max_depth"                         type="double" value="7.5"/>
+    <param name="noise_filter_radius"               type="double" value="0.1"/>
+    <param name="noise_filter_min_neighbors"        type="int"    value="10"/>
+
+    <remap from="rgb/image"                         to="camera/color/image_raw"/>
+    <remap from="depth/image"                       to="camera/aligned_depth_to_color/image_raw"/>
+    <remap from="rgb/camera_info"                   to="camera/color/camera_info"/>
+    <remap from="cloud"                             to="camera_filtered_pointcloud" />
+  </node>
+
+</launch>
